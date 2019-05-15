@@ -22,7 +22,7 @@ RSpec.describe Achievement, type: :model do
   describe "associations" do
     let(:achievement) { build(:achievement) }
 
-    it { expect(achievement).to belong_to(:cart) }
-    it { expect(achievement).to belong_to(:product) }
+    it { expect(achievement).to belong_to(:student) }
+    it { expect(achievement).to belong_to(:step) }
   end
 end
