@@ -7,5 +7,5 @@ class Teacher < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :email, uniqueness: true
 
-  has_many :courses, dependent: destroy
+  has_many :courses, dependent: :destroy
 end

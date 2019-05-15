@@ -3,5 +3,5 @@
 class Question < ApplicationRecord
   belongs_to :student
   belongs_to :course
-  has_many :votes, dependent: destroy
+  has_many :votes, dependent: :destroy
 end
