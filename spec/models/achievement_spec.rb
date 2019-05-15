@@ -19,10 +19,10 @@ RSpec.describe Achievement, type: :model do
     it { is_expected.to have_db_column(:step_id).of_type(:integer) }
   end
 
-  # describe "associations" do
-  #   let(:selection) { build(:selection) }
+  describe "associations" do
+    let(:achievement) { build(:achievement) }
 
-  #   it { expect(selection).to belong_to(:cart) }
-  #   it { expect(selection).to belong_to(:product) }
-  # end
+    it { expect(achievement).to belong_to(:cart) }
+    it { expect(achievement).to belong_to(:product) }
+  end
 end

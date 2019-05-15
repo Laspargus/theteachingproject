@@ -14,6 +14,8 @@
 
 FactoryBot.define do
   factory :attendance do
-    status { "MyString" }
+  	status { Faker::Boolean.boolean }
+    student_id { Student.ids.sample }
+    course_id { Course.ids.sample }
   end
 end

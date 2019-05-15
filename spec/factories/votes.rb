@@ -13,5 +13,6 @@
 
 FactoryBot.define do
   factory :vote do
+    question_id { Question.ids.sample }
   end
 end

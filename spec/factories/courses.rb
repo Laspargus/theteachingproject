@@ -14,7 +14,8 @@
 
 FactoryBot.define do
   factory :course do
-    title { "MyString" }
-    description { "MyText" }
+  	title { Faker::Book.title }
+  	description { Faker::TvShows::VentureBros.quote }
+  	teacher_id { Teacher.ids.sample }
   end
 end

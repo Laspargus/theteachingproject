@@ -13,5 +13,7 @@
 
 FactoryBot.define do
   factory :achievement do
+    student_id { Student.ids.sample }
+    step_id { Step.ids.sample }
   end
 end

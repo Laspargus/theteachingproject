@@ -14,6 +14,8 @@
 
 FactoryBot.define do
   factory :step do
-    title { "MyString" }
+    title { Faker::TvShows::Simpsons.character }
+    description { Faker::Quotes::Shakespeare.hamlet_quote }
+    course_id { Course.ids.sample }
   end
 end
