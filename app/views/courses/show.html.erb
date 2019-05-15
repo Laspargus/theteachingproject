@@ -1,5 +1,28 @@
-<h1>Courses#show</h1>
-<p>Find me in app/views/courses/show.html.erb</p>
+
+
+<% if current_student == nil %>
+  <container class="row">
+    <section>
+      <%= render partial: "courses/show/teacher/teacher_steps" %>
+    </section>
+    <section>
+      <%= render partial: "courses/show/teacher/teacher_questions" %>
+    </section>
+  </container>
+<% end %>
+
+<% if current_teacher == nil %>
+  <container class="row">
+    <section>
+      <%= render partial: "courses/show/student/student_steps" %>
+    </section>
+    <section>
+      <%= render partial: "courses/show/student/student_questions" %>
+    </section>
+  </container>
+<% end %>
+
+
 <%= @course.title %> <br />
 <%= @course.description %> <br />
 <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>

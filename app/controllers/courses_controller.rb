@@ -36,15 +36,6 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course.destroy
     redirect_to root_path, success: "Course successfully deleted"
-=begin
-    ArgumentError in CoursesController#destroy
-    wrong number of arguments (given 0, expected 1)
-    Extracted source (around line #5):
-    class Step < ApplicationRecord
-      belongs_to :course
-      has_many :achievements, dependent: destroy <=======================================================
-    end
-=end
   end
 
   private
