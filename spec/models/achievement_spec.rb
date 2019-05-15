@@ -25,4 +25,14 @@ RSpec.describe Achievement, type: :model do
     it { expect(achievement).to belong_to(:student) }
     it { expect(achievement).to belong_to(:step) }
   end
+
+  describe 'Achievement attributes' do
+    let!(:achievement) { build(:achievement) }
+
+    it { expect(achievement.errors).to be_empty }
+
+    it "is valid with valid attributes" do
+      expect(achievement).to be_valid
+    end
+  end
 end

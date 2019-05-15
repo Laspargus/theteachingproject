@@ -16,6 +16,6 @@ FactoryBot.define do
   factory :step do
     title { Faker::TvShows::Simpsons.character }
     description { Faker::Quotes::Shakespeare.hamlet_quote }
-    course_id { Course.ids.sample }
+    course { FactoryBot.create(:course) }
   end
 end

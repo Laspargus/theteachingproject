@@ -15,7 +15,7 @@
 FactoryBot.define do
   factory :attendance do
     status { Faker::Boolean.boolean }
-    student_id { Student.ids.sample }
-    course_id { Course.ids.sample }
+    student { Student.create(:student) }
+    course { FactoryBot.create(:course) }
   end
 end

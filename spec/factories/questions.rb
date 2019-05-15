@@ -15,7 +15,7 @@
 FactoryBot.define do
   factory :question do
     content { Faker::Quote.yoda }
-    student_id { Student.ids.sample }
-    course_id { Course.ids.sample }
+    student { FactoryBot.create(:student) }
+    course { FactoryBot.create(:course) }
   end
 end
