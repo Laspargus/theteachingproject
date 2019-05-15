@@ -1,0 +1,11 @@
+<h1>Edit</h1>
+<% if current_teacher %>
+	<%= form_for @course do |f| %>
+		Title : 
+		<%= f.text_field :title %>
+		Description : 
+		<%= f.text_field :description %>
+		<%= f.submit %>
+	<% end %>
+<%else%>
+<%end%>
