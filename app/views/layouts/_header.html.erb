@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">The Teaching Project</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+
+<li class="nav-item dropdown megamenu">
+			      
+
+
+
+
+
+			<% if current_teacher %>
+	    <!-- Je suis un Teacher -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Login
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	         <%= link_to 'Sign Out', destroy_teacher_session_path, method: :delete, class:"dropdown-item" %>
+	         <div class="dropdown-divider"></div>
+	        <%= link_to ' Change Email/Password',  edit_teacher_registration_path, class:"dropdown-item" %>
+	        </div>
+	      </li>
+	    <!-- Je suis un Teacher -->
+
+			<% elsif current_student %>
+	  	<!-- Je suis un Student -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Login
+	        </a>
+	           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	         <%= link_to 'Sign Out', destroy_student_session_path, method: :delete, class:"dropdown-item" %>
+	         <div class="dropdown-divider"></div>
+	        <%= link_to ' Change Email/Password',  edit_student_registration_path, class:"dropdown-item" %>
+	        </div>
+	      </li>
+	    <!-- Je suis un student -->
+			<%else%>
+
+
+
+			<!-- Je suis un visiteur -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Login Student
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	             <%= link_to 'Sign Up', new_student_registration_path, class:"dropdown-item" %>
+	          <div class="dropdown-divider"></div>
+	             <%= link_to 'Sign In ', new_student_session_path, class:"dropdown-item" %>
+	        </div>
+
+	      </li>
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Login Teacher
+	        </a>
+	         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	             <%= link_to 'Sign Up', new_teacher_registration_path, class:"dropdown-item" %>
+	          <div class="dropdown-divider"></div>
+	             <%= link_to 'Sign In ', new_teacher_session_path, class:"dropdown-item" %>
+	        </div>
+	      </li>
+	    <!-- Je suis un visiteur -->
+			<%end%>
+    </ul>
+ 
+  </div>
+</nav>
