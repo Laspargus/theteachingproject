@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_05_15_085255) do
   end
 
   create_table "attendances", force: :cascade do |t|
-    t.string "status"
+    t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "student_id"
