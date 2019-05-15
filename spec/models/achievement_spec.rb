@@ -34,5 +34,9 @@ RSpec.describe Achievement, type: :model do
     it "is valid with valid attributes" do
       expect(achievement).to be_valid
     end
+
+    # it "is not valid with unvalid user_id" do
+    #   expect(achievement).not_to be_valid
+    # end
   end
 end
