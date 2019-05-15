@@ -12,7 +12,6 @@
 #  course_id  :bigint
 #
 
-
 class Question < ApplicationRecord
   belongs_to :student
   belongs_to :course

@@ -11,7 +11,6 @@
 #  step_id    :bigint
 #
 
-
 class Achievement < ApplicationRecord
   belongs_to :student
   belongs_to :step

@@ -12,7 +12,6 @@
 #  teacher_id  :bigint
 #
 
-
 class Course < ApplicationRecord
   validates :title, presence: true
   belongs_to :teacher

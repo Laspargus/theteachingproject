@@ -12,7 +12,6 @@
 #  course_id  :bigint
 #
 
-
 FactoryBot.define do
   factory :question do
     content { "MyText" }

@@ -16,7 +16,6 @@
 #  last_name              :string           default(""), not null
 #
 
-
 require 'rails_helper'
 
 # RSpec.describe Teacher, type: :model do

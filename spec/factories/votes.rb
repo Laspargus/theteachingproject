@@ -11,7 +11,6 @@
 #  question_id :bigint
 #
 
-
 FactoryBot.define do
   factory :vote do
   end

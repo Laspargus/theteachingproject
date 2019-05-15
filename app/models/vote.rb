@@ -11,7 +11,6 @@
 #  question_id :bigint
 #
 
-
 class Vote < ApplicationRecord
   belongs_to :student
   belongs_to :question

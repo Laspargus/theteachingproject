@@ -11,7 +11,6 @@
 #  step_id    :bigint
 #
 
-
 FactoryBot.define do
   factory :achievement do
   end

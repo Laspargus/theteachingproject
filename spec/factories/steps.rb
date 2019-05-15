@@ -12,7 +12,6 @@
 #  description :text
 #
 
-
 FactoryBot.define do
   factory :step do
     title { "MyString" }

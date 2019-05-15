@@ -11,7 +11,6 @@
 #  question_id :bigint
 #
 
-
 require 'rails_helper'
 
 # RSpec.describe Vote, type: :model do

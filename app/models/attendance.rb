@@ -12,7 +12,6 @@
 #  course_id  :bigint
 #
 
-
 class Attendance < ApplicationRecord
   validates :status, presence: true
 

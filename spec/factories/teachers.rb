@@ -16,7 +16,6 @@
 #  last_name              :string           default(""), not null
 #
 
-
 FactoryBot.define do
   factory :teacher do
   end

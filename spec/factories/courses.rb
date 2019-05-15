@@ -12,7 +12,6 @@
 #  teacher_id  :bigint
 #
 
-
 FactoryBot.define do
   factory :course do
     title { "MyString" }
