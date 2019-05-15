@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 2019_05_15_085255) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "achievments", force: :cascade do |t|
+  create_table "achievements", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "student_id"
     t.bigint "step_id"
-    t.index ["step_id"], name: "index_achievments_on_step_id"
-    t.index ["student_id"], name: "index_achievments_on_student_id"
+    t.index ["step_id"], name: "index_achievements_on_step_id"
+    t.index ["student_id"], name: "index_achievements_on_student_id"
   end
 
   create_table "attendances", force: :cascade do |t|
