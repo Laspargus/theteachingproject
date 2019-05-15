@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Vote < ApplicationRecord
+class Achievement < ApplicationRecord
   belongs_to :student
-  belongs_to :question
+  belongs_to :step
 end

@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-# RSpec.describe Question, type: :model do
+# RSpec.describe Achievement, type: :model do
 # end
