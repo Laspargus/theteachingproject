@@ -1,2 +1,22 @@
-<h1>Courses#show</h1>
-<p>Find me in app/views/courses/show.html.erb</p>
+<% if current_student == nil %>
+<container class="row">
+  <section>
+    <%= render partial: "teacher_steps" %>
+  </section>
+  <section>
+    <%= render partial: "teacher_questions" %>
+  </section>
+</container>
+<% end %>
+
+<% if current_teacher == nil %>
+<container class="row">
+  <section>
+    <%= render partial: "student_steps" %>
+  </section>
+  <section>
+    <%= render partial: "student_questions" %>
+  </section>
+</container>
+<% end %>
+
