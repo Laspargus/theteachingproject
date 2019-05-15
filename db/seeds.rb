@@ -9,6 +9,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+Student.destroy_all
+p "Old students destroyed"
+
 20.times do
   Student.create!(
     first_name: Faker::Name.first_name,
@@ -21,6 +24,9 @@ end
 
 p "Students are now created"
 
+Teacher.destroy_all
+p "Old teachers destroyed"
+
 5.times do
   Teacher.create!(
     first_name: Faker::Name.first_name,
@@ -32,12 +38,13 @@ p "Students are now created"
 end
 
 p "Teachers are now created"
+Course.destroy_all
 
 6.times do
   Course.create!(
     title: Faker::IndustrySegments.industry,
     description: Faker::Lorem.sentence(3),
-    teacher_id: rand(1..5)
+    teacher: Teacher.all.sample
   )
 end
 
@@ -45,9 +52,9 @@ p "Courses are now created"
 
 60.times do
   Attendance.create!(
-    status: Faker::Boolean.boolean(0.2),
-    student_id: rand(1..10),
-    course_id: rand(1..5)
+    status: "false",
+    student: Student.all.sample,
+    course: Course.all.sample,
   )
 end
 
@@ -56,8 +63,8 @@ p "Attendances are now created"
 30.times do
   Question.create!(
     content: Faker::TvShows::RuPaul.quote,
-    course_id: rand(1..10),
-    student_id: rand(1..10)
+    course: Course.all.sample,
+    student: Student.all.sample,
   )
 end
 
@@ -65,8 +72,8 @@ p "Questions are now created"
 
 90.times do
   Vote.create!(
-    question_id: rand(1..10),
-    student_id: rand(1..10)
+    question: Question.all.sample,
+    student: Student.all.sample
   )
 end
 
@@ -75,7 +82,7 @@ p "Votes are now created"
 40.times do
   Step.create!(
     title: Faker::IndustrySegments.sector,
-    student_id: rand(1..10)
+    course: Course.all.sample
   )
 end
 
@@ -83,8 +90,8 @@ p "Steps are now created"
 
 90.times do
   Achievement.create!(
-    step_id: rand(1..10),
-    student_id: rand(1..10)
+    step: Step.all.sample,
+    student: Student.all.sample
   )
 end
 
