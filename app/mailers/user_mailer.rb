@@ -7,6 +7,6 @@ class UserMailer < ApplicationMailer
     @attendance = attendance
     @course = @attendance.course
     @title = @attendance.course.title
-    mail(to: @attendance.student.email, subject: "Invitation to a new course_attendance_path")
+    mail(to: @attendance.student.email, subject: "Invitation to a new course")
   end
 end

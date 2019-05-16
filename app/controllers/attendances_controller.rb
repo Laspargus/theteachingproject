@@ -7,7 +7,15 @@ class AttendancesController < ApplicationController
 
   def edit; end
 
-  def update; end
+  def update
+    @course = Course.find(params[:course_id])
+
+    @attendance = Attendance.find_by(course: @course, student: current_student)
+    @attendance.update(status: true)
+
+    flash[:notice] = "Invitation accepted"
+    redirect_to course_path(@course)
+  end
 
   def new
     @course = Course.find(params[:course_id])

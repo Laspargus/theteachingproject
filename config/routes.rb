@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :courses do
+    resources :steps, only: %i[create update destroy edit]
     resources :attendances
-    resources :questions, except: [:show]
   end
 
-  devise_for :teachers
-  devise_for :students
+  resources :questions, except: [:show]
+
+  devise_for :teachers, path: 'teachers'
+  devise_for :students, path: 'students'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

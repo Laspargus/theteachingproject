@@ -29,10 +29,12 @@ Description :
     <section>
       <%= render partial: "courses/show/student/student_questions" %>
     </section>
+      <section>
+      <%= render partial: "courses/show/student/student_attendance" %>
+    </section>
   </container>
 <% end %>
 
-<<<<<<< HEAD
 
 <%= @course.title %> <br />
 <%= @course.description %> <br />
@@ -42,7 +44,9 @@ Description :
 <div class="conatiner">
 <%= link_to "Invite students", new_course_attendance_path(@course), class:'btn btn-secondary' %>
 </div>
-=======
+
+<%
+=begin %>
 <h1>Questions</h1>
 <% if Question.where(course_id: @course.id).empty? == false %>
   Content : <br>
@@ -56,4 +60,5 @@ Description :
 <% else %>
   No question yet !
 <% end %>
->>>>>>> master
+<%
+=end %>
