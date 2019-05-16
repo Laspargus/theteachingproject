@@ -13,8 +13,14 @@
 #
 
 class Attendance < ApplicationRecord
+  after_create :invitation_to_course
+
   belongs_to :student
   belongs_to :course
 
-  validates :status, presence: { message: "Status must be true or false" }
+  # validates :status, presence: { message: "Status must be true or false" }
+
+  def invitation_to_course
+    UserMailer.invitation_course_mail(self).deliver_later
+  end
 end

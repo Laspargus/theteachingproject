@@ -26,6 +26,7 @@ class AttendancesController < ApplicationController
 
     if !@student.nil? && @attending.nil?
       @attendance = Attendance.create(course: @course, student: @student, status: false)
+      @attendance.save
       flash[:notice] = "#{student.first_name} has been invited to course"
     elsif !@student.nil? && !@attending.nil?
       flash[:notice] = "#{student.first_name} has already been invited to course"
