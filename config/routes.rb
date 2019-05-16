@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :courses do
-    resources :steps, only: [:create]
+    resources :steps, only: %i[create update delete edit]
   end
 
   devise_for :teachers

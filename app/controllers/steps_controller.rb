@@ -10,6 +10,18 @@ class StepsController < ApplicationController
     redirect_to course_path(@course), success: "Step successfully created" if @step.save
   end
 
+  def edit
+    @course = Course.find(params[:course_id]).id
+    @step = Step.find(params[:id])
+  end
+
+  def update
+    @course = Course.find(params[:course_id]).id
+    @step = Step.find(params[:id])
+    @step.update(step_params)
+    redirect_to course_path(@course), success: "Step successfully updated"
+  end
+
   private
 
   def step_params
