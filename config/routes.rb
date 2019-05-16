@@ -3,7 +3,9 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :courses
+  resources :courses do
+    resources :steps, only: [:create]
+  end
 
   devise_for :teachers
   devise_for :students
