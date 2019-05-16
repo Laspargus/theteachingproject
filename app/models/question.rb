@@ -13,6 +13,8 @@
 #
 
 class Question < ApplicationRecord
+  validates :content, presence: true
+
   belongs_to :student
   belongs_to :course
   has_many :votes, dependent: :destroy
