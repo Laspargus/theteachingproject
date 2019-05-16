@@ -82,7 +82,8 @@ p "Votes are now created"
 40.times do
   Step.create!(
     title: Faker::IndustrySegments.sector,
-    course: Course.all.sample
+    course: Course.all.sample,
+    description: 'krh abzrlfablrzfhbzlerhbgflhsebrfg'
   )
 end
 
