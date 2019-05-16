@@ -1,13 +1,12 @@
-
 <h1>Class</h1>
-<% if current_student == nil %>
+
+Title : <%= @course.title %> <br />
+Description : <%= @course.description %> <br />
+
+<% if current_teacher %>
+  <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
+  <%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
   <container class="row">
-    Title : 
-    <%= @course.title %> <br />
-    Description :
-    <%= @course.description %> <br />
-    <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
-    <%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
     <section>
       <%= render partial: "courses/show/teacher/teacher_steps" %>
     </section>
@@ -17,11 +16,9 @@
   </container>
 <% end %>
 
-<% if current_teacher == nil %>
-Title : 
-<%= @course.title %> <br />
-Description : 
-<%= @course.description %> <br />
+
+<% if current_student %>
+
   <container class="row">
     <section>
       <%= render partial: "courses/show/student/student_steps" %>
@@ -36,6 +33,7 @@ Description :
 <% end %>
 
 
+
 <%= @course.title %> <br />
 <%= @course.description %> <br />
 <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
@@ -47,6 +45,7 @@ Description :
 
 <%
 =begin %>
+
 <h1>Questions</h1>
 <% if Question.where(course_id: @course.id).empty? == false %>
   Content : <br>

@@ -23,7 +23,7 @@ FactoryBot.define do
     end
 
     trait :invalid_student do
-      status { nil }
+      student_id { nil }
     end
 
     trait :invalid_course do

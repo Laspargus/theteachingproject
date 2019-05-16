@@ -83,7 +83,7 @@ p "Votes are now created"
   Step.create!(
     title: Faker::IndustrySegments.sector,
     course: Course.all.sample,
-    description: 'krh abzrlfablrzfhbzlerhbgflhsebrfg'
+    description: Faker::Military.army_rank
   )
 end
 
