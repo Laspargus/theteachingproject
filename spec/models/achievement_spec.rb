@@ -19,10 +19,36 @@ RSpec.describe Achievement, type: :model do
     it { is_expected.to have_db_column(:step_id).of_type(:integer) }
   end
 
-  # describe "associations" do
-  #   let(:selection) { build(:selection) }
+  describe "Associations" do
+    let(:achievement) { build(:achievement) }
 
-  #   it { expect(selection).to belong_to(:cart) }
-  #   it { expect(selection).to belong_to(:product) }
-  # end
+    it { expect(achievement).to belong_to(:student) }
+    it { expect(achievement).to belong_to(:step) }
+  end
+
+  describe 'Factories' do
+    context 'with valid attributes' do
+      let!(:achievement) { build(:achievement) }
+
+      it { expect(achievement.errors).to be_empty }
+
+      it "is valid with valid attributes" do
+        expect(achievement).to be_valid
+      end
+    end
+
+    context 'with unvalid attributes' do
+      let(:achievement_wrong_step) { build(:achievement, :invalid_step) }
+
+      let(:achievement_wrong_student) { build(:achievement, :invalid_student) }
+
+      it "is not valid with unvalid user_id" do
+        expect(achievement_wrong_step).not_to be_valid
+      end
+
+      it "is not valid with unvalid student_id" do
+        expect(achievement_wrong_student).not_to be_valid
+      end
+    end
+  end
 end
