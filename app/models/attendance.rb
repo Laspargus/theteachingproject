@@ -15,4 +15,6 @@
 class Attendance < ApplicationRecord
   belongs_to :student
   belongs_to :course
+
+  validates :status, presence: { message: "Status must be true or false" }
 end
