@@ -1,2 +1,12 @@
-<h1>Courses#new</h1>
-<p>Find me in app/views/courses/new.html.erb</p>
+<div class="container mt-5">
+<div class="form-group row">    
+  <div class="col-sm-10">
+		<%= form_for @course, action: courses_path, method: :post do |f| %>
+				<%= f.text_field :title, class:"form-control form-control-lg", id:"colFormLabelLg", placeholder:"Title"%>
+				<%= f.text_field :description, class:"form-control", id:"colFormLabel", placeholder:"Description" %>
+				<%= f.submit class:"btn btn-primary mb-2" %>
+		<% end %>
+	</div>
+</div>
+		<%# button_to "delete", @course, :method => :delete %>
+</div>
