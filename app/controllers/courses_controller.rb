@@ -8,8 +8,10 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @attendance = Attendance.find_by(course: @course, student: current_student)
     @steps = @course.steps
     @step = Step.new
+
   end
 
   def new

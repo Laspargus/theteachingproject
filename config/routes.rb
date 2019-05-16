@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :steps, only: %i[create update destroy edit]
+    resources :attendances
   end
 
   resources :questions, except: [:show]
