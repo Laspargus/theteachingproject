@@ -3,7 +3,6 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-
   resources :courses do
     resources :steps, only: %i[create update destroy edit]
   end
