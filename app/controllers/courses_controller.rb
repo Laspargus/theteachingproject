@@ -2,7 +2,7 @@
 
 class CoursesController < ApplicationController
   def index
-    @courses = Course.all
+    @courses = current_teacher.courses
   end
 
   def show
@@ -14,7 +14,8 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = current_teacher.courses.build(course_params)
+    @course = Course.create(course_params)
+    @course.teacher_id = current_teacher.id
     if @course.save
       redirect_to root_path, success: "Course successfully created"
     else
@@ -41,6 +42,6 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:title, :description)
+    params.require(:course).permit(:title, :description, :teacher_id)
   end
 end
