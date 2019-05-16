@@ -27,9 +27,9 @@ RSpec.describe Course, type: :model do
     let(:course) { build(:course) }
 
     it { expect(course).to belong_to(:teacher) }
-    it { expect(course).to have_many(:attendances) }
-    it { expect(course).to have_many(:questions) }
-    it { expect(course).to have_many(:steps) }
+    it { expect(course).to have_many(:attendances).dependent(:destroy) }
+    it { expect(course).to have_many(:questions).dependent(:destroy) }
+    it { expect(course).to have_many(:steps).dependent(:destroy) }
   end
 
   describe "Validations" do

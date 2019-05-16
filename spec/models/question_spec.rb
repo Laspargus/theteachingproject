@@ -28,7 +28,7 @@ RSpec.describe Question, type: :model do
 
     it { expect(question).to belong_to(:student) }
     it { expect(question).to belong_to(:course) }
-    it { expect(question).to have_many(:votes) }
+    it { expect(question).to have_many(:votes).dependent(:destroy) }
   end
 
   describe "Validations" do

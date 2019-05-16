@@ -13,6 +13,7 @@
 
 FactoryBot.define do
   factory :vote do
+    student { FactoryBot.create(:student) }
     question { FactoryBot.create(:question) }
   end
 end

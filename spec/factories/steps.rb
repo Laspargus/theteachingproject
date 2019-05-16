@@ -17,5 +17,17 @@ FactoryBot.define do
     title { Faker::TvShows::Simpsons.character }
     description { Faker::Quotes::Shakespeare.hamlet_quote }
     course { FactoryBot.create(:course) }
+
+    trait :invalid_title do
+      title { nil }
+    end
+
+    trait :invalid_course do
+      course_id { nil }
+    end
+
+    trait :invalid_descrition do
+      description { nil }
+    end
   end
 end
