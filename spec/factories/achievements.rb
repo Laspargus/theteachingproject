@@ -15,5 +15,13 @@ FactoryBot.define do
   factory :achievement do
     student { FactoryBot.create(:student) }
     step { FactoryBot.create(:step) }
+
+    trait :invalid_step do
+      step_id { nil }
+    end
+
+    trait :invalid_student do
+      student_id { nil }
+    end
   end
 end
