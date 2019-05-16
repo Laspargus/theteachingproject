@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <% @steps.each do |step| %>
+    <div>
+      <%= step.title %>
+      <%= step.description %>
+			<%= step.achievements.count %> / <%= @course.attendances.count %>
+			<%= link_to "edit", edit_course_step_path(@course, step), class:"btn btn-success" %>
+			<%= link_to "delete", course_step_path(@course, step), method: :delete, class:"btn btn-danger" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="container mt-5">
+	<div class="form-group row">    
+		<div class="col-sm-10">
+			<%= form_for @step, url: course_steps_path(@course), method: :post do |f| %>
+					<%= f.text_field :title, class:"form-control form-control-lg", id:"colFormLabelLg", placeholder:"Title"%>
+					<%= f.text_field :description, class:"form-control", id:"colFormLabel", placeholder:"Description" %>
+					<%= f.submit class:"btn btn-primary mb-2" %>
+			<% end %>
+		</div>
+	</div>
+</div>
