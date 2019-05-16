@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :courses
+  resources :questions, except: [:show]
 
   devise_for :teachers
   devise_for :students
