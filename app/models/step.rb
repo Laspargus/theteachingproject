@@ -13,6 +13,8 @@
 #
 
 class Step < ApplicationRecord
+  validates :title, :description, presence: true
+
   belongs_to :course
   has_many :achievements, dependent: :destroy
 end

@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-# RSpec.describe "courses/create.html.erb", type: :view do
+# RSpec.describe "questions/index.html.erb", type: :view do
 # end
