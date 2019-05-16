@@ -6,11 +6,16 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.new
+    @course = Course.find(params[:course_id])
+    @question = @course.questions.new
   end
 
   def create
-    @question = Question.create(question_params)
+    puts "$" * 50
+    puts @course = Course.find(params[:course_id])
+    puts @question = @course.questions.build(question_params)
+    puts @question.student_id == current_student.id
+    @question.save
     if @question.save
       redirect_to root_path, success: "Question successfully created"
     else
@@ -38,5 +43,6 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:content, :student_id, :course_id)
+    raise params.inspect
   end
 end
