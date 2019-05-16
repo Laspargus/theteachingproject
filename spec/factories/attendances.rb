@@ -14,8 +14,20 @@
 
 FactoryBot.define do
   factory :attendance do
-    status { Faker::Boolean.boolean }
-    student { Student.create(:student) }
+    status { [true, false].sample }
+    student { FactoryBot.create(:student) }
     course { FactoryBot.create(:course) }
+
+    trait :invalid_status do
+      status { "true" }
+    end
+
+    trait :invalid_student do
+      status { nil }
+    end
+
+    trait :invalid_course do
+      course { nil }
+    end
   end
 end
