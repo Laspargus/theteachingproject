@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :attendances
+    resources :questions, except: [:show]
   end
 
   devise_for :teachers
