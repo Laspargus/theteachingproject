@@ -1,19 +1,12 @@
-<%= @course.title %> <br />
-<%= @course.description %> <br />
-<%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
-<%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
-
-
 <h1>Class</h1>
-<% if current_teacher %>
 
+Title : <%= @course.title %> <br />
+Description : <%= @course.description %> <br />
+
+<% if current_teacher %>
+  <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
+  <%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
   <container class="row">
-    Title : 
-    <%= @course.title %> <br />
-    Description :
-    <%= @course.description %> <br />
-    <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
-    <%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
     <section>
       <%= render partial: "courses/show/teacher/teacher_steps" %>
     </section>
@@ -25,10 +18,6 @@
 
 
 <% if current_student %>
-Title : 
-<%= @course.title %> <br />
-Description : 
-<%= @course.description %> <br />
 
   <container class="row">
     <section>

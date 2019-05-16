@@ -2,12 +2,15 @@
 
 class StepsController < ApplicationController
   def create
-    @course = Course.find(params[:course_id]).id
-    @step = Step.create(step_params)
+    @course = Course.find(params[:course_id])
+    @step = @course.steps.build(step_params)
     @step.title = params[:step][:title]
     @step.description = params[:step][:description]
-    @step.course_id = @course
-    redirect_to course_path(@course), success: "Step successfully created" if @step.save
+    if @step.save
+      redirect_to course_path(@course), success: "Step successfully created"
+    else
+      redirect_to course_path(@course)
+    end
   end
 
   def edit
@@ -16,15 +19,14 @@ class StepsController < ApplicationController
   end
 
   def update
-    @course = Course.find(params[:course_id]).id
     @step = Step.find(params[:id])
     @step.update(step_params)
-    redirect_to course_path(@course), success: "Step successfully updated"
+    redirect_to course_path(@step.course), success: "Step successfully updated"
   end
 
   def destroy
-    @course = Course.find(params[:course_id]).id
     @step = Step.find(params[:id])
+    @course = @step.course
     @step.destroy
     redirect_to course_path(@course), success: "Step successfully deleted"
   end
@@ -32,6 +34,6 @@ class StepsController < ApplicationController
   private
 
   def step_params
-    params.require(:step).permit(:title, :description, :course_id)
+    params.require(:step).permit(:title, :description)
   end
 end
