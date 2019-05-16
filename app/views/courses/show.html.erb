@@ -1,22 +1,47 @@
+
+<h1>Class</h1>
 <% if current_student == nil %>
-<container class="row">
-  <section>
-    <%= render partial: "teacher_steps" %>
-  </section>
-  <section>
-    <%= render partial: "teacher_questions" %>
-  </section>
-</container>
+  <container class="row">
+    Title : 
+    <%= @course.title %> <br />
+    Description :
+    <%= @course.description %> <br />
+    <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
+    <%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
+    <section>
+      <%= render partial: "courses/show/teacher/teacher_steps" %>
+    </section>
+    <section>
+      <%= render partial: "courses/show/teacher/teacher_questions" %>
+    </section>
+  </container>
 <% end %>
 
 <% if current_teacher == nil %>
-<container class="row">
-  <section>
-    <%= render partial: "student_steps" %>
-  </section>
-  <section>
-    <%= render partial: "student_questions" %>
-  </section>
-</container>
+Title : 
+<%= @course.title %> <br />
+Description : 
+<%= @course.description %> <br />
+  <container class="row">
+    <section>
+      <%= render partial: "courses/show/student/student_steps" %>
+    </section>
+    <section>
+      <%= render partial: "courses/show/student/student_questions" %>
+    </section>
+  </container>
 <% end %>
 
+<h1>Questions</h1>
+<% if Question.where(course_id: @course.id).empty? == false %>
+  Content : <br>
+  <% Question.where(course_id: @course.id).pluck(:content).each do |content|%>
+    <%= content %>
+      <% if Student.find(Question.where(content: content).ids) == current_student.id%>
+        <%= link_to "Edit",edit_question_path(Question.where(content: content).ids), class:'btn btn-success' %>
+        <%= link_to "Delete",question_path(Question.where(content: content).ids), class:'btn btn-danger', method: :delete %><br><br>
+      <% end %>
+  <%end%>
+<% else %>
+  No question yet !
+<% end %>
