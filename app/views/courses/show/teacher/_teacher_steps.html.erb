@@ -5,6 +5,7 @@
       <%= step.description %>
 			<%= step.achievements.count %> / <%= @course.attendances.count %>
 			<%= link_to "edit", edit_course_step_path(@course, step), class:"btn btn-success" %>
+			<%= link_to "delete", course_step_path(@course, step), method: :delete, class:"btn btn-danger" %>
     </div>
   <% end %>
 </div>

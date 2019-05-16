@@ -22,6 +22,13 @@ class StepsController < ApplicationController
     redirect_to course_path(@course), success: "Step successfully updated"
   end
 
+  def destroy
+    @course = Course.find(params[:course_id]).id
+    @step = Step.find(params[:id])
+    @step.destroy
+    redirect_to course_path(@course), success: "Step successfully deleted"
+  end
+
   private
 
   def step_params
