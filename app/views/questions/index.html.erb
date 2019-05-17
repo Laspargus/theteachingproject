@@ -1,9 +1,8 @@
 <section class="container mt-5">
-	<h1>Questions#index</h1>
-
+	Question : <br>
 	<% @questions.each do |question| %>
-		<%= question.content %>
-		<%= link_to "Edit",edit_question_path(question.id), class:'btn btn-success' %>
-		<%= link_to "Delete",question_path(question.id), class:'btn btn-danger', method: :delete %> <br><br>
+		<%= question.content %><br>
 	<% end %>
+	<%= link_to "New",new_course_question_path(@course), class:'btn btn-success mt-5' %>
 </section>
+

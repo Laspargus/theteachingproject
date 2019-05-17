@@ -1,5 +1,3 @@
-<h1>Class</h1>
-
 Title : <%= @course.title %> <br />
 Description : <%= @course.description %> <br />
 
@@ -15,7 +13,6 @@ Description : <%= @course.description %> <br />
     </section>
   </container>
 <% end %>
-
 
 <% if current_student %>
 
@@ -51,10 +48,9 @@ Description : <%= @course.description %> <br />
   Content : <br>
   <% Question.where(course_id: @course.id).pluck(:content).each do |content|%>
     <%= content %>
-      <% if Student.find(Question.where(content: content).ids) == current_student.id%>
-        <%= link_to "Edit",edit_question_path(Question.where(content: content).ids), class:'btn btn-success' %>
-        <%= link_to "Delete",question_path(Question.where(content: content).ids), class:'btn btn-danger', method: :delete %><br><br>
-      <% end %>
+
+        <%= link_to "Edit",edit_course_question_path(@course.id, Question.where(content: content).ids), class:'btn btn-success' %>
+        <%= link_to "Delete",course_question_path(@course.id, Question.where(content: content).ids), class:'btn btn-danger', method: :delete %><br><br>
   <%end%>
 <% else %>
   No question yet !

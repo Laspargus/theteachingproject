@@ -1,5 +1,5 @@
 <h1>Edit</h1>
-<%= form_for @question do |f| %>
+<%= form_for @question, url: course_question_path, method: :put  do |f| %>
 	Content : 
 	<%= f.text_field :content %>
 	<%= f.submit class:'btn btn-success'%>
