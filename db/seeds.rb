@@ -22,6 +22,14 @@ p "Old students destroyed"
   )
 end
 
+Student.create!(
+  first_name: "Charles",
+  last_name: "Dacquay",
+  email: "student@yopmail.com",
+  password: "123456",
+  password_confirmation: "123456"
+)
+
 p "Students are now created"
 
 Teacher.destroy_all
@@ -36,6 +44,14 @@ p "Old teachers destroyed"
     password_confirmation: "azerty"
   )
 end
+
+Teacher.create!(
+  first_name: "Félix",
+  last_name: "Gaudé",
+  email: "teacher@yopmail.com",
+  password: "123456",
+  password_confirmation: "123456"
+)
 
 p "Teachers are now created"
 Course.destroy_all

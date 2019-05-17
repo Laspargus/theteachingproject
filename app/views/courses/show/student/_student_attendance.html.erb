@@ -1,4 +1,4 @@
 
-<%if pending_invitation(@course, current_student) %>
-<%= link_to 'Accept invitation', course_attendance_path(@course, @attendance), method:'PATCH', class:"btn btn-success"%>
-<%end%>
+<% if pending_invitation(@course, current_student) %>
+	<%= link_to 'Accept invitation', course_attendance_path(@course, @attendance), method:'PATCH', class:"btn btn-success" %>
+<% end %>
