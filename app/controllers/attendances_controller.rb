@@ -1,31 +1,15 @@
 # frozen_string_literal: true
 
 class AttendancesController < ApplicationController
-  def show; end
-
-  def destroy; end
-
-  def edit; end
-
-  def update
-    @course = Course.find(params[:course_id])
-
-    @attendance = Attendance.find_by(course: @course, student: current_student)
-    @attendance.update(status: true)
-
-    flash[:notice] = "Invitation accepted"
-    redirect_to course_path(@course)
-  end
+  before_action :set_course, only: %i[new create update]
 
   def new
-    @course = Course.find(params[:course_id])
     @attendance = Attendance.new
     @invitations = Attendance.where(course: @course, status: false)
     @attendances = Attendance.where(course: @course, status: true)
   end
 
   def create
-    @course = Course.find(params[:course_id])
     @email = params[:attendance][:email]
     @student = Student.find_by(email: @email)
     @attending = Attendance.find_by(student: @student, course: @course)
@@ -45,9 +29,19 @@ class AttendancesController < ApplicationController
     redirect_to new_course_attendance_path(@course)
   end
 
-  def index; end
+  def update
+    @attendance = Attendance.find_by(course: @course, student: current_student)
+    @attendance.update(status: true)
+
+    flash[:notice] = "Invitation accepted"
+    redirect_to course_path(@course)
+  end
 
   private
+
+  def set_course
+    @course = Course.find(params[:course_id])
+  end
 
   def attendance_params
     params.require(:attendance).permit(:email)
