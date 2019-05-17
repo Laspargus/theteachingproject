@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :set_course, only: %i[index new create]
-
-  def index
-    @questions = Question.where(course_id: @course)
-  end
+  before_action :set_course, only: %i[new create destroy]
+  before_action :set_question, only: %i[authenticate_question_author edit update destroy]
+  before_action :authenticate_question_author, only: %i[destroy]
 
   def new
     @new_question = Question.new
@@ -15,26 +13,24 @@ class QuestionsController < ApplicationController
     @new_question = @course.questions.create(question_params)
     @new_question.student_id = current_student.id
     if @new_question.save
-      redirect_to course_questions_path
+      redirect_to course_path(@course)
     else
       render 'new'
     end
   end
 
-  def edit
-    @question = Question.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @question = Question.find(params[:id])
     @question.update(question_params)
-    redirect_to root_path, success: "Question successfully updated"
+    redirect_to course_path(@question.course)
+    flash[:success] = "Question successfully deleted"
   end
 
   def destroy
-    @question = Question.find(params[:id])
     @question.destroy
-    redirect_to root_path, success: "Question successfully deleted"
+    redirect_to course_path(@course)
+    flash[:notice] = "Question successfully deleted"
   end
 
   private
@@ -45,5 +41,13 @@ class QuestionsController < ApplicationController
 
   def set_course
     @course = Course.find(params[:course_id])
+  end
+
+  def set_question
+    @question = Question.find(params[:id])
+  end
+
+  def authenticate_question_author
+    redirect_to course_path(@question.course); flash[:alert] = "You're not allowed to do that bro ..." unless @question.student == current_student
   end
 end

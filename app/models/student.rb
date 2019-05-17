@@ -29,4 +29,8 @@ class Student < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :attendances, dependent: :destroy
   has_many :courses, through: :attendances, dependent: :destroy
+
+  def not_voted?(question)
+    Vote.where("student_id = ? AND question_id = ?", id, question.id).empty?
+  end
 end
