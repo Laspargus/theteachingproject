@@ -6,11 +6,12 @@ class StepsController < ApplicationController
     @step = @course.steps.build(step_params)
     @step.title = params[:step][:title]
     @step.description = params[:step][:description]
-    if @step.save
-      redirect_to course_path(@course), success: "Step successfully created"
-    else
-      redirect_to course_path(@course)
-    end
+    redirect_to course_path(@course)
+    flash[:alert] = if @step.save
+                      "Step created"
+                    else
+                      "Step created failed"
+                    end
   end
 
   def edit
@@ -21,14 +22,16 @@ class StepsController < ApplicationController
   def update
     @step = Step.find(params[:id])
     @step.update(step_params)
-    redirect_to course_path(@step.course), success: "Step successfully updated"
+    redirect_to course_path(@step.course)
+    flash[:alert] = "Step successfully updated"
   end
 
   def destroy
     @step = Step.find(params[:id])
     @course = @step.course
     @step.destroy
-    redirect_to course_path(@course), success: "Step successfully deleted"
+    redirect_to course_path(@course)
+    flash[:alert] = "Step successfully deleted"
   end
 
   private

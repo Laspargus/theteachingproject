@@ -10,6 +10,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @steps = @course.steps
     @step = Step.new
+    @achievement = Achievement.new
   end
 
   def new

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :steps, only: %i[create update destroy edit]
   end
 
+  resources :achievements, only: %i[create destroy]
+
   resources :questions, except: [:show]
 
   devise_for :teachers, path: 'teachers'
