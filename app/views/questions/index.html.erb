@@ -1,7 +1,8 @@
 <section class="container mt-5">
-	Question : 
+	Question : <br>
 	<% @questions.each do |question| %>
-		<%= question.content %>
-		<%= link_to "New",new_course_question_path, class:'btn btn-success' %>
+		<%= question.content %><br>
 	<% end %>
+	<%= link_to "New",new_course_question_path(@course), class:'btn btn-success mt-5' %>
 </section>
+

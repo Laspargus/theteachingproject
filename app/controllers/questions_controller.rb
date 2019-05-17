@@ -1,23 +1,21 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
+  before_action :set_course, only: %i[index new create]
+
   def index
-    @questions = Question.all
+    @questions = Question.where(course_id: @course)
   end
 
   def new
-    @course = Course.find(params[:course_id])
-    @question = @course.questions.new
+    @new_question = Question.new
   end
 
   def create
-    puts "$" * 50
-    puts @course = Course.find(params[:course_id])
-    puts @question = @course.questions.build(question_params)
-    puts @question.student_id == current_student.id
-    @question.save
-    if @question.save
-      redirect_to root_path, success: "Question successfully created"
+    @new_question = @course.questions.create(question_params)
+    @new_question.student_id = current_student.id
+    if @new_question.save
+      redirect_to course_questions_path
     else
       render 'new'
     end
@@ -43,6 +41,9 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:content, :student_id, :course_id)
-    raise params.inspect
+  end
+
+  def set_course
+    @course = Course.find(params[:course_id])
   end
 end

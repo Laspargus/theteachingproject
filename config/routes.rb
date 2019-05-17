@@ -3,9 +3,9 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :courses do 
-   resources :questions, except: [:show]
-   resources :steps, only: %i[create update destroy edit]
+  resources :courses do
+    resources :questions, except: [:show]
+    resources :steps, only: %i[create update destroy edit]
   end
 
   devise_for :teachers, path: 'teachers'
