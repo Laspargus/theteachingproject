@@ -39,6 +39,7 @@ class AttendancesController < ApplicationController
     elsif !@student.nil? && !@attending.nil?
       flash[:notice] = "#{student.first_name} has already been invited to course"
     else
+      invitation_to_application(@email, @course.teacher)
       flash[:notice] = "#{email} is not a member. We invited him to join application. Please invite him to course later"
     end
     redirect_to new_course_attendance_path(@course)
@@ -50,5 +51,9 @@ class AttendancesController < ApplicationController
 
   def attendance_params
     params.require(:attendance).permit(:email)
+  end
+
+  def invitation_to_application(email, teacher)
+    UserMailer.invitation_application_mail(email, teacher).deliver_later
   end
 end

@@ -14,19 +14,16 @@ th, td {
 }</style>
   </head>
   <body>
-    <h1>Hello <%= @attendance.student.first_name %> 👋</h1>
+    <h1>Hello👋</h1>
     <div>
-    <p>You've been invited to join the following course </p>
-    <p><%= @attendance.course.title %></p>
+    <p><%=@teacher.first_name%>, <%=@teacher.last_name%>  invited you to join The Teaching Project : </p>
+     <%= link_to "Accept invitation", new_student_registration_url, class:"btn btn-success" %>  
+  
     </div>
     <div>
-       <p>
-        
-         <%= link_to "Accept invitation", course_url(@course), class:"btn btn-success" %>  
-
-    </p>
+      
     <p>
-    See you soon
+        See you soon
     </p> 
     </div>
   </body>
