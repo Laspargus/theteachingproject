@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :courses do
+    resources :questions, except: [:show]
     resources :steps, only: %i[create update destroy edit]
+    resources :attendances
   end
 
   resources :achievements, only: %i[create destroy]

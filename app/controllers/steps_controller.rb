@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class StepsController < ApplicationController
+  before_action :set_step, only: %i[edit update destroy]
+  before_action :set_course, only: %i[create edit]
+
   def create
-    @course = Course.find(params[:course_id])
     @step = @course.steps.build(step_params)
     @step.title = params[:step][:title]
     @step.description = params[:step][:description]
@@ -14,20 +16,15 @@ class StepsController < ApplicationController
                     end
   end
 
-  def edit
-    @course = Course.find(params[:course_id]).id
-    @step = Step.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @step = Step.find(params[:id])
     @step.update(step_params)
     redirect_to course_path(@step.course)
     flash[:alert] = "Step successfully updated"
   end
 
   def destroy
-    @step = Step.find(params[:id])
     @course = @step.course
     @step.destroy
     redirect_to course_path(@course)
@@ -35,6 +32,14 @@ class StepsController < ApplicationController
   end
 
   private
+
+  def set_course
+    @course = Course.find(params[:course_id])
+  end
+
+  def set_step
+    @step = Step.find(params[:id])
+  end
 
   def step_params
     params.require(:step).permit(:title, :description)
