@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
 class CoursesController < ApplicationController
+  before_action :set_course, only: %i[edit update show destroy]
+
   def index
     @courses = Course.all
-    # current_teacher.courses
   end
 
   def show
-    @course = Course.find(params[:id])
     @attendance = Attendance.find_by(course: @course, student: current_student)
     @steps = @course.steps
     @step = Step.new
-
   end
 
   def new
@@ -28,23 +27,23 @@ class CoursesController < ApplicationController
     end
   end
 
-  def edit
-    @course = Course.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @course = Course.find(params[:id])
     @course.update(course_params)
     redirect_to root_path, success: "Course successfully updated"
   end
 
   def destroy
-    @course = Course.find(params[:id])
     @course.destroy
     redirect_to root_path, success: "Course successfully deleted"
   end
 
   private
+
+  def set_course
+    @course = Course.find(params[:id])
+  end
 
   def course_params
     params.require(:course).permit(:title, :description, :teacher_id)
