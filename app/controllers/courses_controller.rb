@@ -12,6 +12,7 @@ class CoursesController < ApplicationController
     @steps = @course.steps
     @step = Step.new
     @questions = @course.questions.sort_by(&:num_votes).reverse
+    @achievement = Achievement.new
   end
 
   def new

@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <% @steps.each do |step| %>
+    <div>
+      <div class="row justify-content-between">
+      <%= step.title %>
+        <div>
+        <% if step.achievements.where("student_id = ?", current_student.id).count == 0 %>
+          <%= form_for @achievement, url: achievements_path(step_id: step.id, student_id: current_student.id), method: :post do |f| %>
+              <%= button_tag( class: "btn btn-primary") do %>
+                <i class="fas fa-check"></i>
+              <% end %>
+          <% end %>
+        <% else %>      
+          <span>Achieved</span>
+            <%= link_to achievement_path(step.achievements.where("student_id = ?", current_student.id).first), method: :delete, class:"btn btn-danger" do %>
+            <i class="fas fa-times"></i>
+            <% end %> 
+          <% end %><br />
+        </div>
+      </div>
+      <%= step.description %><br />
+      <%= step.achievements.count %> / <%= @course.attendances.count %>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: <%= step.achievements.count %>%" aria-valuenow="<%= step.achievements.count %>" aria-valuemin="0" aria-valuemax="<%= @course.attendances.count %>"></div>
+      </div>
+    </div><hr>
+  <% end %>
+</div>
