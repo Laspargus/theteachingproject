@@ -1,6 +1,6 @@
 <section class="container mt-5">
-  Title : <%= @course.title %> <br />
-  Description : <%= @course.description %> <br />
+  <span class="font-weight-bold">Title :</span> <%= @course.title %> <br />
+  <span class="font-weight-bold">Description :</span> <%= @course.description %> <br />
 
   <% if current_teacher %>
     <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
@@ -9,9 +9,6 @@
       <section>
         <%= render partial: "courses/show/teacher/teacher_steps" %>
       </section>
-      <section>
-        <%= render partial: "courses/show/teacher/teacher_questions" %>
-      </section>
     </container>
   <% elsif current_student %>
     <container class="row">
@@ -19,17 +16,33 @@
         <%= render partial: "courses/show/student/student_steps" %>
       </section>
       <section>
-        <%= render partial: "courses/show/student/student_questions" %>
-      </section>
-        <section>
         <%= render partial: "courses/show/student/student_attendance" %>
       </section>
     </container>
   <% end %>
 
   <% if current_teacher %>
+    <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
+    <%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
     <div class="container">
       <%= link_to "Invite students", new_course_attendance_path(@course), class:'btn btn-secondary' %>
     </div>
   <% end %>
 </section>
+
+<div class="container mt-4">
+  <div class="font-weight-bold">
+    Questions of the students :
+  </div>
+  <div class="mt-2 mb-5">
+    <ul class="list-group">
+      <% if current_teacher %>
+        <section>
+          <%= render partial: "courses/show/teacher/teacher_questions" %>
+        </section>
+      <% elsif current_student %>
+        <%= render partial: "courses/show/student/student_questions" %>
+      <% end %>
+    </ul>
+  </div>
+</div>

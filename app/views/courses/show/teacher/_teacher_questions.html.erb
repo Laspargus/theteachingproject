@@ -1,0 +1,12 @@
+<% @questions.each do |question| %>
+  <li class="list-group-item d-flex align-items-center">
+
+	  <div class="mr-2">
+  		<%= question.content %>
+  	</div>
+
+  	<div class="mr-2">
+  		<span class="badge badge-pill badge-warning"><%= question.num_votes %> votes</span>
+	  </div>
+  </li>
+<% end %>
