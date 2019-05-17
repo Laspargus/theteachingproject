@@ -52,9 +52,9 @@ RSpec.describe Attendance, type: :model do
       #   expect(attendance_wrong_status).not_to be_valid
       # end
 
-      # it "is not valid with unvalid student_id" do
-      #   expect(attendance_wrong_student).not_to be_valid
-      # end
+      it "is not valid with unvalid student_id" do
+        expect(attendance_wrong_student).not_to be_valid
+      end
 
       it "is not valid with unvalid course_id" do
         expect(attendance_wrong_course).not_to be_valid

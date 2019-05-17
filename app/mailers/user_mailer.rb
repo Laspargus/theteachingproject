@@ -11,9 +11,8 @@ class UserMailer < ApplicationMailer
   end
 
   def invitation_application_mail(email, teacher)
-    puts '$' * 100
-    puts @teacher = teacher
-    puts @email = email
+    @teacher = teacher
+    @email = email
     mail(to: @email, subject: "Invitation to join The Teaching Project")
   end
 end
