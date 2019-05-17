@@ -1,0 +1,48 @@
+<% if current_teacher %>
+
+<div class="container m-3 ">
+	<div class="row ">
+		<div class="card col-12">
+			<h2> Invite to class</h2>
+			<%= form_tag(course_attendances_path(@course), authenticity_token: true,  method: 'POST', multipart: true) do%>
+				<div class="row form-group card-body text-primary">
+					<div class="col-8 text-right">
+					  <%= email_field_tag 'attendance[email]', '', class: ' form-control ', placeholder: 'Student Email'%>
+					</div>
+			    <div class="col-4 text-right">
+			      <%= submit_tag "Invite to course", class: " btn btn-success" %>
+			    </div>
+				</div>
+			<%end%>
+		</div>
+	</div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 card p-3">
+			Already Invited
+			<ul class="list-group">
+				<% @invitations.each do |invitation| %>
+  				<li class="list-group-item">
+  					<%=invitation.student.email%>
+  				</li>
+  			<%end%>
+			</ul>
+		</div>
+		<div class="col-md-6 card p-3">
+			Already attending
+			<ul class="list-group">
+				<% @attendances.each do |attendance| %>
+  				<li class="list-group-item">
+  					<%= attendance.student.email%>
+  				</li>
+  			<%end%>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<%end%>
+
