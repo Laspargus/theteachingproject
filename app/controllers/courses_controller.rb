@@ -11,6 +11,7 @@ class CoursesController < ApplicationController
     @attendance = Attendance.find_by(course: @course, student: current_student)
     @steps = @course.steps
     @step = Step.new
+    @achievement = Achievement.new
   end
 
   def new

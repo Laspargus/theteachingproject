@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :attendances
   end
 
+  resources :achievements, only: %i[create destroy]
+
+  resources :questions, except: [:show]
+
   devise_for :teachers, path: 'teachers'
   devise_for :students, path: 'students'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

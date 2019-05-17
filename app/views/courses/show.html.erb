@@ -27,13 +27,8 @@
     </container>
   <% end %>
 
-  <%= @course.title %> <br />
-  <%= @course.description %> <br />
-  <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
-  <%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
-
   <% if current_teacher %>
-    <div class="conatiner">
+    <div class="container">
       <%= link_to "Invite students", new_course_attendance_path(@course), class:'btn btn-secondary' %>
     </div>
   <% end %>
