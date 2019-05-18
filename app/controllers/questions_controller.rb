@@ -48,6 +48,9 @@ class QuestionsController < ApplicationController
   end
 
   def authenticate_question_author
-    redirect_to course_path(@question.course); flash[:alert] = "You're not allowed to do that bro ..." unless @question.student == current_student
+    if @question.student == current_student || teacher_signed_in?
+    else
+      redirect_to course_path(@question.course); flash[:alert] = "You're not allowed to do that bro ..."
+    end
   end
 end
