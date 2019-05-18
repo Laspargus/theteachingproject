@@ -2,6 +2,7 @@
 
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[edit update show destroy]
+  before_action :authenticate_teacher!, only: %i[new create edit update destroy]
 
   def index
     @courses = Course.all

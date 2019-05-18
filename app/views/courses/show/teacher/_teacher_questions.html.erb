@@ -8,5 +8,13 @@
   	<div class="mr-2">
   		<span class="badge badge-pill badge-warning"><%= question.num_votes %> votes</span>
 	  </div>
+
+	  <div class="ml-auto">
+	  	<% if teacher_signed_in? %>
+	  		<%= link_to course_question_path(@course, question.id), :data => {:confirm => 'Are you sure ?'}, method: :delete, class:"mr-2" do %>
+	  			<i class="far fa-trash-alt"></i>
+	  		<% end %>
+	  	<% end %>
+	  </div>
   </li>
 <% end %>
