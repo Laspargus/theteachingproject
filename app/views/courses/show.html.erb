@@ -6,19 +6,19 @@
     <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
     <%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
     <container class="row">
-      <section>
+      <section style="width: 50%">
         <%= render partial: "courses/show/teacher/teacher_steps" %>
       </section>
-      <section>
+      <section style="width: 50%">
         <%= render partial: "courses/show/teacher/teacher_questions" %>
       </section>
     </container>
   <% elsif current_student %>
     <container class="row">
-      <section>
+      <section style="width: 50%">
         <%= render partial: "courses/show/student/student_steps" %>
       </section>
-      <section>
+      <section style="width: 50%">
         <%= render partial: "courses/show/student/student_questions" %>
       </section>
         <section>
