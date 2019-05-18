@@ -2,6 +2,7 @@
 
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[edit update show destroy]
+  before_action :authenticate_teacher!, only: %i[new create edit update destroy]
 
   def index
     @courses = Course.all
@@ -11,6 +12,7 @@ class CoursesController < ApplicationController
     @attendance = Attendance.find_by(course: @course, student: current_student)
     @steps = @course.steps
     @step = Step.new
+    @questions = @course.questions.sort_by(&:num_votes).reverse
     @achievement = Achievement.new
   end
 

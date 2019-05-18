@@ -1,0 +1,36 @@
+<% @questions.each do |question| %>
+  <li class="list-group-item d-flex align-items-center">
+
+	  <div class="mr-2">
+  		<%= question.content %> <span class="ml-3 mr-3">|</span>
+  	</div>
+
+  	<div class="mr-2">
+  		<% if current_student.not_voted?(question) %>
+		  	<%= form_for [@course, question, question.votes.build] do |f| %>
+		  		<%= f.hidden_field :student_id, value: current_student.id %>
+		  		<%= f.submit "Upvote", class:"btn btn-warning" %>
+		  		<span class="badge badge-pill badge-warning ml-2"><%= question.num_votes %> votes</span>
+		  	<% end %>
+		  <% else %>
+		  	<%= link_to "Unvote", course_question_vote_path(@course, question, :student_id => current_student.id), method: :delete, class:"btn btn-info " %>
+		  	<span class="badge badge-pill badge-warning ml-2"><%= question.num_votes %> votes</span>
+		  <% end %>
+	  </div>
+
+  	<div class="ml-auto">
+	  	<% if question.student == current_student %>
+	  		<%= link_to course_question_path(@course, question.id), :data => {:confirm => 'Are you sure ?'}, method: :delete, class:"mr-2" do %>
+	  			<i class="far fa-trash-alt"></i>
+	  		<% end %>
+	  		<%= link_to edit_course_question_path(@course, question.id), class:"ml-2" do %>
+	  			<i class="fas fa-edit"></i>
+	  		<% end %>
+	  	<% end %>
+	  </div>
+  </li>
+<% end %>
+
+<div class="mt-3">
+  <%= link_to 'Ask a question', new_course_question_path(@course), class:"btn btn-info" %>
+</div>
