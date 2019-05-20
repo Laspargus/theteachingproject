@@ -26,7 +26,7 @@ class AttendancesController < ApplicationController
       invitation_to_application(@email, @course.teacher)
       flash[:notice] = "#{email} is not a member. We invited him to join application. Please invite him to course later"
     end
-    redirect_to new_course_attendance_path(@course)
+    redirect_to course_path(@course)
   end
 
   def update

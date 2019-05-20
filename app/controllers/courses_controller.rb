@@ -14,6 +14,10 @@ class CoursesController < ApplicationController
     @step = Step.new
     @questions = @course.questions.sort_by(&:num_votes).reverse
     @achievement = Achievement.new
+
+    # for attendances
+    @invitations = Attendance.where(course: @course, status: false)
+    @attendances = Attendance.where(course: @course, status: true)
   end
 
   def new

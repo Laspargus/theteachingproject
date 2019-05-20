@@ -47,6 +47,10 @@
       <% end %>
     </ul>
   </div>
+
+  <% if current_teacher %>
+   <%= render partial: "courses/show/teacher/teacher_invitations" %>
+  <%end%>
 </div>
 
 </section>
