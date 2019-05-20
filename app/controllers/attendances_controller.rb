@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AttendancesController < ApplicationController
-  before_action :set_course, only: %i[new create update]
+  before_action :set_course, only: %i[new create update destroy]
 
   def new
     @attendance = Attendance.new
@@ -26,7 +26,7 @@ class AttendancesController < ApplicationController
       invitation_to_application(@email, @course.teacher)
       flash[:notice] = "#{email} is not a member. We invited him to join application. Please invite him to course later"
     end
-    redirect_to new_course_attendance_path(@course)
+    redirect_to course_path(@course)
   end
 
   def update
@@ -34,6 +34,13 @@ class AttendancesController < ApplicationController
     @attendance.update(status: true)
 
     flash[:notice] = "Invitation accepted"
+    redirect_to course_path(@course)
+  end
+
+  def destroy
+    @attendance = Attendance.find(params[:id])
+    @attendance.delete
+    flash[:notice] = "Attendance deleted"
     redirect_to course_path(@course)
   end
 
