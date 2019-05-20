@@ -42,7 +42,6 @@ class AttendancesController < ApplicationController
     @attendance.delete
     flash[:notice] = "Attendance deleted"
     redirect_to new_course_attendance_path(@course)
-
   end
 
   private
