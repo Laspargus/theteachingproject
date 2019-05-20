@@ -3,11 +3,13 @@
   <% @steps.each do |step| %>
     <div>
       <%= step.title %><br />
-      <%= step.description %><br />
-			<%= step.achievements.count %> / <%= @course.attendances.count %>
-			<div class="progress">
-				<div class="progress-bar" role="progressbar" style="width: <%= step.achievements.count %>%" aria-valuenow="<%= step.achievements.count %>" aria-valuemin="0" aria-valuemax="<%= @course.attendances.count %>"></div>
-			</div>
+			<%= step.description %><br />
+			<% if @course.attendances.count != 0 %>
+				<%= step.achievements.count %> / <%= @course.attendances.count %>
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" style="width: <%= (step.achievements.count*100/@course.attendances.count) %>%"></div>
+				</div>
+			<% end %>
 			<%= link_to "edit", edit_course_step_path(@course, step), class:"btn btn-success" %>
 			<%= link_to "delete", course_step_path(@course, step), method: :delete, class:"btn btn-danger" %>
     </div><hr>

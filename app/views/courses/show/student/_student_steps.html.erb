@@ -19,10 +19,12 @@
         </div>
       </div>
       <%= step.description %><br />
+      <% if @course.attendances.count != 0 %>
       <%= step.achievements.count %> / <%= @course.attendances.count %>
       <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: <%= step.achievements.count %>%" aria-valuenow="<%= step.achievements.count %>" aria-valuemin="0" aria-valuemax="<%= @course.attendances.count %>"></div>
+        <div class="progress-bar" role="progressbar" style="width: <%= (step.achievements.count*100/@course.attendances.count) %>%"></div>
       </div>
+      <% end %>
     </div><hr>
   <% end %>
 </div>
