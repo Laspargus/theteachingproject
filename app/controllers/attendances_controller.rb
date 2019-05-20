@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AttendancesController < ApplicationController
-  before_action :set_course, only: %i[new create update]
+  before_action :set_course, only: %i[new create update destroy]
 
   def new
     @attendance = Attendance.new
@@ -35,6 +35,13 @@ class AttendancesController < ApplicationController
 
     flash[:notice] = "Invitation accepted"
     redirect_to course_path(@course)
+  end
+
+  def destroy
+    @attendance = Attendance.find(params[:id])
+    @attendance.delete
+    flash[:notice] = "Attendance deleted"
+    redirect_to new_course_attendance_path(@course)
   end
 
   private
