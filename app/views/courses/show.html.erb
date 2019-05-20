@@ -1,62 +1,55 @@
-<section class="container mt-5 d-flex">
+<section>
+  <div class="container mt-4 col-6">
+   
+    <span class="font-weight-bold mr-2">TITLE :</span> <%= @course.title %>
+    <span class="font-weight-bold ml-3 mr-2">DESCRIPTION :</span> <%= @course.description %>
 
-<div class="col-6">
-  <span class="font-weight-bold">Title :</span> <%= @course.title %> <br />
-  <span class="font-weight-bold">Description :</span> <%= @course.description %> <br />
-
-  <% if current_teacher %>
-    <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
-    <%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
-    <container class="row">
-      <section style="width: 50%">
-        <%= render partial: "courses/show/teacher/teacher_steps" %>
-      </section>
-      <section style="width: 50%">
-        <%= render partial: "courses/show/teacher/teacher_questions" %>
-      </section>
-    </container>
-  <% elsif current_student %>
-    <container class="row">
-      <section style="width: 50%">
-        <%= render partial: "courses/show/student/student_steps" %>
-      </section>
-      <section style="width: 50%">
-        <%= render partial: "courses/show/student/student_questions" %>
-      </section>
-      <section>
-        <%= render partial: "courses/show/student/student_attendance" %>
-      </section>
-    </container>
-  <% end %>
-
-  <% if current_teacher %>
-    <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
-    <%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
-    <div class="container">
+    <% if current_teacher %>
+      <%= link_to "Edit",edit_course_path(@course.id), class:'btn btn-success' %>
+      <%= link_to "Delete",course_path(@course.id), class:'btn btn-danger', method: :delete %>
       <%= link_to "Invite students", new_course_attendance_path(@course), class:'btn btn-secondary' %>
-    </div>
-  <% end %>
-</div>
+    <% end %>
 
-<div class="container mt-4 col-6">
-  <div class="font-weight-bold">
-    Questions of the students :
   </div>
-  <div class="mt-2 mb-5">
-    <ul class="list-group">
-      <% if current_teacher %>
-        <section>
-          <%= render partial: "courses/show/teacher/teacher_questions" %>
-        </section>
-      <% elsif current_student %>
-        <%= render partial: "courses/show/student/student_questions" %>
-      <% end %>
-    </ul>
-  </div>
-
-  <% if current_teacher %>
-   <%= render partial: "courses/show/teacher/teacher_invitations" %>
-  <%end%>
-</div>
-
 </section>
+
+
+
+
+<div class="container mt-4 col-lg">
+
+  <span class="font-weight-bold ml-3">
+    Questions of the students :
+  </span>
+
+  <div class="container-fluid">
+    <div class="row" style="justify-content: space-between;">
+      
+      <% if current_teacher %>
+
+        <div class="col-4 mt-2 mb-5"><div>
+          <%= render partial: "courses/show/teacher/teacher_questions" %></div>
+        </div>
+        <div class="col-4 mt-2 mb-5"><div>
+          <%= render partial: "courses/show/teacher/teacher_steps" %></div>
+        </div>
+        <div class="col-4 mt-2 mb-5"><div>
+          <%= render partial: "courses/show/teacher/teacher_invitations" %></div>
+        </div>
+
+      <% elsif current_student %>
+      
+        <div class="col-5 mt-2 mb-5">
+          <%= render partial: "courses/show/student/student_questions" %>
+        </div>
+        <div class="col-5 mt-2 mb-5">
+          <%= render partial: "courses/show/student/student_steps" %>
+        </div>
+        <div class="col-2 mt-2 mb-5">
+          <%= render partial: "courses/show/student/student_attendance" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+    
+</div>
