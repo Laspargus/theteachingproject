@@ -17,14 +17,14 @@
 
 
 
-
-	<div class="row">
+<div class="row">
 		<div class="col-md-6 card p-3">
 			Already Invited
 			<ul class="list-group">
 				<% @invitations.each do |invitation| %>
   				<li class="list-group-item">
   					<%=invitation.student.email%>
+  					<%= link_to '<i class="far fa-times-circle"></i>'.html_safe, course_attendance_path(@course, invitation), method:'DELETE'%>
   				</li>
   			<%end%>
 			</ul>
@@ -35,6 +35,7 @@
 				<% @attendances.each do |attendance| %>
   				<li class="list-group-item">
   					<%= attendance.student.email%>
+  						<%= link_to '<i class="far fa-times-circle"></i>'.html_safe, course_attendance_path(@course, attendance), method:'DELETE'%>
   				</li>
   			<%end%>
 			</ul>

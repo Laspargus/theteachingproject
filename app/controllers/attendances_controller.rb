@@ -41,7 +41,7 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.find(params[:id])
     @attendance.delete
     flash[:notice] = "Attendance deleted"
-    redirect_to new_course_attendance_path(@course)
+     redirect_to course_path(@course)
   end
 
   private
