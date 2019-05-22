@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import { fetchCoursesCount } from "./APIs/courses";
+import { fetchCourses } from "./APIs/courses";
 
 class App extends Component {
   state = {
-    count: 0
+    courses: []
   };
 
   refreshCourseCount = async () => {
-    const courseCount = await fetchCoursesCount();
+    const courses = await fetchCourses();
     this.setState({
-      count: courseCount.courses_count
+      courses: courses.courses
     });
   };
 
@@ -18,7 +18,16 @@ class App extends Component {
   };
 
   render() {
-    return <p>Bonjour Unknown. Course count: {this.state.count} </p>;
+    return (
+      <div>
+        <p>Bonjour Unknown. Course count: {this.state.courses.length} </p>
+        <div>
+          {this.state.courses.map(course => {
+            return <section className="course"> {course.title}</section>;
+          })}
+        </div>
+      </div>
+    );
   }
 }
 

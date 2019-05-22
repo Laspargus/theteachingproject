@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do 
-        render json: {courses_count: @courses.count}
+        render json: @courses
       end
     end
   end
