@@ -6,6 +6,12 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: @courses
+      end
+    end
   end
 
   def show

@@ -5,4 +5,7 @@
 		<%= course.title %>
 		<%= link_to "Show",course_path(course.id), class:'btn btn-success' %> <br><br>
 	<% end %>
+	<div id="app-container"></div>
 </section>
+
+<%= javascript_pack_tag 'application' %>
