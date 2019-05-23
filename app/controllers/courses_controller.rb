@@ -31,12 +31,14 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.create(course_params)
-    @course.teacher_id = current_teacher.id
-    if @course.save
-      redirect_to root_path, success: "Course successfully created"
-    else
-      render 'new'
+    course = Course.create(course_params.merge(teacher_id: current_teacher.id))
+    respond_to do |format|
+      format.html do
+        redirect_to root_path, success: "Course successfully created"
+      end
+      format.json do
+        render json: course
+      end
     end
   end
 
