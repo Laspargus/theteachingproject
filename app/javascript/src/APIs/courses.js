@@ -16,9 +16,7 @@ const response = await fetch('/courses', {
   return courses;
 };
 
-
 export const addCourse = async (title, description) => {
-
     const courseResponse = await fetch('/courses', {
         method: 'POST',
         headers: {
