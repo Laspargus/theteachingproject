@@ -51,8 +51,10 @@ class CoursesController < ApplicationController
   # end
 
   def create
-    course = Course.create!(create_params.merge(teacher: current_user))
-    render json: post
+    course = Course.create!(create_params.merge(teacher: current_teacher))
+    puts '$'*100
+    puts course
+    render json: course
   end
 
   def edit; end

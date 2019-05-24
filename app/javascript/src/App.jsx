@@ -34,14 +34,11 @@ class App extends Component {
 
   handleSubmit = async e =>{
   	e.preventDefault();
-  	
-  
-
   	const NewCourse = await addCourse(this.state.title, this.state.description);
   	console.log(NewCourse)
 
   	this.setState({
-  		course : [NewCourse, ...this.state.courses],
+  		courses : [NewCourse, ...this.state.courses],
   	});
   }
 
