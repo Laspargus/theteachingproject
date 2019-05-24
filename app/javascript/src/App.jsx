@@ -1,68 +1,63 @@
 import React, { Component } from 'react';
-import { fetchCourses, addCourse } from './APIs/courses';
+import { fetchCourses } from './APIs/courses';
+import { addCourse } from './APIs/courses';
 
-export default class App extends Component {
-	state = {
-		courses: [],
+
+class App extends Component {
+  state = {
+    courses: [],
+    count : 0,
+    title: "",
     description: "",
-    title: ""
-	};
+  }
 
-	refreshCourses = async () => {
-		const courses = await fetchCourses();
-		this.setState({
-			courses: courses.courses
-		});
-	}
 
-  handleChangeTitle = (e) => {
+  refreshCourseCount = async () => {
+    const courses = await fetchCourses();
     this.setState({
-      title: e.target.value
+      courses: courses.courses,
     });
+    
   }
 
   handleChangeDescription = (e) => {
     this.setState({
-      description: e.target.value
+      description: e.target.value,
     });
   }
 
-  handleSubmit = async e => {
-    e.preventDefault();
-    const newCourse = await addCourse(this.state.title, this.state.description);
-    this.setState ({
-      courses: [newCourse, ...this.state.courses],
-    })
+  handleChangeTitle = (e) => {
+    this.setState({
+      title: e.target.value,
+    });
   }
 
-	componentDidMount = async () => {
-		await this.refreshCourses();
-	}
+  handleSubmit = async e =>{
+    e.preventDefault();
+    const NewCourse = await addCourse(this.state.title, this.state.description);
+    console.log(NewCourse)
+
+    this.setState({
+      courses : [NewCourse, ...this.state.courses],
+    });
+  }
+
+ 
+  componentDidMount = async () => {
+    await this.refreshCourseCount();
+  };
 
   render() {
+  
     return (
-    	<div>
-        <h1>Courses#index</h1>
-    		<p>Hey voici nos {this.state.courses.length} cours affichés en React</p>
-    		<div>
-    			{this.state.courses.map((course, i) => 
-    				<div key={`course_` + i} >
-    					<span className="font-weight-bold">
-    						{course.title}
-    					</span>
-    					{' '} - Pr. {course.teacher.first_name} {course.teacher.last_name}
-    					<a href="" className='btn btn-success mt-3 ml-2'>
-    						show
-    					</a>
-    				</div>
-    			)}
-    		</div>
-        <div>
+      <div className="container">
+
+       <div>
           <h1>Création d'un cours :</h1>
           <div>
             <div className="form-group row">    
               <div className="col-sm-10">
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}  >
                   <label htmlFor="Title">
                     <input type="text" 
                       name="title" 
@@ -81,20 +76,33 @@ export default class App extends Component {
                       placeholder="Description"
                       value={this.state.description}
                       onChange={this.handleChangeDescription}
-                    />  
+                    />
                   </label>
                   <div>
                     <input type="submit"
-                      value="Create!"
-                      className="btn btn-success"
-                    />                
+                    value="Create!"
+                    className="btn btn-success"
+                  />
                   </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
-    	</div>
+
+       <p> Course counts : {this.state.courses.length} </p>
+       <div>
+         <ul className="list-group">
+           {this.state.courses.map((course, i) =>
+              <li key={i} className="list-group-item">{course.title} 
+                <a className="btn btn-success" href={'/courses/' + course.id}>Show</a>
+              </li>
+           )}
+         </ul>
+        </div>
+      </div>
     );
   }
 }
+
+export default App;
