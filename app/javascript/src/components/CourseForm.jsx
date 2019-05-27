@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { addCourse } from '../APIs/courses';
-import { fetchCourses } from '../APIs/courses';
 
 export default class CourseForm extends React.Component {
   state = {
-    courses: [],
+    courses: this.props.courses,
     count : 0,
     title: "",
     description: "",
@@ -31,17 +30,6 @@ export default class CourseForm extends React.Component {
       description: '',
     });
   }
-
-  refreshCourseCount = async () => {
-    const courses = await fetchCourses();
-    this.setState({
-      courses: courses.courses,
-    });
-  }
-
-  componentDidMount = async () => {
-    await this.refreshCourseCount();
-  };
   
   render () {
     return (
@@ -65,15 +53,12 @@ export default class CourseForm extends React.Component {
               placeholder="Description"
               value={this.state.description}
               onChange={this.handleChangeDescription}
-              required
             />
           </label>
           <div>
             <input type="submit"
               value="Create!"
               className="btn btn-success"
-              onClick={this.onHandleSubmit}
-              required
             />
           </div>
         </form>
