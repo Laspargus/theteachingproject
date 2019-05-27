@@ -15,15 +15,14 @@ export default class CourseList extends Component {
 
   componentDidMount = async () => {
     await this.refreshCourseCount();
-  };  
-  
-  render() {
+  };
 
+  render() {
     return (
       <div>
         <ul className="list-group">
           {this.state.courses.map((course, i) =>
-            <li key={i} className="list-group-item">{course.title} 
+            <li key={'course_' + i} className="list-group-item">{course.title} 
               <a className="btn btn-success" href={'/courses/' + course.id}>Show</a>
             </li>
           )}

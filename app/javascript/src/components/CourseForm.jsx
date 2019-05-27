@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { fetchCourses } from '../APIs/courses';
 import { addCourse } from '../APIs/courses';
+import { fetchCourses } from '../APIs/courses';
 
 export default class CourseForm extends React.Component {
   state = {
@@ -31,6 +31,17 @@ export default class CourseForm extends React.Component {
       description: '',
     });
   }
+
+  refreshCourseCount = async () => {
+    const courses = await fetchCourses();
+    this.setState({
+      courses: courses.courses,
+    });
+  }
+
+  componentDidMount = async () => {
+    await this.refreshCourseCount();
+  };
   
   render () {
     return (
