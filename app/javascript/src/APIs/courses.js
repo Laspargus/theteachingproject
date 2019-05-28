@@ -28,3 +28,16 @@ export const addCourse = async (title, description) => {
   const course = await response.json();
   return course.course;
 };
+
+export const removeCourse = async id => {
+  const courseResponse = await fetch(`/courses/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(addCsrf({})),
+  });
+  const course = await courseResponse.json();
+  return course.course;
+};

@@ -25,7 +25,6 @@ export default class CourseForm extends Component {
     })
   }
 
-
   handleSubmit = async e => {
     e.preventDefault()
     const newCourse = await addCourse(this.state.title, this.state.description);

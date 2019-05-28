@@ -6,11 +6,17 @@ import { fetchCourses } from "./APIs/courses";
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = { courses: []};
-    
     this.addCourseToList = this.addCourseToList.bind(this);
+    this.removeCourse = this.removeCourse.bind(this);
   }
+
+  removeCourse(removedCourse) {
+    const { courses } = this.state;
+    this.setState({
+      courses: courses.filter(course => removedCourse.id !== course.id)
+    });
+  };
 
   addCourseToList(newCourse) {
     this.setState({
@@ -33,7 +39,7 @@ class App extends Component {
     return (
       <div>
         <CourseForm onSubmit={this.addCourseToList}/>
-        <CourseList courses={this.state.courses}/>
+        <CourseList onClick={this.removeCourse} courses={this.state.courses}/>
       </div>
     );
   }

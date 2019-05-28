@@ -60,7 +60,8 @@ class CoursesController < ApplicationController
 
   def destroy
     @course.destroy
-    redirect_to root_path, success: "Course successfully deleted"
+    render json: @course
+    #redirect_to root_path, success: "Course successfully deleted"
   end
 
   private
