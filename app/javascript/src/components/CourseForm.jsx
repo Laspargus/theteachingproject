@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import { addCourse } from "../APIs/courses";
 
 export default class CourseForm extends Component {
-  state = {
-    courses: [],
-    title: "",
-    description: ""
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+      title: '',
+      description:'',
+     };
+    
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
   handleChangeTitle = (e) => {
     this.setState({
@@ -24,11 +29,11 @@ export default class CourseForm extends Component {
   handleSubmit = async e => {
     e.preventDefault()
     const newCourse = await addCourse(this.state.title, this.state.description);
+    this.props.onSubmit(newCourse);
     this.setState({
-      courses: [newCourse, ...this.state.courses],
       title: '',
-      description: '',
-    })
+      description:'',
+    });
   }
 
   render() {

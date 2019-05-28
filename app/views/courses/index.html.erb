@@ -1,11 +1,3 @@
-<section class="container mt-5">
-	<h1>Courses#index</h1>
-
-	<% @courses.each do |course| %>
-		<%= course.title %>
-		<%= link_to "Show",course_path(course.id), class:'btn btn-success' %> <br><br>
-	<% end %>
-</section>
 <div id="app-container"></div>
 
 <%= javascript_pack_tag 'application' %>
