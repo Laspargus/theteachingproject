@@ -6,24 +6,28 @@ import { fetchCourses } from './APIs/courses';
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      courses: []
-    }
-  };
-  
-  refreshCourses = async () => {
+    this.state = { courses: []};
+    this.addCourseToList = this.addCourseToList.bind(this);
+  }
+
+  addCourseToList(newCourse) {
+    this.setState({
+       courses : [newCourse, ...this.state.courses]
+    }); 
+  }
+
+  refreshCourseCount = async () => {
     const courses = await fetchCourses();
     this.setState({
       courses: courses.courses,
-    });
+    }); 
   }
 
   componentDidMount = async () => {
-    await this.refreshCourses();
+    await this.refreshCourseCount();
   }
 
   render() {
-
     return (
       <div className="container">
        <div>
@@ -31,14 +35,13 @@ export default class App extends Component {
           <div>
             <div className="form-group row">    
               <div className="col-sm-10">
-                <CourseForm courses={this.state.courses} />
-                <CourseList courses={this.state.courses} />
+                <CourseForm  onSubmit={this.addCourseToList} />
+                <CourseList courses = {this.state.courses} />
               </div>
             </div>
           </div>
         </div>
       </div>
     );
-
   }
 }

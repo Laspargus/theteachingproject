@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { addCourse } from '../APIs/courses';
 
 export default class CourseForm extends React.Component {
-  state = {
-    courses: this.props.courses,
-    count : 0,
-    title: "",
-    description: "",
+  constructor(props) {
+    super(props);
+    this.state = { 
+      title: '',
+      description:'',
+     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChangeDescription = (e) => {
@@ -14,23 +16,21 @@ export default class CourseForm extends React.Component {
       description: e.target.value,
     });
   }
-
   handleChangeTitle = (e) => {
     this.setState({
       title: e.target.value,
     });
   }
-
   handleSubmit = async e =>{
     e.preventDefault();
     const newCourse = await addCourse(this.state.title, this.state.description);
+    this.props.onSubmit(newCourse);
     this.setState({
-      courses : [newCourse, ...this.state.courses],
       title: '',
-      description: '',
+      description:'',
     });
   }
-  
+
   render () {
     return (
       <div>
@@ -53,12 +53,14 @@ export default class CourseForm extends React.Component {
               placeholder="Description"
               value={this.state.description}
               onChange={this.handleChangeDescription}
+              required
             />
           </label>
           <div>
             <input type="submit"
               value="Create!"
               className="btn btn-success"
+              required
             />
           </div>
         </form>

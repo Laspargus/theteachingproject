@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function CourseList({courses}) {
-  return (
-    <div>
-      {console.log(courses)}
-      <ul className="list-group">
-        {courses.map((course, i) => (
-          <li key={'course_' + i} className="list-group-item">{course.title} 
-            <a className="btn btn-success" href={'/courses/' + course.id}>Show</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+export default class CourseList extends Component {
+    
+  render() {
 
-export default CourseList;
+    return (
+      <div>
+        {console.log('motherfucker')}
+        {console.log(this.props.courses)}
+        <p> Course counts : {this.props.courses.length} </p>
+        <ul className="list-group">
+          {this.props.courses.map((course, i) =>
+              <li key={'course_' + i} className="list-group-item">{course.title} {course.description} 
+                <a className="btn btn-success" href={'/courses/' + course.id}>Show</a>
+              </li>
+          )}
+        </ul>
+      </div>
+    );
+  }
+}
