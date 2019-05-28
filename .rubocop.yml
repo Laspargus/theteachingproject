@@ -12,6 +12,8 @@ AllCops:
     - 'config/environments/*.rb'
     - 'bin/*'
     - 'lib/tasks/auto_annotate_models.rake'
+    - 'node_modules/node-sass/src/libsass/contrib/libsass.spec'
+    - 'node_modules/node-sass/src/libsass/extconf.rb'
 
 Rails:
   Enabled: true
@@ -30,6 +32,7 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - 'Guardfile'
     - 'vendor/bundle'
+    - 'bin/webpack/**'
 
 Style/ClassAndModuleChildren:
   Enabled: false

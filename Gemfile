@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 File.read('./.ruby-version')
 
+gem 'active_model_serializers', '~> 0.10.9'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.2'
@@ -18,6 +19,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'sidekiq', '~> 5.2', '>= 5.2.7'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'webpacker', '~> 4.0', '>= 4.0.2'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
