@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { addCourse } from '../APIs/courses';
-import { fetchCourses } from '../APIs/courses';
+import CourseList from './CourseList';
+
 
 export default class CourseForm extends React.Component {
-  state = {
-    courses: [],
-    count : 0,
-    title: "",
-    description: "",
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+      title: '',
+      description:'',
+     };
+    
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   handleChangeDescription = (e) => {
     this.setState({
@@ -25,23 +31,10 @@ export default class CourseForm extends React.Component {
   handleSubmit = async e =>{
     e.preventDefault();
     const newCourse = await addCourse(this.state.title, this.state.description);
-    this.setState({
-      courses : [newCourse, ...this.state.courses],
-      title: '',
-      description: '',
-    });
+    this.props.onSubmit(newCourse);
   }
 
-  refreshCourseCount = async () => {
-    const courses = await fetchCourses();
-    this.setState({
-      courses: courses.courses,
-    });
-  }
-
-  componentDidMount = async () => {
-    await this.refreshCourseCount();
-  };
+ 
   
   render () {
     return (
@@ -72,7 +65,6 @@ export default class CourseForm extends React.Component {
             <input type="submit"
               value="Create!"
               className="btn btn-success"
-              onClick={this.onHandleSubmit}
               required
             />
           </div>
