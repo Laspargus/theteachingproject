@@ -3,11 +3,8 @@ import React, { Component } from 'react';
 export default class CourseList extends Component {
     
   render() {
-
     return (
       <div>
-        {console.log('motherfucker')}
-        {console.log(this.props.courses)}
         <p> Course counts : {this.props.courses.length} </p>
         <ul className="list-group">
           {this.props.courses.map((course, i) =>

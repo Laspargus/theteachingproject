@@ -13,7 +13,7 @@ export default class App extends Component {
   addCourseToList(newCourse) {
     this.setState({
        courses : [newCourse, ...this.state.courses]
-    }); 
+    });
   }
 
   refreshCourseCount = async () => {
