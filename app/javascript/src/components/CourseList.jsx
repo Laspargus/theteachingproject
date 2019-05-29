@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { fetchCourses } from '../APIs/courses';
-
 import FlipMove from 'react-flip-move';
 import Course  from './Course';
 

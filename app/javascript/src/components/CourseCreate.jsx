@@ -10,7 +10,6 @@ export default class CourseCreate extends React.Component {
       title: '',
       description:'',
      };
-    
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 

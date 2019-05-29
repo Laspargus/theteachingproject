@@ -7,8 +7,8 @@ import { removeCourse } from '../APIs/courses';
 export default class Course extends Component {
 
   state = {
-      edit: false,
-    };
+    edit: false,
+  };
 
   toggleEdit = () => {
     const { edit } = this.state;
@@ -23,10 +23,10 @@ export default class Course extends Component {
     this.props.actOnRemove(result);
   };
 
- render() {
+  render() {
     const { edit } = this.state;
     const { course, actOnRemove ,updateCourse} = this.props;
- 
+
     if (edit) {
       return (
         <CourseEdit

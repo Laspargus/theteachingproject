@@ -2,35 +2,35 @@ import React from 'react';
 
 class CourseShow extends React.Component {
 
-renderButtons = () => {
+  renderButtons = () => {
     const { course, currentUser, toggleEdit, removeAct } = this.props;
-      return (
-        <span>
-          <button
-            className="m-2 btn btn-info"
-            role="button"
-            tabIndex={0}
-            onClick={toggleEdit}
-            onKeyPress={toggleEdit}
-          >
-            Edit
-          </button>
+    return (
+      <span>
+        <button
+          className="m-2 btn btn-info"
+          role="button"
+          tabIndex={0}
+          onClick={toggleEdit}
+          onKeyPress={toggleEdit}
+        >
+          Edit
+        </button>
 
-          <button
-            className="m-2 btn btn-danger"
-            onClick={removeAct}
-            onKeyPress={removeAct}
-            role="button"
-            tabIndex={0}
-          >
-            Delete
-          </button>
+        <button
+          className="m-2 btn btn-danger"
+          onClick={removeAct}
+          onKeyPress={removeAct}
+          role="button"
+          tabIndex={0}
+        >
+          Delete
+        </button>
       </span>
-      ); 
+    ); 
   };
 
 
-render() {
+  render() {
     const { course } = this.props;
     return (
       <div className="post">
@@ -40,6 +40,7 @@ render() {
       </div>
     );
   }
+  
 }
 
 

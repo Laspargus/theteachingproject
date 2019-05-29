@@ -2,18 +2,14 @@ import React, { Component } from 'react';
 import { updateCourse } from '../APIs/courses';
 import CourseList from './CourseList';
 
-
-
 export default class PostEdit extends Component {
 
   constructor(props) {
 	  super(props);
-
 	  this.state = { 
 	    title: '',
 	    description:'',
 	  };
-    
   	this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -59,40 +55,39 @@ export default class PostEdit extends Component {
 
   render() {
     const { course, updateCourse, toggleEdit } = this.props;
-	    return(
-	       <div className="block">
-	        <form onSubmit={this.handleSubmit}>
-	          <label htmlFor="Title">
-	            <input type="text" 
-	              name="title" 
-	              id="title" 
-	              className="form-control"
-	              placeholder={course.title}
-	              value={this.state.title}
-	              onChange={this.handleChangeTitle}
-	            />
-	          </label>
-	          <label htmlFor="Description">
-	            <input type="text" 
-	              name="description" 
-	              id="description" 
-	              className="form-control"
-	              placeholder={course.description}
-	              value={this.state.description}
-	              onChange={this.handleChangeDescription}
-	              required
-	            />
-	          </label>
+    return(
+       <div className="block">
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="Title">
+            <input type="text" 
+              name="title" 
+              id="title" 
+              className="form-control"
+              placeholder={course.title}
+              value={this.state.title}
+              onChange={this.handleChangeTitle}
+            />
+          </label>
+          <label htmlFor="Description">
+            <input type="text" 
+              name="description" 
+              id="description" 
+              className="form-control"
+              placeholder={course.description}
+              value={this.state.description}
+              onChange={this.handleChangeDescription}
+              required
+            />
+          </label>
 
-	            <input type="submit"
-	              value="Update!"
-	              className="btn btn-success"
-	              required
-	            />
-	           </form>
-	         
-	          {this.renderButtons()}
-	    </div>
-	    );
+          <input type="submit"
+            value="Update!"
+            className="btn btn-success"
+            required
+          />
+        </form>
+        {this.renderButtons()}
+    	</div>
+    );
   }
 }
