@@ -1,28 +1,45 @@
 import React, { Component } from "react";
+import { updateCourse } from "../APIs/courses";
 
 export default class CourseEdit extends Component {
   constructor(props) {
     super(props);
+    this.state = { 
+      title: this.props.course.title,
+      description:this.props.course.description,
+     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChangeTitle = (e) => {
+    this.setState({
+      title: e.target.value,
+    })
+  }
+
+  handleChangeDescription = (e) => {
+    this.setState({
+      description: e.target.value,
+    })
   }
 
   handleSubmit = async e => {
     e.preventDefault()
-    const newCourse = await addCourse(this.state.title, this.state.description);
-    this.props.onSubmit(newCourse);
-    this.setState({
-      title: '',
-      description:'',
-    });
+    const updatedCourse = await updateCourse(this.props.course.id, this.state.title, this.state.description);
+    this.props.updateCourse(updatedCourse);
+    this.props.onSubmit();
   }
 
   render() {
-    const { course, toggleEdit } = this.props;
+    const { toggleEdit } = this.props;
     return(
       <div>
-        <input type="text" name="title" id="title" defaultValue={course.title} className="form-control form-control-lg" placeholder="Title"/>
-        <input type="text" name="description" id="description" defaultValue={course.description} className="form-control form-control-lg" placeholder="Description"/>
-        <button onClick={toggleEdit}>cancel</button>
-        <input type="submit" value="edit" className="btn btn-primary mb-2" />
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" name="title" id="title" defaultValue={this.state.title} onChange={this.handleChangeTitle} className="form-control form-control-lg" placeholder="Title"/>
+          <input type="text" name="description" id="description" defaultValue={this.state.description} onChange={this.handleChangeDescription} className="form-control form-control-lg" placeholder="Description"/>
+          <input type="submit" value="Edit" className="btn btn-primary mb-2" />
+          <button onClick={toggleEdit}>cancel</button>
+        </form>
       </div> 
     )
   }

@@ -18,6 +18,15 @@ class App extends Component {
     });
   };
 
+  updateCourse = updatedCourse => {
+    const { courses } = this.state;
+    this.setState({
+      courses: courses.map(course =>
+        course.id === updatedCourse.id ? updatedCourse : course
+      ),
+    });
+  };
+
   addCourseToList(newCourse) {
     this.setState({
        courses : [newCourse, ...this.state.courses]
@@ -39,7 +48,7 @@ class App extends Component {
     return (
       <div>
         <CourseForm onSubmit={this.addCourseToList}/>
-        <CourseList onClick={this.removeCourse} courses={this.state.courses}/>
+        <CourseList onClick={this.removeCourse} updateCourse={this.updateCourse} courses={this.state.courses}/>
       </div>
     );
   }

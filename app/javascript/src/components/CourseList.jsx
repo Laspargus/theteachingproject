@@ -18,13 +18,14 @@ export default class CourseList extends Component {
   };
 
   render() {
+    const { updateCourse } = this.props;
     return (
       <div>
         <div>
           {this.props.courses.map(course => {
             return (
               <div key={course.id}>
-                <Course course={course}/>
+                <Course course={course} updateCourse={updateCourse}/>
                 <button value={course.id} onClick={this.handleRemoveClick}>delete</button>
               </div>
             )    

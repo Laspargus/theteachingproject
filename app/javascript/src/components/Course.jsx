@@ -19,7 +19,7 @@ export default class Course extends Component {
   };
 
   render() {
-    const { course } = this.props;
+    const { course, updateCourse } = this.props;
     if (this.state.edit == false) {
       return(
         <div>
@@ -29,7 +29,7 @@ export default class Course extends Component {
     } else {
     return(
       <div>
-        <CourseEdit course={course} toggleEdit={this.toggleEdit}/>
+        <CourseEdit course={course} updateCourse={updateCourse} toggleEdit={this.toggleEdit} onSubmit={this.toggleEdit} />
       </div>
     )}
   }

@@ -42,7 +42,7 @@ export const removeCourse = async id => {
   return course.course;
 };
 
-export const updateCourse = async ({ id, title, description }) => {
+export const updateCourse = async ( id, title, description ) => {
   const courseResponse = await fetch(`/courses/${id}`, {
     method: 'PATCH',
     headers: {
