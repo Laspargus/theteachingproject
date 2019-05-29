@@ -28,17 +28,19 @@ export default class Course extends Component {
   };
 
 
+
+
  render() {
     const { edit } = this.state;
-    const { course, actOnRemove ,updateStateCourses} = this.props;
-    console.log(updateStateCourses)
-
+    const { course, actOnRemove ,updateCourse} = this.props;
+ 
     if (edit) {
       return (
         <CourseEdit
           course={course}
-          updateStateCourses={updateStateCourses}
+          updateCourse={updateCourse}
           toggleEdit={this.toggleEdit}
+          onSubmit = {this.toggleEdit}
         />
       );
     }

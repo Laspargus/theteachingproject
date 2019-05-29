@@ -14,7 +14,7 @@ export default class PostEdit extends Component {
 	    description:'',
 	  };
     
-  this.handleSubmit = this.handleSubmit.bind(this);
+  	this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChangeDescription = (e) => {
@@ -33,7 +33,8 @@ export default class PostEdit extends Component {
   	const {course} =this.props
     e.preventDefault();
     const updatedCourse = await updateCourse(course.id, this.state.title, this.state.description);
-    this.props.updateStateCourses(updatedCourse);
+    this.props.updateCourse(updatedCourse);
+    this.props.onSubmit();
   }
 
 
@@ -57,7 +58,7 @@ export default class PostEdit extends Component {
   
 
   render() {
-    const { course, updateStateCourses, toggleEdit } = this.props;
+    const { course, updateCourse, toggleEdit } = this.props;
 	    return(
 	       <div className="block">
 	        <form onSubmit={this.handleSubmit}>

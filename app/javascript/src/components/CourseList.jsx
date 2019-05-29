@@ -14,7 +14,7 @@ function CourseList({ courses, actOnRemove, updateCourse }) {
           course={course}
           key={course.id}
           actOnRemove={actOnRemove}
-          updateStateCourses={updateCourse}
+          updateCourse={updateCourse}
         />
       ))}
     </FlipMove>

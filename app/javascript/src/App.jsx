@@ -11,6 +11,7 @@ export default class App extends Component {
     };   
     this.addCourseToList = this.addCourseToList.bind(this);
     this.removeCourse = this.removeCourse.bind(this);
+    this.updateCourse = this.updateCourse.bind(this);
   }
   
   // ok
@@ -49,8 +50,8 @@ export default class App extends Component {
       courses: courses.map(course =>
         course.id === updatedCourse.id ? updatedCourse : course
       ),
-      errors: [],
     });
+
   };
 //ok
 
