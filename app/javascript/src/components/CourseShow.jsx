@@ -32,7 +32,8 @@ render() {
     const { course } = this.props;
     return (
       <div className="post">
-        {course.title} -  {course.description} - hey
+        {course.title} -  {course.description}
+        <a className="m-2 btn btn-success" href={'/courses/' + course.id}>Show</a>
         {this.renderButtons()}
       </div>
     );
