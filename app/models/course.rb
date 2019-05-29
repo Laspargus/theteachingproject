@@ -13,7 +13,7 @@
 #
 
 class Course < ApplicationRecord
-  validates :title, presence: true
+  validates :title, :description, presence: true
 
   belongs_to :teacher
   has_many :attendances, dependent: :destroy
