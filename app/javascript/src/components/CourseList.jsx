@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { removeCourse } from '../APIs/courses';
 import FlipMove from 'react-flip-move';
 import Course from './Course';
 

@@ -11,10 +11,8 @@ export default class CourseForm extends React.Component {
       title: '',
       description:'',
      };
-    
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
 
   handleChangeDescription = (e) => {
     this.setState({
@@ -32,6 +30,10 @@ export default class CourseForm extends React.Component {
     e.preventDefault();
     const newCourse = await addCourse(this.state.title, this.state.description);
     this.props.onSubmit(newCourse);
+    this.setState({
+      title: '',
+      description: ''
+    });
   }
 
   render () {

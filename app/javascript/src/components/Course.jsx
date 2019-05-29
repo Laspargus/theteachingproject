@@ -8,10 +8,17 @@ export default class Course extends Component {
 		this.state = {
       editable: false
     }; 
+    this.showEditForm = this.showEditForm.bind(this);
+    this.resetEditable = this.resetEditable.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.ShowEditForm = this.showEditForm.bind(this);
-    this.cancelTheEdit = this.cancelTheEdit.bind(this);
 	};
+
+  handleClick = async (e) => {
+    e.preventDefault();
+    const id = e.target.value;
+    const courseToDelete = await removeCourse(id);
+    this.props.onClick(courseToDelete);
+  };
 
   showEditForm = async () => {
     this.setState({
@@ -19,26 +26,19 @@ export default class Course extends Component {
     })
   };
 
-  cancelTheEdit = async () => {
+  resetEditable = async () => {
     this.setState({
       editable: false,
     })
-  }
+  };
 
   renderEditForm = (course) => {
     if (this.state.editable) {
-     return <CourseEdit course={this.props.course} onClick={this.cancelTheEdit} />
+     return <CourseEdit course={this.props.course} onClick={this.resetEditable} onSubmit={this.resetEditable} />
     }
     else {
       return <CourseShow course={this.props.course} onClick={this.showEditForm} />
     }
-  };
-
-  handleClick = async (e) => {
-    e.preventDefault();
-    const id = e.target.value;
-    const courseToDelete = await removeCourse(id);
-    this.props.onClick(courseToDelete);
   };
 
   render () {

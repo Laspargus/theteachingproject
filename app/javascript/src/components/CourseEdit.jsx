@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { updateCourse } from '../APIs/courses';
 
 export default class CourseEdit extends Component {
   constructor(props) {
@@ -14,37 +15,33 @@ export default class CourseEdit extends Component {
 
   handleConfirmEdit = async (e) => {
     e.preventDefault();
+    await updateCourse(this.props.course.id, e.target.title_form.value, e.target.description_form.value);
+    this.props.onSubmit();
   };
-
-  // handleSubmit = async e =>{
-  //   e.preventDefault();
-  //   const newCourse = await addCourse(this.state.title, this.state.description);
-  //   this.props.onSubmit(newCourse);
-  // }
 
   render() {
 
     const course = this.props.course
 
     return (
-    	<div>
+    	<form onSubmit={this.handleConfirmEdit}>
     		<div className="mt-2">
     			<label>Title</label>
     			<div>
-      			<input defaultValue={this.props.course.title}/>
+      			<input name="title_form" defaultValue={this.props.course.title}/>
       		</div>
       	</div>
       	<div className="mt-2">
       		<label>Description</label>
       		<div>
-      			<input defaultValue={this.props.course.description}/>
+      			<input name="description_form" defaultValue={this.props.course.description}/>
       		</div>
       	</div>
       	<div className="mt-2">
-	      	<button onClick={this.handleCancelEdit} className="btn btn-danger mr-2" >Cancel</button>
-	      	<button onClick={this.handleConfirmEdit} className="btn btn-success ml-2" >Confirm</button>
+	      	<button onClick={this.handleCancelEdit} className="btn btn-danger mr-2">Cancel</button>
+	      	<button className="btn btn-success ml-2" >Confirm</button>
 	      </div>
-      </div>
+      </form>
     );
   }
 }
