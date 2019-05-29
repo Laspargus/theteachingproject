@@ -48,7 +48,7 @@ class App extends Component {
     return (
       <div>
         <CourseForm onSubmit={this.addCourseToList}/>
-        <CourseList onClick={this.removeCourse} updateCourse={this.updateCourse} courses={this.state.courses}/>
+        <CourseList onClick={this.removeCourse} updateCourse={this.updateCourse} removeCourse={this.removeCourse} courses={this.state.courses}/>
       </div>
     );
   }
