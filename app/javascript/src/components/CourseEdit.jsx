@@ -3,13 +3,24 @@ import React, { Component } from "react";
 export default class CourseEdit extends Component {
   constructor(props) {
     super(props);
-    this.cancelEdit = this.cancelEdit.bind(this);
+    this.handleCancelEdit = this.handleCancelEdit.bind(this);
+    this.handleConfirmEdit = this.handleConfirmEdit.bind(this);
   };
 
-  cancelEdit = (e) => {
+  handleCancelEdit = (e) => {
     e.preventDefault();
   	this.props.onClick();
-  }
+  };
+
+  handleConfirmEdit = async (e) => {
+    e.preventDefault();
+  };
+
+  // handleSubmit = async e =>{
+  //   e.preventDefault();
+  //   const newCourse = await addCourse(this.state.title, this.state.description);
+  //   this.props.onSubmit(newCourse);
+  // }
 
   render() {
 
@@ -29,7 +40,10 @@ export default class CourseEdit extends Component {
       			<input defaultValue={this.props.course.description}/>
       		</div>
       	</div>
-      	<button onClick={this.cancelEdit} className="btn btn-danger mt-2" >Cancel</button>
+      	<div className="mt-2">
+	      	<button onClick={this.handleCancelEdit} className="btn btn-danger mr-2" >Cancel</button>
+	      	<button onClick={this.handleConfirmEdit} className="btn btn-success ml-2" >Confirm</button>
+	      </div>
       </div>
     );
   }

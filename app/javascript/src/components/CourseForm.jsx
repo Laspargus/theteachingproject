@@ -34,8 +34,6 @@ export default class CourseForm extends React.Component {
     this.props.onSubmit(newCourse);
   }
 
- 
-  
   render () {
     return (
       <div>
