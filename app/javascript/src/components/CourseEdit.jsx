@@ -3,24 +3,26 @@ import React, { Component } from "react";
 export default class CourseEdit extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      edit: false,
-    }
-    this.toggleEdit = this.toggleEdit.bind(this);
   }
 
-  toggleEdit = () => {
-    const { edit } = this.state;
+  handleSubmit = async e => {
+    e.preventDefault()
+    const newCourse = await addCourse(this.state.title, this.state.description);
+    this.props.onSubmit(newCourse);
     this.setState({
-      edit: !edit,
+      title: '',
+      description:'',
     });
-  };
+  }
 
   render() {
+    const { course, toggleEdit } = this.props;
     return(
       <div>
-        {this.state.edit && "hah"}
-        <button onClick={this.toggleEdit}>{this.state.edit ? "submit" : "update"}</button>
+        <input type="text" name="title" id="title" defaultValue={course.title} className="form-control form-control-lg" placeholder="Title"/>
+        <input type="text" name="description" id="description" defaultValue={course.description} className="form-control form-control-lg" placeholder="Description"/>
+        <button onClick={toggleEdit}>cancel</button>
+        <input type="submit" value="edit" className="btn btn-primary mb-2" />
       </div> 
     )
   }
