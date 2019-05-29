@@ -55,7 +55,8 @@ class CoursesController < ApplicationController
 
   def update
     @course.update(course_params)
-    redirect_to root_path, success: "Course successfully updated"
+    render json: @course
+    #redirect_to root_path, success: "Course successfully updated"
   end
 
   def destroy

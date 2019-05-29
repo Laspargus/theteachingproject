@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { removeCourse } from "../APIs/courses";
+import CourseEdit from './CourseEdit';
 
 export default class CourseList extends Component {
   constructor(props) {
@@ -22,8 +23,10 @@ export default class CourseList extends Component {
           {this.props.courses.map(course => {
             return (
               <div key={course.id}>
+                
                 <section className="course">{course.title}</section>
                 <button value={course.id} onClick={this.handleRemoveClick}>delete</button>
+                <CourseEdit />
               </div>
             )    
           })}

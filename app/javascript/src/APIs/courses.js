@@ -41,3 +41,16 @@ export const removeCourse = async id => {
   const course = await courseResponse.json();
   return course.course;
 };
+
+export const updateCourse = async ({ id, title, description }) => {
+  const courseResponse = await fetch(`/courses/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(addCsrf({ course: { title, description } })),
+  });
+  const course = await courseResponse.json();
+  return course.course;
+};
