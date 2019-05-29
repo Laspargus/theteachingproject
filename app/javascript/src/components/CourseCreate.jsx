@@ -3,7 +3,7 @@ import { addCourse } from '../APIs/courses';
 import CourseList from './CourseList';
 
 
-export default class CourseForm extends React.Component {
+export default class CourseCreate extends React.Component {
   constructor(props) {
     super(props);
 
@@ -14,7 +14,6 @@ export default class CourseForm extends React.Component {
     
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
 
   handleChangeDescription = (e) => {
     this.setState({

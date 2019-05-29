@@ -1,36 +1,24 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { fetchCourses } from '../APIs/courses';
-import { removeCourse } from '../APIs/courses';
 
+import FlipMove from 'react-flip-move';
+import Course  from './Course';
 
-export default class CourseList extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
+function CourseList({ courses, actOnRemove, updateCourse }) {
+  return (
+    <FlipMove typeName="ul">
 
-handleClick = async (e) => {
-    e.preventDefault();
-    const id = e.target.value;
-    const courseToDelete = await removeCourse(id);
-    this.props.onClick(courseToDelete);
-  }
-
-  render() {
-    return (
-      <div>
-      
-        <p> Course counts : {this.props.courses.length} </p>
-        <ul className="list-group">
-          {this.props.courses.map((course, i) =>
-            <li key={'course_' + i} className="list-group-item">{course.title} {course.description} 
-              <a className="btn btn-success" href={'/courses/' + course.id}>Show</a>
-              <button value={course.id} onClick={this.handleClick}  className="btn btn-danger">Delete</button>
-            </li>
-          )}
-        </ul>
-      
-      </div>
-    );
-  }
+      {courses.map(course => (
+        <Course
+          course={course}
+          key={course.id}
+          actOnRemove={actOnRemove}
+          updateStateCourses={updateCourse}
+        />
+      ))}
+    </FlipMove>
+  );
 }
+
+ export default CourseList;
