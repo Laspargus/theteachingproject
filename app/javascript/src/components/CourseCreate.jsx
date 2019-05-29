@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { addCourse } from '../APIs/courses';
 import CourseList from './CourseList';
 
-
 export default class CourseCreate extends React.Component {
   constructor(props) {
     super(props);
@@ -32,8 +31,6 @@ export default class CourseCreate extends React.Component {
     const newCourse = await addCourse(this.state.title, this.state.description);
     this.props.onSubmit(newCourse);
   }
-
- 
   
   render () {
     return (
@@ -47,6 +44,7 @@ export default class CourseCreate extends React.Component {
               placeholder="Title"
               value={this.state.title}
               onChange={this.handleChangeTitle}
+              required
             />
           </label>
           <label htmlFor="Description">
@@ -64,7 +62,6 @@ export default class CourseCreate extends React.Component {
             <input type="submit"
               value="Create!"
               className="btn btn-success"
-              required
             />
           </div>
         </form>

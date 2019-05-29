@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import  CourseEdit  from './CourseEdit';
 import  CourseShow  from './CourseShow';
@@ -11,7 +10,6 @@ export default class Course extends Component {
       edit: false,
     };
 
-
   toggleEdit = () => {
     const { edit } = this.state;
     this.setState({
@@ -19,16 +17,11 @@ export default class Course extends Component {
     });
   };
 
-
   handleRemoveClick = async () => {
     const { course, actOnRemove } = this.props;
     const result = await removeCourse(course.id);
     this.props.actOnRemove(result);
-  
   };
-
-
-
 
  render() {
     const { edit } = this.state;

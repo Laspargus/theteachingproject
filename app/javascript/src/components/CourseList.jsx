@@ -8,7 +8,6 @@ import Course  from './Course';
 function CourseList({ courses, actOnRemove, updateCourse }) {
   return (
     <FlipMove typeName="ul">
-
       {courses.map(course => (
         <Course
           course={course}
