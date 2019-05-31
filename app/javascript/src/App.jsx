@@ -12,9 +12,13 @@ export default class App extends Component {
     this.addCourseToList = this.addCourseToList.bind(this);
     this.removeCourse = this.removeCourse.bind(this);
     this.updateCourse = this.updateCourse.bind(this);
+
   }
   
-  // ok
+  componentDidMount = async () => {
+    await this.refreshCourses();
+  }
+
   refreshCourses = async () => {
     const courses = await fetchCourses();
     this.setState({
@@ -22,19 +26,13 @@ export default class App extends Component {
     }); 
   }
 
-  componentDidMount = async () => {
-    await this.refreshCourses();
-  }
-//ok
+ 
 
   addCourseToList(newCourse) {
-  	console.log(newCourse);
-  	console.log(this.state.courses);
     this.setState({
        courses : [newCourse, ...this.state.courses],
     }); 
   }
- //ok
 
   removeCourse(removedCourse) {
     const { courses } = this.state;
@@ -42,9 +40,9 @@ export default class App extends Component {
       courses: courses.filter(course => removedCourse.id !== course.id)
     });
   };
-  //ok
 
-  updateCourse = updatedCourse => {
+
+  updateCourse(updatedCourse) {
     const { courses } = this.state;
     this.setState({
       courses: courses.map(course =>
@@ -53,12 +51,9 @@ export default class App extends Component {
     });
 
   };
-//ok
-
 
 
   render() {
-		const {courses} = this.state;
     return(
       <div className="container">
        <div>
