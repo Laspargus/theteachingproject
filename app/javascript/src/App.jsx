@@ -24,6 +24,7 @@ export default class App extends Component {
     this.setState({
       courses: courses.courses,
     }); 
+
   }
 
  
@@ -60,7 +61,7 @@ export default class App extends Component {
           <h1>Création d'un cours :</h1>
           <div>
             <div className="form-group row">    
-              <div className="col-sm-10">
+              <div className="col-sm-12">
                 <CourseCreate
                 	onSubmit={this.addCourseToList}
                 />

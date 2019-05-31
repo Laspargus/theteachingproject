@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { updateCourse } from '../APIs/courses';
-import CourseList from './CourseList';
+import { updateStep } from '../APIs/steps';
 
 
-
-export default class CourseEdit extends Component {
+export default class StepEdit extends Component {
 
   constructor(props) {
 	  super(props);
@@ -30,16 +28,18 @@ export default class CourseEdit extends Component {
   }
 
   handleSubmit = async e =>{
-  	const {course} =this.props
+  	const {course, step} =this.props
+  	console.log('mon cours', course, 'mon étape', step);
     e.preventDefault();
-    const updatedCourse = await updateCourse(course.id, this.state.title, this.state.description);
-    this.props.updateCourse(updatedCourse);
+    const updatedStep = await updateStep(course.id, step.id, this.state.title, this.state.description);
+    console.log(updatedStep)
+    this.props.updateStep(updatedStep);
     this.props.onSubmit();
   }
 
 
   renderButtons = () => {
-    const { course, toggleEdit  } = this.props;
+    const { toggleEdit  } = this.props;
       return (
         <span>
           <button
@@ -58,7 +58,8 @@ export default class CourseEdit extends Component {
   
 
   render() {
-    const { course, updateCourse, toggleEdit } = this.props;
+
+    const { step, course, updateCourse, toggleEdit, onSubmit } = this.props;
 	    return(
 	       <div className="block">
 	        <form onSubmit={this.handleSubmit}>
@@ -67,7 +68,7 @@ export default class CourseEdit extends Component {
 	              name="title" 
 	              id="title" 
 	              className="form-control"
-	              placeholder={course.title}
+	              placeholder={step.title}
 	              value={this.state.title}
 	              onChange={this.handleChangeTitle}
 	            />
@@ -77,7 +78,7 @@ export default class CourseEdit extends Component {
 	              name="description" 
 	              id="description" 
 	              className="form-control"
-	              placeholder={course.description}
+	              placeholder={step.description}
 	              value={this.state.description}
 	              onChange={this.handleChangeDescription}
 	              required
