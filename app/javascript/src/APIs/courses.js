@@ -12,6 +12,7 @@ const response = await fetch('/courses', {
       Accept: 'application/json',
     },
   });
+
   const courses = await response.json()
   return courses;
 };

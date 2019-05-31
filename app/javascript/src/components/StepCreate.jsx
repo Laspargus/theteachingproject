@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
-import { addCourse } from '../APIs/courses';
-import CourseList from './CourseList';
+import React from 'react';
+import { addStep } from '../APIs/steps';
 
-export default class CourseCreate extends React.Component {
+class StepCreate extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = { 
       title: '',
-      description:'',
+      description: '',
      };
     
   }
 
-  handleChangeDescription = (e) => {
+handleChangeDescription = (e) => {
     this.setState({
       description: e.target.value,
     });
@@ -25,50 +24,58 @@ export default class CourseCreate extends React.Component {
     });
   }
 
-  handleSubmit = async e =>{
-    console.log(e)
+  handleSubmitStepForm = async e =>{
     e.preventDefault();
-    const newCourse = await addCourse(this.state.title, this.state.description);
-    this.props.onSubmit(newCourse);
+    const {course, step} = this.props
+    const newStep = await addStep(course.id, step.id, this.state.title, this.state.description);
+    this.props.onSubmit(newStep);
     this.setState({  
      title: 'title',
      description: 'description'
     });
   }
+
+ 
   
   render () {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}  >
+        <form 
+        className="block" 
+        onSubmit={this.handleSubmitStepForm}  
+        >
+         <span>Création d'un step :</span>
           <label htmlFor="Title">
             <input type="text" 
               name="title" 
               id="title" 
-              className="form-control m-2 p-2"
+              className="m-2 form-control"
               placeholder="Title"
               value={this.state.title}
               onChange={this.handleChangeTitle}
-              required
             />
           </label>
           <label htmlFor="Description">
             <input type="text" 
               name="description" 
               id="description" 
-              className="form-control m-2"
+              className="m-2 form-control"
               placeholder="Description"
               value={this.state.description}
               onChange={this.handleChangeDescription}
               required
             />
           </label>
+      
             <input type="submit"
               value="Create!"
-              className="btn btn-success m-2"
-            required
+              className="m-2 btn btn-success"
+              required
             />
+       
         </form>
       </div>
     );
   }
 }
+export default StepCreate;
