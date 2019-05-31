@@ -27,7 +27,7 @@ handleChangeDescription = (e) => {
   handleSubmitStepForm = async e =>{
     e.preventDefault();
     const {course, step} = this.props
-    const newStep = await addStep(course.id, step.id, this.state.title, this.state.description);
+    const newStep = await addStep(course.id, this.state.title, this.state.description);
     this.props.onSubmit(newStep);
     this.setState({  
      title: 'title',
