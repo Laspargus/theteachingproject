@@ -5,7 +5,6 @@ class StepsController < ApplicationController
   before_action :set_course, only: %i[create edit]
   before_action :authenticate_teacher!, only: %i[create edit update destroy]
 
-
   def index
     @steps = Step.all
     respond_to do |format|
@@ -28,9 +27,8 @@ class StepsController < ApplicationController
   #                   end
   # end
 
-
   def create
-    @step = Step.create(course_id: params[:step][:id] , title: params[:step][:title], description: params[:step][:description] )
+    @step = Step.create(course_id: params[:step][:id], title: params[:step][:title], description: params[:step][:description] )
     puts @step.errors.messages
     respond_to do |format|
       format.html do
@@ -45,7 +43,7 @@ class StepsController < ApplicationController
   def edit; end
 
   def update
-    @step.update(course_id: params[:step][:id] , title: params[:step][:title], description: params[:step][:description])
+    @step.update(course_id: params[:step][:id], title: params[:step][:title], description: params[:step][:description])
     render json: @step
   end
 
