@@ -21,8 +21,9 @@ renderButtons = () => {
             role="button"
             tabIndex={0}
             onClick={toggleEdit}
-            onKeyPress={toggleEdit} >
-          Edit
+            onKeyPress={toggleEdit}
+          >
+            Edit
           </button>
 
         
@@ -32,7 +33,8 @@ renderButtons = () => {
             onKeyPress={removeAct}
             role="button"
             tabIndex={0}
-          >Delete
+          >
+            Delete
           </button>
       </span>
       ); 

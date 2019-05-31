@@ -15,9 +15,11 @@ export default class App extends Component {
 
   }
   
+
   componentDidMount = async () => {
     await this.refreshCourses();
   }
+
 
   refreshCourses = async () => {
     const courses = await fetchCourses();
@@ -27,7 +29,6 @@ export default class App extends Component {
 
   }
 
- 
 
   addCourseToList(newCourse) {
     this.setState({
@@ -76,7 +77,5 @@ export default class App extends Component {
         </div>
       </div>
     );
- 
-
   }
 }
