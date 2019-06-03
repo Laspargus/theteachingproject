@@ -1,49 +1,57 @@
 import React from 'react';
-import { removeStep } from '../APIs/steps';
+import { removeStep, stepRequest } from '../APIs/steps';
 import StepEdit from './StepEdit';
 
 class Step extends React.Component {
+  constructor(props) {
+    super(props);
 
-	state = {
-	      edit: false,
-	    };
+    this.state = {
+      edit: false
+    };
+  }
+
+  //https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc
+	// state = {
+	//       edit: false,
+	//     };
 
 
 	toggleEdit = () => {
 	    const { edit } = this.state;
-	    this.setState({
-	      edit: !edit,
-	    });
-	  };
-
-
+    this.setState({
+      edit: !edit,
+    });
+  };
 
   handleRemove = async () => {
     const { course, step } = this.props;
-    const steptoremove = await removeStep(course.id, step.id);
-    this.props.removeStep(steptoremove);
-  
+    // const stepToRemove = await removeStep(course.id, step.id);
+    
+    const stepToRemove = await stepRequest({
+      url: `/courses/${course.id}/steps/${step.id}`, 
+      method: 'DELETE', 
+      dataObject: {}
+    });
+    this.props.removeStep(stepToRemove);
   };
 
-renderButtons = () => {
-    const { course, toggleEdit, updateStep, removeStep, step } = this.props;
-		const { edit } = this.state;
-	
-
-    if (edit){
-    	return (
-    	<StepEdit 
-    	course = {course}
-    	step = {step}
-    	onSubmit = {this.toggleEdit}
-    	updateStep = {updateStep}
-    	/>
-    	);
-    }
-    
-    else {
-      return (
-        <span>
+render() {
+  const { course, toggleEdit, updateStep, removeStep, step } = this.props;
+  const { edit } = this.state;
+  
+  return (
+    <div className="post">      
+      {edit 
+        ?
+        <StepEdit 
+          course = {course}
+          step = {step}
+          onSubmit = {this.toggleEdit}
+          updateStep = {updateStep}
+        />
+        :
+        <React.Fragment>
          {step.title} -  {step.description}    
 
           <button
@@ -54,8 +62,7 @@ renderButtons = () => {
             onKeyPress={this.toggleEdit} >
           Edit
           </button>
-
-       
+        
           <button
             className="m-2 btn btn-danger"
             onClick={this.handleRemove}
@@ -64,20 +71,14 @@ renderButtons = () => {
             tabIndex={0}
           >Delete
           </button>
-      </span>
-      ); 
-    }
-  };
+        </React.Fragment>
+        }
 
-render() {
-    const { step, removeStep } = this.props;
-    return (
-      <div className="post">      
-          {this.renderButtons()}    
       </div>
-     
     );
+    //https://reactjs.org/docs/conditional-rendering.html
   }
 }
+
 
 export default Step;

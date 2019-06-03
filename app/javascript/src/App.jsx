@@ -4,10 +4,12 @@ import CourseList from './components/CourseList';
 import { fetchCourses } from './APIs/courses';
 
 export default class App extends Component {
+  // bind is unecessary with arrow functions
   constructor(props) {
     super(props);
     this.state = { 
     	courses: [],
+      notification: null
     };   
     this.addCourseToList = this.addCourseToList.bind(this);
     this.removeCourse = this.removeCourse.bind(this);
@@ -18,6 +20,17 @@ export default class App extends Component {
 
   componentDidMount = async () => {
     await this.refreshCourses();
+
+    window.addEventListener('message', (e) => {
+      console.log(e);
+      let notification = {
+        message: e.data
+      };
+
+      this.setState({
+        notification: notification
+      });
+    });
   }
 
 
@@ -57,7 +70,7 @@ export default class App extends Component {
 
   render() {
     return(
-      <div className="container">
+      <div className="container" style={{position: 'relevant'}}>
        <div>
           <h1>Création d'un cours :</h1>
           <div>

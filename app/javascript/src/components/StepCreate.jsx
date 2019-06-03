@@ -1,5 +1,5 @@
 import React from 'react';
-import { addStep } from '../APIs/steps';
+import { addStep, stepRequest } from '../APIs/steps';
 
 class StepCreate extends React.Component {
   constructor(props) {
@@ -28,6 +28,19 @@ handleChangeDescription = (e) => {
     e.preventDefault();
     const {course, step} = this.props
     const newStep = await addStep(course.id, step.id, this.state.title, this.state.description);
+    
+    // const newStep = await stepRequest({
+    //   url: `/courses/${course.id}/steps`, 
+    //   method: 'POST', 
+    //   dataObject: {
+    //     step: { 
+    //       id: course.id, 
+    //       title: this.state.title, 
+    //       description: this.state.description 
+    //     } 
+    //   }
+    // });
+
     this.props.onSubmit(newStep);
     this.setState({  
      title: 'title',

@@ -34,8 +34,6 @@ export const addStep = async (id, title, description) => {
 
 
 export const removeStep = async (id, num) => {
-
-console.log(id, num)
   const stepResponse = await fetch(`/courses/${id}/steps/${num}`, {
     method: 'DELETE',
     headers: {
@@ -45,7 +43,6 @@ console.log(id, num)
     body: JSON.stringify(addCsrf({})),
   });
   const step = await stepResponse.json();
-  console.log('mon step', step)
   return step.step;
 };
 
@@ -65,3 +62,29 @@ export const updateStep = async ( id, num, title, description ) => {
 
   return stepJSON.step;
 };
+
+export const stepRequest = async ({url, method, dataObject}) => {
+  const header = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  };
+
+  
+  dataObject[document.querySelector('meta[name=csrf-param]').content] = document.querySelector('meta[name=csrf-token]').content;
+
+  let body = JSON.stringify(dataObject);
+
+  console.log("body");
+  console.log(body);
+
+
+  const response = await fetch(url, {
+    method: method,
+    header: header,
+    body: body
+  });
+
+  const responseJSON = await response.json();
+
+  return responseJSON.step;
+}
