@@ -37,11 +37,11 @@ renderButtons = () => {
             Delete
           </button>
       </span>
-      ); 
+    ); 
   };
 
 
-render() {
+  render() {
     const { course } = this.props;
     return (
       <div className="post">
@@ -51,6 +51,7 @@ render() {
       </div>
     );
   }
+  
 }
 
 

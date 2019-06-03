@@ -37,7 +37,7 @@ export default class Course extends Component {
  render() {
     const { edit, detail } = this.state;
     const { course, actOnRemove ,updateCourse} = this.props;
- 
+
     if (edit) {
       return (
         <CourseEdit

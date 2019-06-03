@@ -15,20 +15,8 @@ class StepsController < ApplicationController
     end
   end
 
-  # def create
-  #   @step = @course.steps.build(step_params)
-  #   @step.title = params[:step][:title]
-  #   @step.description = params[:step][:description]
-  #   redirect_to course_path(@course)
-  #   flash[:alert] = if @step.save
-  #                     "Step created"
-  #                   else
-  #                     "Step created failed"
-  #                   end
-  # end
-
   def create
-    @step = Step.create(course_id: params[:step][:id], title: params[:step][:title], description: params[:step][:description] )
+    @step = @course.steps.create(step_params)
     puts @step.errors.messages
     respond_to do |format|
       format.html do
@@ -43,7 +31,7 @@ class StepsController < ApplicationController
   def edit; end
 
   def update
-    @step.update(course_id: params[:step][:id], title: params[:step][:title], description: params[:step][:description])
+    @step.update(step_params)
     render json: @step
   end
 
