@@ -37,15 +37,9 @@ export const removeStep = async (id, num) => {
   const stepResponse = await fetch(`/courses/${id}/steps/${num}`, {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify(addCsrf({})),
-  });
-  const step = await stepResponse.json();
-  return step.step;
-};
-
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  };
 
 
 export const updateStep = async ( id, num, title, description ) => {
