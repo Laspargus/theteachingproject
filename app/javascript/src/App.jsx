@@ -12,18 +12,23 @@ export default class App extends Component {
     this.addCourseToList = this.addCourseToList.bind(this);
     this.removeCourse = this.removeCourse.bind(this);
     this.updateCourse = this.updateCourse.bind(this);
+
   }
   
+
+  componentDidMount = async () => {
+    await this.refreshCourses();
+  }
+
+
   refreshCourses = async () => {
     const courses = await fetchCourses();
     this.setState({
       courses: courses.courses,
     }); 
+
   }
 
-  componentDidMount = async () => {
-    await this.refreshCourses();
-  }
 
   addCourseToList(newCourse) {
     this.setState({
@@ -38,7 +43,8 @@ export default class App extends Component {
     });
   };
 
-  updateCourse = updatedCourse => {
+
+  updateCourse(updatedCourse) {
     const { courses } = this.state;
     this.setState({
       courses: courses.map(course =>
@@ -48,15 +54,15 @@ export default class App extends Component {
 
   };
 
+
   render() {
-		const {courses} = this.state;
     return(
       <div className="container">
        <div>
           <h1>Création d'un cours :</h1>
           <div>
             <div className="form-group row">    
-              <div className="col-sm-10">
+              <div className="col-sm-12">
                 <CourseCreate
                 	onSubmit={this.addCourseToList}
                 />
