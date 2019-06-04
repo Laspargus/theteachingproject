@@ -1,8 +1,11 @@
 import React from 'react';
 import { fetchSteps } from '../APIs/steps';
-import StepList  from './StepList';
+import StepList from './StepList';
 import StepCreate from './StepCreate';
 import { showCourse } from '../APIs/courses';
+import AttendanceCreate from './AttendanceCreate';
+import AttendanceAttending from './AttendanceAttending';
+import AttendanceInvited from './AttendanceInvited';
 
 class CourseDetail extends React.Component {
 
@@ -65,7 +68,14 @@ getCourse = async () => {
   
     return (
      <div className="container"> 
-        <h2>{this.state.course.title} - {this.state.course.description}</h2> 
+        <h2>{this.state.course.title} - {this.state.course.description}</h2>
+        <div className="card col-md-12">
+          <div className="card col-md-12"><AttendanceCreate /></div>
+          <div className="row">
+            <div className="card col-md-6"><AttendanceInvited /></div>
+            <div className="card col-md-6"><AttendanceAttending /></div>
+          </div>
+        </div>
         <div className="row">
           <div className="card col-md-5 m-2 card-body">  
            <div className="form-group row">    
