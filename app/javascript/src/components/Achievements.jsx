@@ -46,10 +46,6 @@ class Achievements extends React.Component {
 	  return (
 	  	<div>
 	  		<ProgressBar animated now={ now } label={ isNaN(now) ? `${0}%` : `${now}%`} />
-	  		achievement counter : {this.state.achievements.length}
-	  		<div>
-	  			attendances counter : {this.state.attendances.length}
-	  		</div>
 	  	</div>
 	  );
 	}
