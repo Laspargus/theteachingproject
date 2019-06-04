@@ -17,7 +17,7 @@ class StepsController < ApplicationController
 
   def create
     @step = @course.steps.create(step_params)
-    
+
     puts @step.errors.messages
     respond_to do |format|
       format.html do

@@ -14,7 +14,7 @@ class CoursesController < ApplicationController
     end
   end
 
- def show
+  def show
     respond_to do |format|
       format.html do
         @attendance = Attendance.find_by(course: @course, student: current_student)
@@ -32,7 +32,7 @@ class CoursesController < ApplicationController
       end
     end
   end
-  
+
   def new
     @course = Course.new
   end
