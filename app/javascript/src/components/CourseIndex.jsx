@@ -4,7 +4,6 @@ import CourseList from './CourseList';
 import { fetchCourses } from '../APIs/courses';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import CourseDetail from './CourseDetail';
-import Hello from './Hello';
 
 export default class CourseIndex extends Component {
   constructor(props) {
