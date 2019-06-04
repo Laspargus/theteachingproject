@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
 class AttendancesController < ApplicationController
-  before_action :set_course, only: %i[new create update destroy]
+  before_action :set_course, only: %i[index new create update destroy]
+
+  def index
+    @attendances = @course.attendances
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: @attendances
+      end
+    end
+  end
 
   def new
     @attendance = Attendance.new

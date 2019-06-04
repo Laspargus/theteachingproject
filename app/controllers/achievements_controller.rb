@@ -21,11 +21,10 @@ class AchievementsController < ApplicationController
   def index
     @step = Step.find(params[:step_id])
     @achievements = @step.achievements
-    puts achievements
     respond_to do |format|
       format.html {}
       format.json do
-        render json: @steps
+        render json: @achievements
       end
     end
   end
