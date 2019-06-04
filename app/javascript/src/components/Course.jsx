@@ -5,6 +5,7 @@ import  CourseDetail  from './CourseDetail';
 import { removeCourse } from '../APIs/courses';
 
 
+
 export default class Course extends Component {
 
   state = {
@@ -59,9 +60,10 @@ export default class Course extends Component {
         toggleEdit={this.toggleEdit}
         toggleDetail={this.toggleDetail}
       />
-      <CourseDetail
-        course = {course}
-      />
+    <CourseDetail
+    course={course}
+    />
+
       </div>
       );
     }

@@ -1,4 +1,7 @@
 import React from 'react';
+import  Hello  from './Hello';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import CourseDetail from './CourseDetail';
 
 class CourseShow extends React.Component {
 
@@ -26,8 +29,7 @@ renderButtons = () => {
             Edit
           </button>
 
-        
-          <button
+            <button
             className="m-2 btn btn-danger"
             onClick={removeAct}
             onKeyPress={removeAct}
@@ -36,22 +38,37 @@ renderButtons = () => {
           >
             Delete
           </button>
+
+      
+              <Link to={`/courses/${course.id}`}> 
+                Detail in react
+              </Link>
+               
+       
+
+        
+              <Link to='/hello'> 
+              Hello              
+              </Link>
+         
       </span>
-    ); 
+      ); 
   };
 
 
-  render() {
+render() {
     const { course } = this.props;
     return (
+      <React.Fragment>
       <div className="post">
         {course.title} -  {course.description}
           <a className="m-2 btn btn-success" href={'/courses/' + course.id}>Old Show</a>
         {this.renderButtons()}
       </div>
+        
+      </React.Fragment>
     );
   }
-  
 }
 
 

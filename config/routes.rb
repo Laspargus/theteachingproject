@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :attendances
   end
 
-  resources :achievements, only: %i[create destroy]
+  resources :achievements, only: %i[create destroy index]
 
   resources :questions, except: [:show]
 

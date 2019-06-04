@@ -1,81 +1,22 @@
-import React, { Component } from 'react';
-import CourseCreate from './components/CourseCreate';
-import CourseList from './components/CourseList';
-import { fetchCourses } from './APIs/courses';
+import React, { Component } from "react";
+import CourseDetail from "./components/CourseDetail";
+import CourseIndex from "./components/CourseIndex";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Hello from './components/Hello';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-    	courses: [],
-    };   
-    this.addCourseToList = this.addCourseToList.bind(this);
-    this.removeCourse = this.removeCourse.bind(this);
-    this.updateCourse = this.updateCourse.bind(this);
-
-  }
-  
-
-  componentDidMount = async () => {
-    await this.refreshCourses();
-  }
-
-
-  refreshCourses = async () => {
-    const courses = await fetchCourses();
-    this.setState({
-      courses: courses.courses,
-    }); 
-
-  }
-
-
-  addCourseToList(newCourse) {
-    this.setState({
-       courses : [newCourse, ...this.state.courses],
-    }); 
-  }
-
-  removeCourse(removedCourse) {
-    const { courses } = this.state;
-    this.setState({
-      courses: courses.filter(course => removedCourse.id !== course.id)
-    });
-  };
-
-
-  updateCourse(updatedCourse) {
-    const { courses } = this.state;
-    this.setState({
-      courses: courses.map(course =>
-        course.id === updatedCourse.id ? updatedCourse : course
-      ),
-    });
-
-  };
-
-
+class App extends Component {
   render() {
-    return(
-      <div className="container">
-       <div>
-          <h1>Création d'un cours :</h1>
-          <div>
-            <div className="form-group row">    
-              <div className="col-sm-12">
-                <CourseCreate
-                	onSubmit={this.addCourseToList}
-                />
-                <CourseList  
-	                courses = {this.state.courses}
-	                actOnRemove={this.removeCourse}
-	          			updateCourse={this.updateCourse}
-                />
-              </div>
-            </div>
-          </div>
+    return (
+      <Router>
+        <div>
+          <Switch>
+           <Route path="/courses" exact component = {Index} />
+           <Route path="/courses/:id" component = {CourseDetail} />
+          </Switch>
         </div>
-      </div>
+      </Router>
     );
   }
 }
+
+export default App;

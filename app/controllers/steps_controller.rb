@@ -2,11 +2,11 @@
 
 class StepsController < ApplicationController
   before_action :set_step, only: %i[edit update destroy]
-  before_action :set_course, only: %i[create edit]
+  before_action :set_course, only: %i[create edit index]
   before_action :authenticate_teacher!, only: %i[create edit update destroy]
 
   def index
-    @steps = Step.all
+    @steps = @course.steps
     respond_to do |format|
       format.html {}
       format.json do
@@ -17,6 +17,7 @@ class StepsController < ApplicationController
 
   def create
     @step = @course.steps.create(step_params)
+
     puts @step.errors.messages
     respond_to do |format|
       format.html do

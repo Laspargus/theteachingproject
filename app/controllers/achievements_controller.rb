@@ -17,4 +17,16 @@ class AchievementsController < ApplicationController
     redirect_to course_path(@achievement.step.course)
     flash[:alert] = "achievement deleted"
   end
+
+  def index
+    @step = Step.find(params[:step_id])
+    @achievements = @step.achievements
+    puts achievements
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: @steps
+      end
+    end
+  end
 end

@@ -17,6 +17,23 @@ const response = await fetch('/courses', {
   return courses;
 };
 
+
+export const showCourse = async (id) => {
+const response = await fetch(`/courses/${id}`, {
+	  method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  });
+
+  const course = await response.json()
+  console.log("je suis dans mon fetch", course)
+  return course;
+};
+
+
+
 export const addCourse = async (title, description) => {
     const courseResponse = await fetch('/courses', {
         method: 'POST',
@@ -30,6 +47,7 @@ export const addCourse = async (title, description) => {
     return course.course;
 }
 
+
 export const removeCourse = async id => {
   const courseResponse = await fetch(`/courses/${id}`, {
     method: 'DELETE',
@@ -42,6 +60,7 @@ export const removeCourse = async id => {
   const course = await courseResponse.json();
   return course.course;
 };
+
 
 
 export const updateCourse = async ( id, title, description ) => {
