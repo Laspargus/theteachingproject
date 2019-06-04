@@ -5,6 +5,7 @@ import StepCreate from './StepCreate';
 import { showCourse } from '../APIs/courses';
 import { fetchQuestions } from '../APIs/questions';
 import QuestionList from './QuestionList';
+import QuestionCreate from './QuestionCreate';
 
 class CourseDetail extends React.Component {
 
@@ -18,12 +19,15 @@ class CourseDetail extends React.Component {
       questions: [],
       course_id: match.params.id
     };   
-     this.addStepToList = this.addStepToList.bind(this);
-     this.removeStepFromList = this.removeStepFromList.bind(this);
-     this.updateStep = this.updateStep.bind(this);  
+    this.addStepToList = this.addStepToList.bind(this);
+    this.removeStepFromList = this.removeStepFromList.bind(this);
+    this.updateStep = this.updateStep.bind(this); 
+    this.addQuestionToList = this.addQuestionToList.bind(this);
+    this.removeQuestionFromList = this.removeQuestionFromList.bind(this);
+    this.updateQuestion = this.updateQuestion.bind(this); 
   };
 
-getCourse = async () => {
+  getCourse = async () => {
         const course = await showCourse(this.state.course_id);
           this.setState({
           course: course.course
@@ -49,6 +53,28 @@ getCourse = async () => {
       questions: questions.questions,
     }); 
   }
+
+  addQuestionToList(newQuestion) {
+    this.setState({
+       questions: [newQuestion, ...this.state.questions],
+    }); 
+  }
+
+  removeQuestionFromList( questiontoremove ) {
+    this.setState({
+      questions: this.state.questions.filter(question => questiontoremove.id !== question.id)
+    });
+  }
+
+  updateQuestion(updatedQuestion) {
+    this.setState({
+      questions: this.state.questions.map(question =>
+        question.id === updatedQuestion.id ? updatedQuestion : question
+      ),
+    });
+  };
+
+
 
   addStepToList(newStep) {
     this.setState({
@@ -95,14 +121,19 @@ getCourse = async () => {
             </div>
           </div>
            <div className="card col-md-5 m-2 card-body">
-           Questions
+             <div className="form-group row">    
+              <QuestionCreate
+                  onSubmit={this.addQuestionToList}
+                  course={ this.state.course }
+                />
+              </div>
 
             <div>
              <QuestionList
                questions = {this.state.questions}
-               //removeStep = {this.removeStepFromList}
+               removeQuestion = {this.removeQuestionFromList}
                course = {this.state.course}
-               //updateStep = {this.updateStep}
+               updateQuestion = {this.updateQuestion}
                />
             </div>
            </div>
@@ -112,6 +143,5 @@ getCourse = async () => {
     );
   }
 }
-
 
 export default CourseDetail;

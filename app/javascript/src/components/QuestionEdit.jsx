@@ -23,7 +23,7 @@ export default class QuestionEdit extends Component {
   	const {course, question} =this.props
     e.preventDefault();
     const updatedQuestion = await updateQuestion(course.id, question.id, this.state.content);
-    this.props.updateStep(updatedStep);
+    this.props.updateQuestion(updatedQuestion);
     this.props.onSubmit();
   }
 
