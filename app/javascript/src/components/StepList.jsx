@@ -1,15 +1,14 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
 import Step from './Step';
-import Achievments from './Achievments'
-
+import Achievements from './Achievements'
 
 function StepList({course, steps, removeStep, updateStep}) {
   return (
   	<div>
     <FlipMove typeName="ul">
       {steps.map((step, i)=> (
-        <div>
+        <div key={i}>
           <Step
             step={step}
             key={step.id}
@@ -17,7 +16,11 @@ function StepList({course, steps, removeStep, updateStep}) {
             course = {course}
             updateStep = {updateStep}
           />
-
+          <Achievements
+          course={course}
+           step={step}
+           key={i}
+         />
         </div>
       ))}
     </FlipMove>

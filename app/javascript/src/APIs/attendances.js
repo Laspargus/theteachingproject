@@ -5,14 +5,15 @@
 //   return object;
 // };
 
-export const fetchAchievements = async (course_id, step_id) => {
-const response = await fetch(`/courses/${course_id}/steps/${step_id}/achievements`, {
+export const fetchAttendances = async (course_id) => {
+const response = await fetch(`/courses/${course_id}/attendances`, {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   });
 
-  const achievements = await response.json()
-  return achievements;
+  const attendances = await response.json()
+  return attendances;
 };
+
