@@ -3,6 +3,8 @@ import { fetchSteps } from '../APIs/steps';
 import StepList  from './StepList';
 import StepCreate from './StepCreate';
 import { showCourse } from '../APIs/courses';
+import { fetchQuestions } from '../APIs/questions';
+import QuestionList from './QuestionList';
 
 class CourseDetail extends React.Component {
 
@@ -13,6 +15,7 @@ class CourseDetail extends React.Component {
     this.state = { 
     	steps: [],
       course: [],
+      questions: [],
       course_id: match.params.id
     };   
      this.addStepToList = this.addStepToList.bind(this);
@@ -30,12 +33,20 @@ getCourse = async () => {
  componentDidMount = async () => {
     this.getCourse();
     this.refreshSteps();
+    this.refreshQuestions();
   }
 
  refreshSteps = async () => {
     const steps = await fetchSteps(this.state.course_id);
     this.setState({
       steps: steps.steps,
+    }); 
+  }
+
+  refreshQuestions = async () => {
+    const questions = await fetchQuestions(this.state.course_id);
+    this.setState({
+      questions: questions.questions,
     }); 
   }
 
@@ -85,8 +96,17 @@ getCourse = async () => {
           </div>
            <div className="card col-md-5 m-2 card-body">
            Questions
+
+            <div>
+             <QuestionList
+               questions = {this.state.questions}
+               //removeStep = {this.removeStepFromList}
+               course = {this.state.course}
+               //updateStep = {this.updateStep}
+               />
+            </div>
            </div>
-           </div>
+        </div>
       </div>  
 
     );
