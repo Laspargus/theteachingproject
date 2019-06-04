@@ -104,7 +104,7 @@ class CourseDetail extends React.Component {
      <div className="container"> 
         <h2>{this.state.course.title}</h2> 
         <div className="row">
-          <div className="card col-md-7 m-2 card-body">  
+          <div className="card col-md-5 m-2 card-body">  
            <div className="form-group row">    
             <StepCreate
                 onSubmit={this.addStepToList}

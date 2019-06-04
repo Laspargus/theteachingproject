@@ -46,24 +46,22 @@ renderButtons = () => {
         <span>
          {step.title} -  {step.description}    
 
-          <button
+          <a
             className="m-2 btn btn-info"
             role="button"
             tabIndex={0}
             onClick={this.toggleEdit}
             onKeyPress={this.toggleEdit} >
-          Edit
-          </button>
-
-       
-          <button
+          <i className="fas fa-edit"></i>
+          </a>    
+          <a
             className="m-2 btn btn-danger"
             onClick={this.handleRemove}
             onKeyPress={this.handleRemove}
             role="button"
             tabIndex={0}
-          >Delete
-          </button>
+          ><i className="far fa-trash-alt"></i>
+          </a>
       </span>
       ); 
     }

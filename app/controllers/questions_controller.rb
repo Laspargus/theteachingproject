@@ -3,7 +3,7 @@
 class QuestionsController < ApplicationController
   before_action :set_course, only: %i[new create destroy index]
   before_action :set_question, only: %i[authenticate_question_author edit update destroy]
-  # before_action :authenticate_question_author, only: %i[destroy]
+  before_action :authenticate_question_author, only: %i[edit destroy]
 
   def index
     @questions = @course.questions

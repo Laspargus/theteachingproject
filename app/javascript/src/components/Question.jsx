@@ -39,24 +39,24 @@ renderButtons = () => {
         <span>
          {question.content} 
 
-          <button
-            className="m-2 btn btn-info"
+       
+          <a className="m-2 btn btn-info"
             role="button"
             tabIndex={0}
             onClick={this.toggleEdit}
             onKeyPress={this.toggleEdit} >
-          Edit
-          </button>
+          <i className="fas fa-edit"></i>
+          </a>
 
        
-          <button
+          <a
             className="m-2 btn btn-danger"
             onClick={this.handleRemove}
             onKeyPress={this.handleRemove}
             role="button"
-            tabIndex={0}
-          >Delete
-          </button>
+            tabIndex={0}>
+          <i className="far fa-trash-alt"></i>
+          </a>
       </span>
       ); 
     }
