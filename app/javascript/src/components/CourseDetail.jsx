@@ -2,31 +2,43 @@ import React from 'react';
 import { fetchSteps } from '../APIs/steps';
 import StepList  from './StepList';
 import StepCreate from './StepCreate';
+import { showCourse } from '../APIs/courses';
 
 class CourseDetail extends React.Component {
 
  constructor(props) {
     super(props);
+
+    let match = props.match;
     this.state = { 
     	steps: [],
+      course: [],
+      course_id: match.params.id
     };   
-
      this.addStepToList = this.addStepToList.bind(this);
      this.removeStepFromList = this.removeStepFromList.bind(this);
-     this.updateStep = this.updateStep.bind(this);
-
+     this.updateStep = this.updateStep.bind(this);  
   };
 
 
+getCourse = async () => {
+        const course = await showCourse(this.state.course_id);
+          this.setState({
+          course: course.course
+        });
+    }
+  
 
- componentDidMount(){
+
+ componentDidMount = async () => {
+    this.getCourse();
     this.refreshSteps();
   }
 
-  refreshSteps = async () => {
-  	const {course} =this.props
-    const steps = await fetchSteps(course.id);
 
+
+  refreshSteps = async () => {
+    const steps = await fetchSteps(this.state.course_id);
     this.setState({
       steps: steps.steps,
     }); 
@@ -42,8 +54,7 @@ class CourseDetail extends React.Component {
 
 
   removeStepFromList( steptoremove ) {
-  	console.log(steptoremove);
-  	const { steps } = this.state;
+  	const { steps } = this.state.steps;
     this.setState({
       steps: steps.filter(step => steptoremove.id !== step.id)
     });
@@ -51,7 +62,7 @@ class CourseDetail extends React.Component {
   }
 
   updateStep(updatedStep) {
-    const { steps } = this.state;
+    const { steps } = this.state.steps;
     this.setState({
       steps: steps.map(step =>
         step.id === updatedStep.id ? updatedStep : step
@@ -61,34 +72,32 @@ class CourseDetail extends React.Component {
   };
 
 	render(){
-    const { steps } = this.state;
-    const { course } =this.props;
-   
-
+    const { steps } = this.state.steps;
+    const { course } = this.state.course;
+  
     return (
-
-      <div className="container"> 
-      	<div className="card p-2 m-2">
-					<div className="card-body">
-					 <h2>{course.title} - {course.description}</h2>
-					
-        	 <div className="form-group row">    
-           	<StepCreate
-              	onSubmit={this.addStepToList}
-              	course={ course }
+     <div className="container"> 
+        <div className="card p-2 m-2">
+          <div className="card-body">
+           <h2>{this.state.course.title} - {this.state.course.description}</h2>  
+           <div className="form-group row">    
+            <StepCreate
+                onSubmit={this.addStepToList}
+                course={ this.state.course }
               />
-          	</div>
-						<div>
+            </div>
+            <div>
              <StepList
-               steps = {steps}
+               steps = {this.state.steps}
                removeStep = {this.removeStepFromList}
-               course = {course}
+               course = {this.state.course}
                updateStep = {this.updateStep}
                />
-          	</div>
-        	</div>
-				</div>
-			</div>	
+            </div>
+          </div>
+        </div>
+      </div>  
+
     );
   }
 }

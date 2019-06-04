@@ -15,7 +15,6 @@ function StepList({course, steps, removeStep, updateStep}) {
           removeStep={removeStep}
           course = {course}
           updateStep = {updateStep}
-          //updateCourse={updateCourse}
         />
       ))}
     </FlipMove>
