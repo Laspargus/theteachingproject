@@ -10,13 +10,11 @@ class QuestionCreate extends React.Component {
      };   
   }
 
-handleChangeContent = (e) => {
+  handleChangeContent = (e) => {
     this.setState({
       content: e.target.value,
     });
   }
-
-
 
   handleSubmitQuestionForm = async e =>{
     e.preventDefault();

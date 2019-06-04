@@ -8,7 +8,6 @@ class Question extends React.Component {
 	      edit: false,
 	    };
 
-
 	toggleEdit = () => {
 	    const { edit } = this.state;
 	    this.setState({
@@ -16,20 +15,15 @@ class Question extends React.Component {
 	    });
 	  };
 
-
-
   handleRemove = async () => {
     const { course, question } = this.props;
     const questiontoremove = await removeQuestion(course.id, question.id);
-    this.props.removeQuestion(questiontoremove);
-  
+    this.props.removeQuestion(questiontoremove); 
   };
 
 renderButtons = () => {
     const { course, toggleEdit, updateQuestion, removeQuestion, question } = this.props;
 		const { edit } = this.state;
-	
-
     if (edit){
     	return (
     	<QuestionEdit 
@@ -40,7 +34,6 @@ renderButtons = () => {
     	/>
     	);
     }
-    
     else {
       return (
         <span>

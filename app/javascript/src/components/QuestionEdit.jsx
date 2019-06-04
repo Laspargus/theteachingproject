@@ -12,7 +12,6 @@ export default class QuestionEdit extends Component {
   	this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   handleChangeContent = (e) => {
     this.setState({
       content: e.target.value,
@@ -60,8 +59,6 @@ export default class QuestionEdit extends Component {
 	              onChange={this.handleChangeContent}
 	            />
 	          </label>
-	          
-
 	            <input type="submit"
 	              value="Update!"
 	              className="btn btn-success"
