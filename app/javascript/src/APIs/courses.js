@@ -28,7 +28,6 @@ const response = await fetch(`/courses/${id}`, {
   });
 
   const course = await response.json()
-  console.log("je suis dans mon fetch", course)
   return course;
 };
 
@@ -60,7 +59,6 @@ export const removeCourse = async id => {
   const course = await courseResponse.json();
   return course.course;
 };
-
 
 
 export const updateCourse = async ( id, title, description ) => {

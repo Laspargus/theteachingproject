@@ -59,7 +59,7 @@ export const updateStep = async ( id, num, title, description ) => {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify(addCsrf({ step: {id, num, title, description } })),
+    body: JSON.stringify(addCsrf({ step: {title, description } })),
   });
   const stepJSON = await stepResponse.json();
 

@@ -20,7 +20,6 @@ class CourseDetail extends React.Component {
      this.updateStep = this.updateStep.bind(this);  
   };
 
-
 getCourse = async () => {
         const course = await showCourse(this.state.course_id);
           this.setState({
@@ -28,21 +27,16 @@ getCourse = async () => {
         });
     }
   
-
-
  componentDidMount = async () => {
     this.getCourse();
     this.refreshSteps();
   }
 
-
-
-  refreshSteps = async () => {
+ refreshSteps = async () => {
     const steps = await fetchSteps(this.state.course_id);
     this.setState({
       steps: steps.steps,
     }); 
-
   }
 
   addStepToList(newStep) {
@@ -51,24 +45,18 @@ getCourse = async () => {
     }); 
   }
 
-
-
   removeStepFromList( steptoremove ) {
-  	const { steps } = this.state.steps;
     this.setState({
-      steps: steps.filter(step => steptoremove.id !== step.id)
+      steps: this.state.steps.filter(step => steptoremove.id !== step.id)
     });
-
   }
 
   updateStep(updatedStep) {
-    const { steps } = this.state.steps;
     this.setState({
-      steps: steps.map(step =>
+      steps: this.state.steps.map(step =>
         step.id === updatedStep.id ? updatedStep : step
       ),
     });
-
   };
 
 	render(){
@@ -77,9 +65,9 @@ getCourse = async () => {
   
     return (
      <div className="container"> 
-        <div className="card p-2 m-2">
-          <div className="card-body">
-           <h2>{this.state.course.title} - {this.state.course.description}</h2>  
+        <h2>{this.state.course.title} - {this.state.course.description}</h2> 
+        <div className="row">
+          <div className="card col-md-5 m-2 card-body">  
            <div className="form-group row">    
             <StepCreate
                 onSubmit={this.addStepToList}
@@ -95,7 +83,10 @@ getCourse = async () => {
                />
             </div>
           </div>
-        </div>
+           <div className="card col-md-5 m-2 card-body">
+           Questions
+           </div>
+           </div>
       </div>  
 
     );

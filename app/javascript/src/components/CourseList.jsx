@@ -19,4 +19,4 @@ function CourseList({ courses, actOnRemove, updateCourse }) {
   );
 }
 
- export default CourseList;
+export default CourseList;

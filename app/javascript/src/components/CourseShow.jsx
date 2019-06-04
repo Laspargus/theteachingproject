@@ -8,16 +8,6 @@ renderButtons = () => {
     const { course, toggleEdit, toggleDetail, removeAct } = this.props;
       return (
         <span>
-
-          <button
-            className="m-2 btn btn-success"
-            role="button"
-            tabIndex={0}
-            onClick={toggleDetail}
-            onKeyPress={toggleDetail} >
-          See Details
-          </button>
-
           <button
             className="m-2 btn btn-info"
             role="button"
@@ -28,7 +18,7 @@ renderButtons = () => {
             Edit
           </button>
 
-            <button
+          <button
             className="m-2 btn btn-danger"
             onClick={removeAct}
             onKeyPress={removeAct}
@@ -37,19 +27,12 @@ renderButtons = () => {
           >
             Delete
           </button>
-
-      
-              <Link to={`/courses/${course.id}`}> 
-                Detail in react
-              </Link>
-               
-       
-
-        
-              <Link to='/hello'> 
-              Hello              
-              </Link>
-         
+          <Link 
+            className="m-2 btn btn-success" 
+            to={`/courses/${course.id}`}
+          > 
+            React Show
+          </Link>
       </span>
       ); 
   };
@@ -63,12 +46,10 @@ render() {
         {course.title} -  {course.description}
           <a className="m-2 btn btn-success" href={'/courses/' + course.id}>Old Show</a>
         {this.renderButtons()}
-      </div>
-        
+      </div> 
       </React.Fragment>
     );
   }
 }
-
 
 export default CourseShow;
