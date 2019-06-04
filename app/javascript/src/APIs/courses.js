@@ -62,7 +62,6 @@ export const removeCourse = async id => {
 };
 
 
-
 export const updateCourse = async ( id, title, description ) => {
   const courseResponse = await fetch(`/courses/${id}`, {
     method: 'PATCH',

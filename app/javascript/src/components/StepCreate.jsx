@@ -40,11 +40,11 @@ handleChangeDescription = (e) => {
   render () {
     return (
       <div>
+       <span>Création d'un step :</span>
         <form 
         className="block" 
         onSubmit={this.handleSubmitStepForm}  
         >
-         <span>Création d'un step :</span>
           <label htmlFor="Title">
             <input type="text" 
               name="title" 

@@ -50,7 +50,6 @@ export default class CourseIndex extends Component {
     });
   };
 
-
   render() {
     return(
       <div className="container">

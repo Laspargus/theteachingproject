@@ -4,14 +4,12 @@ import  CourseShow  from './CourseShow';
 import  CourseDetail  from './CourseDetail';
 import { removeCourse } from '../APIs/courses';
 
-
-
 export default class Course extends Component {
 
   state = {
-      edit: false,
-      detail: false,
-    };
+    edit: false,
+    detail: false,
+  };
 
   toggleEdit = () => {
     const { edit } = this.state;
@@ -20,14 +18,12 @@ export default class Course extends Component {
     });
   };
 
-
   toggleDetail = () => {
     const { detail } = this.state;
     this.setState({
       detail: !detail,
     });
   };
-
 
   handleRemoveClick = async () => {
     const { course, actOnRemove } = this.props;
@@ -54,16 +50,15 @@ export default class Course extends Component {
     else if(detail) {
     return (
       <div>
-      <CourseShow
-        course={course}
-        removeAct={this.handleRemoveClick}
-        toggleEdit={this.toggleEdit}
-        toggleDetail={this.toggleDetail}
-      />
-    <CourseDetail
-    course={course}
-    />
-
+        <CourseShow
+          course={course}
+          removeAct={this.handleRemoveClick}
+          toggleEdit={this.toggleEdit}
+          toggleDetail={this.toggleDetail}
+        />
+        <CourseDetail
+          course={course}
+        />
       </div>
       );
     }
