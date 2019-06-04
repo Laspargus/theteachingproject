@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import CourseForm from './components/CourseForm';
 import CourseList from './components/CourseList';
 import { fetchCourses } from "./APIs/courses";
-import { Link } from 'react-router-dom';
 
 export class Index extends Component {
   constructor(props) {

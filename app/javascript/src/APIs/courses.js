@@ -54,3 +54,15 @@ export const updateCourse = async ( id, title, description ) => {
   const course = await courseResponse.json();
   return course.course;
 };
+
+export const fetchCourse = async id => {
+  const response = await fetch(`/courses/${id}`, {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    }
+  });
+  const course = await response.json();
+  return course.course;
+};

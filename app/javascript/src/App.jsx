@@ -10,7 +10,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/courses" exact component={Index} />
-            <Show path="/courses/:id" component={Show} />
+            <Route path="/courses/:id" component={Show} />
           </Switch>
         </div>
       </Router>
@@ -19,3 +19,4 @@ class App extends Component {
 }
 
 export default App;
+
