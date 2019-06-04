@@ -9,28 +9,24 @@ class CourseDetail extends React.Component {
     super(props);
     this.state = { 
     	steps: [],
-    };   
+    };
 
      this.addStepToList = this.addStepToList.bind(this);
      this.removeStepFromList = this.removeStepFromList.bind(this);
      this.updateStep = this.updateStep.bind(this);
-
   };
-
-
 
  componentDidMount(){
     this.refreshSteps();
   }
 
   refreshSteps = async () => {
-  	const {course} =this.props
+  	const {course} = this.props
     const steps = await fetchSteps(course.id);
 
     this.setState({
       steps: steps.steps,
     }); 
-
   }
 
   addStepToList(newStep) {
@@ -39,15 +35,12 @@ class CourseDetail extends React.Component {
     }); 
   }
 
-
-
   removeStepFromList( steptoremove ) {
   	console.log(steptoremove);
   	const { steps } = this.state;
     this.setState({
       steps: steps.filter(step => steptoremove.id !== step.id)
     });
-
   }
 
   updateStep(updatedStep) {
@@ -57,7 +50,6 @@ class CourseDetail extends React.Component {
         step.id === updatedStep.id ? updatedStep : step
       ),
     });
-
   };
 
 	render(){

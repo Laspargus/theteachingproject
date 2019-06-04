@@ -1,4 +1,6 @@
 import React from 'react';
+import CourseDetail from './CourseDetail';
+import { Link } from 'react-router-dom';
 
 class CourseShow extends React.Component {
 
@@ -12,9 +14,14 @@ renderButtons = () => {
             role="button"
             tabIndex={0}
             onClick={toggleDetail}
-            onKeyPress={toggleDetail} >
-          See Details
+            onKeyPress={toggleDetail} 
+          >
+            See Details
           </button>
+
+          <Link to={`/courses/${course.id}`}>
+            React show
+          </Link>
 
           <button
             className="m-2 btn btn-info"
@@ -46,13 +53,12 @@ renderButtons = () => {
     return (
       <div className="post">
         {course.title} -  {course.description}
-          <a className="m-2 btn btn-success" href={'/courses/' + course.id}>Old Show</a>
+        <a className="m-2 btn btn-success" href={'/courses/' + course.id}>Old Show</a>
         {this.renderButtons()}
       </div>
     );
   }
   
 }
-
 
 export default CourseShow;

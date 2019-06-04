@@ -66,7 +66,7 @@ end
 
 p "Courses are now created"
 
-60.times do
+30.times do
   Attendance.create!(
     status: "false",
     student: Student.all.sample,
@@ -86,7 +86,7 @@ end
 
 p "Questions are now created"
 
-90.times do
+30.times do
   Vote.create!(
     question: Question.all.sample,
     student: Student.all.sample
@@ -95,7 +95,7 @@ end
 
 p "Votes are now created"
 
-40.times do
+30.times do
   Step.create!(
     title: Faker::IndustrySegments.sector,
     course: Course.all.sample,
@@ -105,7 +105,7 @@ end
 
 p "Steps are now created"
 
-90.times do
+30.times do
   Achievement.create!(
     step: Step.all.sample,
     student: Student.all.sample

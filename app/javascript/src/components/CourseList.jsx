@@ -8,6 +8,7 @@ function CourseList({ courses, actOnRemove, updateCourse }) {
   return (
     <FlipMove typeName="ul">
       {courses.map(course => (
+        console.log('listt', course),
         <Course
           course={course}
           key={course.id}
@@ -19,4 +20,4 @@ function CourseList({ courses, actOnRemove, updateCourse }) {
   );
 }
 
- export default CourseList;
+export default CourseList;

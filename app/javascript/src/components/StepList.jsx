@@ -23,6 +23,4 @@ function StepList({course, steps, removeStep, updateStep}) {
   );
 }
 
-
-
 export default StepList;
