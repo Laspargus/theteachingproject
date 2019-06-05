@@ -24,6 +24,7 @@ class CourseDetail extends React.Component {
      this.removeStepFromList = this.removeStepFromList.bind(this);
      this.updateStep = this.updateStep.bind(this);
      this.addAttendanceToInvited = this.addAttendanceToInvited.bind(this);
+     this.removeAttendance = this.removeAttendance.bind(this);
   };
 
 getCourse = async () => {
@@ -81,6 +82,12 @@ getCourse = async () => {
     }); 
   }
 
+  removeAttendance(removedAttendance) {
+    this.setState({
+      attendances: this.state.attendances.filter(step => removedAttendance.id !== step.id)
+    });
+  }
+
 	render(){
     const { steps } = this.state.steps;
     const { course } = this.state.course;
@@ -93,10 +100,10 @@ getCourse = async () => {
           </div>
           <div className="row">
             <div className="card col-md-6">
-              <AttendanceInvited attendances={this.state.attendances} />
+              <AttendanceInvited attendances={this.state.attendances} removeAttendance={this.removeAttendance} course_id={this.state.course_id} />
             </div>
             <div className="card col-md-6">
-              <AttendanceAttending attendances={this.state.attendances} />
+              <AttendanceAttending attendances={this.state.attendances} removeAttendance={this.removeAttendance} course_id={this.state.course_id} />
             </div>
           </div>
         </div>

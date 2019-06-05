@@ -57,8 +57,16 @@ class AttendancesController < ApplicationController
   def destroy
     @attendance = Attendance.find(params[:id])
     @attendance.delete
-    flash[:notice] = "Attendance deleted"
-    redirect_to course_path(@course)
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "#{student.first_name} has been invited to course"
+      end
+      format.json do
+        render json: @attendance
+      end
+    end
+    #flash[:notice] = "Attendance deleted"
+    #redirect_to course_path(@course)
   end
 
   private
