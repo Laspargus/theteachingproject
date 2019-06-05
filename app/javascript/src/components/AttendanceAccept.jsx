@@ -13,11 +13,23 @@ class AttendanceAccept extends React.Component {
     this.props.updateAttendance(updatedAttendance);
   };
 
+  acceptButton(currentStudent) {
+    if (currentStudent) {
+      return(
+        <div>
+          MAGIC NUMBER IS MAGIIIIC 4
+        </div>
+      )
+    }
+  }
+
   render() {
     const { attendances, currentStudent } = this.props;
     const studentInvited = attendances.filter(attendance => (attendance.student.id === currentStudent.id && attendance.status === false));
+
     return (
       <div>
+        { this.acceptButton(currentStudent) }
         {studentInvited.map(attendance => (
           // <Attendance key={attendance.id} attendance={attendance} />,
           <div key={attendance.id}>
