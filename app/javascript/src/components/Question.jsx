@@ -1,13 +1,12 @@
 import React from 'react';
-import { removeStep } from '../APIs/steps';
-import StepEdit from './StepEdit';
+import { removeQuestion } from '../APIs/questions';
+import QuestionEdit from './QuestionEdit';
 
-class Step extends React.Component {
+class Question extends React.Component {
 
 	state = {
 	      edit: false,
 	    };
-
 
 	toggleEdit = () => {
 	    const { edit } = this.state;
@@ -16,51 +15,47 @@ class Step extends React.Component {
 	    });
 	  };
 
-
-
   handleRemove = async () => {
-    const { course, step } = this.props;
-    const steptoremove = await removeStep(course.id, step.id);
-    this.props.removeStep(steptoremove);
-  
+    const { course, question } = this.props;
+    const questiontoremove = await removeQuestion(course.id, question.id);
+    this.props.removeQuestion(questiontoremove); 
   };
 
 renderButtons = () => {
-    const { course, toggleEdit, updateStep, removeStep, step } = this.props;
+    const { course, toggleEdit, updateQuestion, removeQuestion, question } = this.props;
 		const { edit } = this.state;
-	
-
     if (edit){
     	return (
-    	<StepEdit 
+    	<QuestionEdit 
     	course = {course}
-    	step = {step}
+    	question = {question}
     	onSubmit = {this.toggleEdit}
-    	updateStep = {updateStep}
+    	updateQuestion = {updateQuestion}
     	/>
     	);
     }
-    
     else {
       return (
         <span>
-         {step.title} -  {step.description}    
+         {question.content} 
 
-          <a
-            className="m-2 btn btn-info"
+       
+          <a className="m-2 btn btn-info"
             role="button"
             tabIndex={0}
             onClick={this.toggleEdit}
             onKeyPress={this.toggleEdit} >
           <i className="fas fa-edit"></i>
-          </a>    
+          </a>
+
+       
           <a
             className="m-2 btn btn-danger"
             onClick={this.handleRemove}
             onKeyPress={this.handleRemove}
             role="button"
-            tabIndex={0}
-          ><i className="far fa-trash-alt"></i>
+            tabIndex={0}>
+          <i className="far fa-trash-alt"></i>
           </a>
       </span>
       ); 
@@ -68,7 +63,7 @@ renderButtons = () => {
   };
 
 render() {
-    const { step, removeStep } = this.props;
+    const { question, removeQuestion } = this.props;
     return (
       <div className="post">      
           {this.renderButtons()}    
@@ -78,4 +73,4 @@ render() {
   }
 }
 
-export default Step;
+export default Question;
