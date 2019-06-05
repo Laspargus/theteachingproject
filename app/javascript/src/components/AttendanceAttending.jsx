@@ -6,10 +6,15 @@ export default class AttendanceAttending extends React.Component {
   }
   
   render () {
+    const { attendances } = this.props;
+    const invited = attendances.filter(attendance => attendance.status === true);
     return (
       <div>
-        AttendanceAttending
-      </div>
+        {invited.map(attendance => (
+          // <Attendance key={attendance.id} attendance={attendance} />,
+          <div key={attendance.id}>{attendance.student.email}</div>
+        ))}
+      </div>	
     );
   }
 }

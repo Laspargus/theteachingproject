@@ -22,7 +22,7 @@ export default class AttendanceCreate extends React.Component {
     const newAttendance = await addAttendance(this.props.course.id, this.state.email);
     this.props.onSubmit(newAttendance);
     this.setState({  
-     email: 'student email',
+     email: '',
     })
   }
   

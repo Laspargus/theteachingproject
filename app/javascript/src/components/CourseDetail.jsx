@@ -69,9 +69,10 @@ getCourse = async () => {
   refreshAttendances = async () => {
     const attendances = await fetchAttendances(this.state.course_id);
     this.setState({
-      attendances: attendances.attendances,
+      attendances: attendances.attendances
     });
-    
+    const invited = attendances.attendances.filter(attendance => attendance.status === false)
+    console.log(invited)
   }
 
   addAttendanceToInvited(newAttendance) {
@@ -95,7 +96,7 @@ getCourse = async () => {
               <AttendanceInvited attendances={this.state.attendances} />
             </div>
             <div className="card col-md-6">
-              <AttendanceAttending />
+              <AttendanceAttending attendances={this.state.attendances} />
             </div>
           </div>
         </div>
