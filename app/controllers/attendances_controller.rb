@@ -31,7 +31,7 @@ class AttendancesController < ApplicationController
       @attendance.save
       respond_to do |format|
         format.html do
-          flash[:notice] = "#{student.first_name} has been invited to course"
+          redirect_to course_path(@course)
         end
         format.json do
           render json: @attendance
@@ -43,15 +43,20 @@ class AttendancesController < ApplicationController
       invitation_to_application(@email, @course.teacher)
       flash[:notice] = "#{email} is not a member. We invited him to join application. Please invite him to course later"
     end
-    # redirect_to course_path(@course)
   end
 
   def update
     @attendance = Attendance.find_by(course: @course, student: current_student)
     @attendance.update(status: true)
-
-    flash[:notice] = "Invitation accepted"
-    redirect_to course_path(@course)
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Invitation accepted"
+        redirect_to course_path(@course)
+      end
+      format.json do
+        render json: @attendance
+      end
+    end
   end
 
   def destroy

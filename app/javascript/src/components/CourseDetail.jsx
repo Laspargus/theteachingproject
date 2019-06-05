@@ -6,6 +6,7 @@ import { showCourse } from '../APIs/courses';
 import AttendanceCreate from './AttendanceCreate';
 import AttendanceAttending from './AttendanceAttending';
 import AttendanceInvited from './AttendanceInvited';
+import AttendanceAccept from './AttendanceAccept';
 import { fetchAttendances } from '../APIs/attendances';
 import { fetchQuestions } from '../APIs/questions';
 import QuestionList from './QuestionList';
@@ -82,8 +83,6 @@ class CourseDetail extends React.Component {
     });
   };
 
-
-
   addStepToList(newStep) {
     this.setState({
        steps : [newStep, ...this.state.steps],
@@ -109,8 +108,6 @@ class CourseDetail extends React.Component {
     this.setState({
       attendances: attendances.attendances
     });
-    const invited = attendances.attendances.filter(attendance => attendance.status === false)
-    console.log(invited)
   }
 
   addAttendanceToInvited(newAttendance) {
@@ -132,8 +129,13 @@ class CourseDetail extends React.Component {
      <div className="container"> 
         <h2>{this.state.course.title} - {this.state.course.description}</h2>
         <div className="card col-md-12">
-          <div className="card col-md-12">
-            <AttendanceCreate course={this.state.course} onSubmit={this.addAttendanceToInvited} />
+          <div className="row">
+            <div className="card col-md-9">
+              <AttendanceCreate course={this.state.course} onSubmit={this.addAttendanceToInvited} />
+            </div>
+            <div className="card col-md-3">
+              <AttendanceAccept attendance={this.state.attendance} course_id={this.state.course_id}/>
+            </div>
           </div>
           <div className="row">
             <div className="card col-md-6">

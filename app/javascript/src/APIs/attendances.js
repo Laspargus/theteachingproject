@@ -42,3 +42,16 @@ export const removeAttendance = async (course_id, id) => {
   const attendance = await attendanceResponse.json();
   return attendance.attendance;
 };
+
+export const updateAttendance = async ( course_id, id ) => {
+  const attendanceResponse = await fetch(`/courses/${course_id}/attendances/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(addCsrf({})),
+  });
+  const attendanceJSON = await attendanceResponse.json();
+  return attendanceJSON.attendance;
+};
