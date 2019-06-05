@@ -33,6 +33,7 @@ class CourseDetail extends React.Component {
     this.addQuestionToList = this.addQuestionToList.bind(this);
     this.removeQuestionFromList = this.removeQuestionFromList.bind(this);
     this.updateQuestion = this.updateQuestion.bind(this); 
+    this.acceptAttendance = this.acceptAttendance.bind(this);
   };
 
   getCourse = async () => {
@@ -141,7 +142,7 @@ class CourseDetail extends React.Component {
               <AttendanceCreate course={this.state.course} onSubmit={this.addAttendanceToInvited} />
             </div>
             <div className="card col-md-3">
-              <AttendanceAccept attendances={this.state.attendances} course_id={this.state.course_id}/>
+              <AttendanceAccept attendances={this.state.attendances} course_id={this.state.course_id} currentStudent={currentStudent} />
             </div>
           </div>
           <div className="row">
