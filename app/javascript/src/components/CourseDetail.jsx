@@ -69,7 +69,7 @@ getCourse = async () => {
   refreshAttendances = async () => {
     const attendances = await fetchAttendances(this.state.course_id);
     this.setState({
-      attendances: attendances,
+      attendances: attendances.attendances,
     });
     
   }
