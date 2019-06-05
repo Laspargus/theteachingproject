@@ -8,13 +8,12 @@ Rails.application.routes.draw do
       member do
         get 'findvote'
       end
-      resources :votes, except: %i[show edit new] do
-      end
+      resources :votes, except: %i[show edit new]
+    end
     resources :steps, only: %i[create update destroy edit index show] do
       resources :achievements, only: %i[create destroy index]
-     end
+    end
   end
- 
 
   devise_for :teachers, path: 'teachers'
   devise_for :students, path: 'students'
