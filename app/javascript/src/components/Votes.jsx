@@ -34,7 +34,6 @@ class Votes extends React.Component {
  		const question_id = this.props.question.id ;
     const votes = await fetchVotes(course_id, question_id);
     const has_voted = await findVote(course_id, question_id);
-    console.log("le resultat de mon fetch has has_voted", has_voted);
     
     if (has_voted !== null) {
     	this.setState({
@@ -58,14 +57,9 @@ class Votes extends React.Component {
 
   removeFromList(votetoremove) {
   	const vote_id = votetoremove.id;
-  	console.log('ceci est lid du vote a supprimer de ma liste',vote_id);
-  	console.log('ceci est mon tableau avant suppression', this.state.votes)
-
     this.setState({
       votes: this.state.votes.filter(vote => vote_id !== vote.id)
     });
-
-    console.log('ceci est mon tableau après suppression', this.state.votes)
   }
 
   render() {

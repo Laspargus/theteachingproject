@@ -16,7 +16,6 @@ constructor(props) {
     const vote = await findVote(course_id, question_id);
     const vote_id = vote.id
     const deletedVote = await removeVote(course_id, question_id, vote_id);
-    console.log("ceci est mon objet a supprimer de ma loste", deletedVote)
     this.props.removeFromList(deletedVote);
     this.props.onDelete();
   }

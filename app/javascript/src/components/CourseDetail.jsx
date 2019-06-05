@@ -108,7 +108,6 @@ class CourseDetail extends React.Component {
       attendances: attendances.attendances
     });
     const invited = attendances.attendances.filter(attendance => attendance.status === false)
-    console.log(invited)
   }
 
   addAttendanceToInvited(newAttendance) {

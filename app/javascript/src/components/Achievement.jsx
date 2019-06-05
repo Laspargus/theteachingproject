@@ -20,7 +20,6 @@ class Achievement extends React.Component {
     this.setState({
       step_achievers: step_achievers,
     }); 
-    console.log("from refresh function", this.state.step_achievers);
   }
 
   render() {
