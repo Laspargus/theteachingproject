@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       member do
         get 'findvote'
       end
-      resources :votes, except: %i[show edit new] do 
+      resources :votes, except: %i[show edit new] do
       end
     end
     resources :steps, only: %i[create update destroy edit index]

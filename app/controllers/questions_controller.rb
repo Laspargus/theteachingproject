@@ -5,19 +5,17 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[authenticate_question_author edit update destroy findvote]
   before_action :authenticate_question_author, only: %i[edit destroy]
 
-
-
   def findvote
-   # if Vote.exists?("student_id = ? AND question_id = ?", current_student,@question.id )
-      @vote = Vote.find_by("student_id = ? AND question_id = ?",current_student, @question.id )
-      puts @vote
+    # if Vote.exists?("student_id = ? AND question_id = ?", current_student,@question.id )
+    @vote = Vote.find_by("student_id = ? AND question_id = ?", current_student, @question.id )
+    puts @vote
 
     respond_to do |format|
-        format.html {}
-        format.json do
-          render json: @vote
-        end
+      format.html {}
+      format.json do
+        render json: @vote
       end
+    end
   end
 
   def index

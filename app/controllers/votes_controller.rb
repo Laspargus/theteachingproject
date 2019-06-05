@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class VotesController < ApplicationController
-  before_action :set_question, only: %i[index create destroy findvote]
+  before_action :set_question, only: %i[index create destroy]
 
   def create
     @vote = @question.votes.create(student: current_student)

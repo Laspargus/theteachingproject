@@ -35,7 +35,13 @@ class Votes extends React.Component {
     const votes = await fetchVotes(course_id, question_id);
     const has_voted = await findVote(course_id, question_id);
     console.log("le resultat de mon fetch has has_voted", has_voted);
+    
+    if (has_voted !== null) {
+    	this.setState({
+      has_voted: true,
+    }); 
 
+    }
     this.setState({
       votes: votes,
     }); 

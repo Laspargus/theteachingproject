@@ -25,7 +25,7 @@ class Step extends React.Component {
   
   };
 
-renderButtons = () => {
+  renderButtons = () => {
     const { course, toggleEdit, updateStep, removeStep, step } = this.props;
 		const { edit } = this.state;
 	
