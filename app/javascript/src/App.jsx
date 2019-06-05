@@ -3,10 +3,12 @@ import CourseDetail from "./components/CourseDetail";
 import CourseIndex from "./components/CourseIndex";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { fetchCurrentStudent } from './APIs/students';
+import { fetchCurrentTeacher } from './APIs/teachers';
 
 class App extends Component {
   state = {
     currentStudent: null,
+    currentTeacher: null,
   };
 
   refreshCurrentStudent = async () => {
@@ -16,13 +18,23 @@ class App extends Component {
     });
   };
 
+  refreshCurrentTeacher = async () => {
+    const currentTeacher = await fetchCurrentTeacher();
+    this.setState({
+      currentTeacher,
+    });
+  };
+
   componentDidMount = async () => {
     await this.refreshCurrentStudent();
+    await this.refreshCurrentTeacher();
   };
 
   render() {
 
-    const student = this.state.currentStudent
+    const currentStudent = this.state.currentStudent
+    const currentTeacher = this.state.currentTeacher
+
 
     return (
       <Router>
@@ -33,7 +45,10 @@ class App extends Component {
               path="/courses"
               exact
               render={props => (
-                <CourseIndex {...props} currentStudent={ student } />
+                <CourseIndex {...props} 
+                  currentStudent={ currentStudent } 
+                  currentTeacher={ currentTeacher } 
+                />
               )}
             />
 
@@ -41,7 +56,10 @@ class App extends Component {
               path="/courses/:id"
               exact
               render={props => (
-                <CourseDetail {...props} currentStudent={ student } />
+                <CourseDetail {...props} 
+                currentStudent={ currentStudent } 
+                currentTeacher={ currentTeacher } 
+                />
               )}
             />
 

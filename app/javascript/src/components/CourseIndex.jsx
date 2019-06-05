@@ -52,7 +52,11 @@ export default class CourseIndex extends Component {
 
   render() {
 
-  console.log('courseindex', this.props.currentStudent)
+    const { currentStudent, currentTeacher } = this.props;
+
+    if (currentStudent) {
+      console.log(currentStudent.email)
+    }
 
     return(
       <div className="container">
@@ -63,11 +67,15 @@ export default class CourseIndex extends Component {
               <div className="col-sm-12">
                 <CourseCreate
                   onSubmit={this.addCourseToList}
+                  currentStudent={ currentStudent }
+                  currentTeacher={ currentTeacher }
                 />
   							<CourseList 	
   	              courses = {this.state.courses}
   	              actOnRemove={this.removeCourse}
   	          	  updateCourse={this.updateCourse}
+                  currentStudent={ currentStudent }
+                  currentTeacher={ currentTeacher }
               	/>
               </div>
             </div>

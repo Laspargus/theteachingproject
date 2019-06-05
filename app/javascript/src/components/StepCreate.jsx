@@ -12,7 +12,7 @@ class StepCreate extends React.Component {
     
   }
 
-handleChangeDescription = (e) => {
+  handleChangeDescription = (e) => {
     this.setState({
       description: e.target.value,
     });
@@ -34,16 +34,17 @@ handleChangeDescription = (e) => {
      description: 'description'
     });
   }
-
- 
   
   render () {
+
+    const currentTeacher = this.props.currentTeacher;
+
     return (
       <div>
        <span>Création d'un step :</span>
         <form 
-        className="block" 
-        onSubmit={this.handleSubmitStepForm}  
+          className="block" 
+          onSubmit={this.handleSubmitStepForm}  
         >
           <label htmlFor="Title">
             <input type="text" 
@@ -66,13 +67,11 @@ handleChangeDescription = (e) => {
               required
             />
           </label>
-      
-            <input type="submit"
-              value="Create!"
-              className="m-2 btn btn-success"
-              required
-            />
-       
+          <input type="submit"
+            value="Create!"
+            className="m-2 btn btn-success"
+            required
+          />
         </form>
       </div>
     );

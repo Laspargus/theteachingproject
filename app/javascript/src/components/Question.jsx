@@ -21,7 +21,7 @@ class Question extends React.Component {
     this.props.removeQuestion(questiontoremove); 
   };
 
-renderButtons = () => {
+  renderButtons = () => {
     const { course, toggleEdit, updateQuestion, removeQuestion, question } = this.props;
 		const { edit } = this.state;
     if (edit){
@@ -62,8 +62,8 @@ renderButtons = () => {
     }
   };
 
-render() {
-    const { question, removeQuestion } = this.props;
+  render() {
+    const { question, removeQuestion, currentStudent} = this.props;
     return (
       <div className="post">      
           {this.renderButtons()}    

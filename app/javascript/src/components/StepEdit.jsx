@@ -59,7 +59,7 @@ export default class StepEdit extends Component {
 
   render() {
 
-    const { step, course, updateCourse, toggleEdit, onSubmit } = this.props;
+    const { step, course, updateCourse, toggleEdit, onSubmit, currentTeacher} = this.props;
 	    return(
 	       <div className="block">
 	        <form onSubmit={this.handleSubmit}>

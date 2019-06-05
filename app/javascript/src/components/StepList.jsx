@@ -3,7 +3,7 @@ import FlipMove from 'react-flip-move';
 import Step from './Step';
 import Achievements from './Achievements'
 
-function StepList({course, steps, removeStep, updateStep}) {
+function StepList({course, steps, removeStep, updateStep, currentStudent, currentTeacher }) {
   return (
   	<div>
     <FlipMove typeName="ul">
@@ -15,11 +15,15 @@ function StepList({course, steps, removeStep, updateStep}) {
             removeStep={removeStep}
             course = {course}
             updateStep = {updateStep}
+            currentStudent={ currentStudent }
+            currentTeacher={ currentTeacher }
           />
           <Achievements
             course={course}
-             step={step}
-             key={i}
+            step={step}
+            key={i}
+            currentStudent={ currentStudent }
+            currentTeacher={ currentTeacher }
           />
         </div>
       ))}

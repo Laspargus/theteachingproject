@@ -44,7 +44,8 @@ class Achievements extends React.Component {
 
   	const now = this.countPercentage(this.state.achievements.length, this.state.attendances.length)
     const course = this.props.course;
-    const step = this.props.step
+    const step = this.props.step;
+    const currentTeacher = this.props.currentTeacher;
 
 	  return (
 	  	<div>
