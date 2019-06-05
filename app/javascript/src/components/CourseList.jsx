@@ -4,7 +4,7 @@ import { fetchCourses } from '../APIs/courses';
 import FlipMove from 'react-flip-move';
 import Course  from './Course';
 
-function CourseList({ courses, actOnRemove, updateCourse }) {
+function CourseList({ courses, actOnRemove, updateCourse, currentStudent, currentTeacher }) {
   return (
     <FlipMove typeName="ul">
       {courses.map(course => (
@@ -13,6 +13,8 @@ function CourseList({ courses, actOnRemove, updateCourse }) {
           key={course.id}
           actOnRemove={actOnRemove}
           updateCourse={updateCourse}
+          currentStudent={ currentStudent }
+          currentTeacher={ currentTeacher }
         />
       ))}
     </FlipMove>

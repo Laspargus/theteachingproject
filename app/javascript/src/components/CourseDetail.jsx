@@ -82,8 +82,6 @@ class CourseDetail extends React.Component {
     });
   };
 
-
-
   addStepToList(newStep) {
     this.setState({
        steps : [newStep, ...this.state.steps],
@@ -128,6 +126,9 @@ class CourseDetail extends React.Component {
 	render(){
     const { steps } = this.state.steps;
     const { course } = this.state.course;
+    const currentStudent = this.props.currentStudent;
+    const currentTeacher = this.props.currentTeacher;
+
     return (
      <div className="container"> 
         <h2>{this.state.course.title} - {this.state.course.description}</h2>
@@ -150,14 +151,17 @@ class CourseDetail extends React.Component {
             <StepCreate
                 onSubmit={this.addStepToList}
                 course={ this.state.course }
+                currentTeacher={ currentTeacher }
               />
             </div>
             <div>
              <StepList
-               steps = {this.state.steps}
-               removeStep = {this.removeStepFromList}
-               course = {this.state.course}
-               updateStep = {this.updateStep}
+              steps = {this.state.steps}
+              removeStep = {this.removeStepFromList}
+              course = {this.state.course}
+              updateStep = {this.updateStep}
+              currentStudent = { currentStudent }
+              currentTeacher={ currentTeacher }
                />
             </div>
           </div>
@@ -166,21 +170,22 @@ class CourseDetail extends React.Component {
               <QuestionCreate
                   onSubmit={this.addQuestionToList}
                   course={ this.state.course }
+                  currentStudent = { currentStudent }
                 />
               </div>
-
             <div>
-             <QuestionList
-               questions = {this.state.questions}
-               removeQuestion = {this.removeQuestionFromList}
-               course = {this.state.course}
-               updateQuestion = {this.updateQuestion}
-               />
+              <QuestionList
+                questions = {this.state.questions}
+                removeQuestion = {this.removeQuestionFromList}
+                course = {this.state.course}
+                updateQuestion = {this.updateQuestion}
+                currentStudent = { currentStudent }
+                currentTeacher={ currentTeacher }
+              />
             </div>
            </div>
         </div>
       </div>  
-
     );
   }
 }

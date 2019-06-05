@@ -33,7 +33,7 @@ export default class Course extends Component {
 
  render() {
     const { edit, detail } = this.state;
-    const { course, actOnRemove ,updateCourse} = this.props;
+    const { course, actOnRemove, updateCourse, currentStudent, currentTeacher} = this.props;
 
     if (edit) {
       return (
@@ -43,6 +43,7 @@ export default class Course extends Component {
           toggleEdit={this.toggleEdit}
           onSubmit = {this.toggleEdit}
           toggleDetail = {this.toggleDetail}
+          currentTeacher={ currentTeacher }
         />
       );
     }
@@ -55,24 +56,31 @@ export default class Course extends Component {
           removeAct={this.handleRemoveClick}
           toggleEdit={this.toggleEdit}
           toggleDetail={this.toggleDetail}
+          currentStudent={ currentStudent }
+          currentTeacher={ currentTeacher }
         />
         <CourseDetail
           course={course}
+          currentStudent={ currentStudent }
+          currentTeacher={ currentTeacher }
         />
       </div>
       );
     }
 
     else {
-       return (
-      <CourseShow
-        course={course}
-        removeAct={this.handleRemoveClick}
-        toggleEdit={this.toggleEdit}
-        toggleDetail={this.toggleDetail}
-      />
-    );
+      return (
+        <CourseShow
+          course={course}
+          removeAct={this.handleRemoveClick}
+          toggleEdit={this.toggleEdit}
+          toggleDetail={this.toggleDetail}
+          currentStudent={ currentStudent }
+          currentTeacher={ currentTeacher }
+        />
+      );
+    }
   }
-}}
+}
   
   

@@ -35,24 +35,24 @@ export default class CourseEdit extends Component {
 
 
   renderButtons = () => {
-    const { course, toggleEdit  } = this.props;
-      return (
-        <span>
-          <button
-            className="m-2 btn btn-info"
-            role="button"
-            onClick={toggleEdit}
-            onKeyPress={toggleEdit} 
-           >
-         		Cancel
-          </button>
+    const { course, toggleEdit, currentTeacher  } = this.props;
+    return (
+      <span>
+        <button
+          className="m-2 btn btn-info"
+          role="button"
+          tabIndex={0}
+          onClick={toggleEdit}
+          onKeyPress={toggleEdit} 
+         >
+       		Cancel
+        </button>
+    </span>
+    );
+  }
 
-      </span>
-      );
-    }
-  
   render() {
-    const { course, updateCourse, toggleEdit } = this.props;
+    const { course, updateCourse, toggleEdit, currentTeacher } = this.props;
     return(
        <div className="block">
         <form onSubmit={this.handleSubmit}>
