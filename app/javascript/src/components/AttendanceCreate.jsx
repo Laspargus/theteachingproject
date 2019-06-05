@@ -19,11 +19,11 @@ export default class AttendanceCreate extends React.Component {
 
   handleSubmit = async e =>{
     e.preventDefault();
+    this.setState({  
+      email: '',
+     })
     const newAttendance = await addAttendance(this.props.course.id, this.state.email);
     this.props.onSubmit(newAttendance);
-    this.setState({  
-     email: '',
-    })
   }
   
   render () {
