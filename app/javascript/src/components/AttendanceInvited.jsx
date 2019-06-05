@@ -5,7 +5,6 @@ import { removeAttendance } from '../APIs/attendances';
 export default class AttendanceInvited extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props)
   }
 
   handleRemoveClick = async e => {

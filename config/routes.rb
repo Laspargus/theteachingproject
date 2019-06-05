@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :steps, only: %i[create update destroy edit index show] do
       resources :achievements, only: %i[create destroy index]
     end
+    resources :attendances
   end
 
   devise_for :teachers, path: 'teachers'
