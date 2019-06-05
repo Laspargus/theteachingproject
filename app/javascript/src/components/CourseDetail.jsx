@@ -43,7 +43,7 @@ getCourse = async () => {
     const steps = await fetchSteps(this.state.course_id);
     this.setState({
       steps: steps.steps,
-    }); 
+    });
   }
 
   addStepToList(newStep) {

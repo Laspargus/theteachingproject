@@ -5,14 +5,13 @@ export default class AttendanceInvited extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   render () {
     const { attendances } = this.props;
-
     return (
       <div>
         {attendances.map(attendance => (
-          <Attendance attendance={attendance} key={attendance.id}/>
+          <Attendance key={attendance.id} attendance={attendance} />
         ))}
       </div>	
     );
