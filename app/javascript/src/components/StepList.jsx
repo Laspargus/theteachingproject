@@ -17,10 +17,10 @@ function StepList({course, steps, removeStep, updateStep}) {
             updateStep = {updateStep}
           />
           <Achievements
-          course={course}
-           step={step}
-           key={i}
-         />
+            course={course}
+             step={step}
+             key={i}
+          />
         </div>
       ))}
     </FlipMove>

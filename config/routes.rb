@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :questions, except: [:show] do
       resources :votes, except: %i[show edit new index]
     end
-    resources :steps, only: %i[create update destroy edit index] do
+    resources :steps, only: %i[create update destroy edit index show] do
       resources :achievements, only: %i[create destroy index]
     end
     resources :attendances

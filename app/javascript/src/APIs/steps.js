@@ -18,23 +18,22 @@ const response = await fetch(`/courses/${id}/steps`, {
 };
 
 export const addStep = async (id, title, description) => {
-    const stepResponse = await fetch(`/courses/${id}/steps`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-        },
-        body: JSON.stringify(addCsrf({step: { title, description } })),
-    });
-    console.log(id);
-    const step = await stepResponse.json();
-    return step.step;
+  const stepResponse = await fetch(`/courses/${id}/steps`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+      },
+      body: JSON.stringify(addCsrf({step: { title, description } })),
+  });
+  console.log(id);
+  const step = await stepResponse.json();
+  return step.step;
 };
 
 
 
 export const removeStep = async (id, num) => {
-
 console.log(id, num)
   const stepResponse = await fetch(`/courses/${id}/steps/${num}`, {
     method: 'DELETE',
@@ -64,4 +63,17 @@ export const updateStep = async ( id, num, title, description ) => {
   const stepJSON = await stepResponse.json();
 
   return stepJSON.step;
+};
+
+export const fetchAchievers = async (course_id, step_id) => {
+const response = await fetch(`/courses/${course_id}/steps/${step_id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  });
+
+  const achievers = await response.json()
+  return achievers;
 };
