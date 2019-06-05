@@ -9,8 +9,8 @@ class AttendanceAccept extends React.Component {
   handleAccept = async e => {
     e.preventDefault()
     const id = e.target.value;
-    const acceptedAttendance = await updateAttendance(this.props.course_id, id);
-    this.props.acceptAttendance(acceptedAttendance);
+    const updatedAttendance = await updateAttendance(this.props.course_id, id);
+    this.props.updateAttendance(updatedAttendance);
   };
 
   render() {
