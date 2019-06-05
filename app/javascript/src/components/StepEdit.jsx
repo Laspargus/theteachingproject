@@ -6,12 +6,10 @@ export default class StepEdit extends Component {
 
   constructor(props) {
 	  super(props);
-
 	  this.state = { 
 	    title: '',
 	    description:'',
-	  };
-    
+	  }; 
   	this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -37,7 +35,6 @@ export default class StepEdit extends Component {
     this.props.onSubmit();
   }
 
-
   renderButtons = () => {
     const { toggleEdit  } = this.props;
       return (
@@ -45,7 +42,6 @@ export default class StepEdit extends Component {
           <button
             className="m-2 btn btn-info"
             role="button"
-            tabIndex={0}
             onClick={toggleEdit}
             onKeyPress={toggleEdit} 
            >
@@ -56,9 +52,7 @@ export default class StepEdit extends Component {
       );
     }
   
-
   render() {
-
     const { step, course, updateCourse, toggleEdit, onSubmit } = this.props;
 	    return(
 	       <div className="block">

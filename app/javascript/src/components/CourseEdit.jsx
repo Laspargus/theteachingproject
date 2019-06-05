@@ -41,7 +41,6 @@ export default class CourseEdit extends Component {
           <button
             className="m-2 btn btn-info"
             role="button"
-            tabIndex={0}
             onClick={toggleEdit}
             onKeyPress={toggleEdit} 
            >

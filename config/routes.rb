@@ -5,13 +5,13 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :questions, except: [:show] do
-      resources :votes, except: %i[show edit new index]
+      resources :votes, except: %i[show edit new]
     end
-    resources :steps, only: %i[create update destroy edit index] do
-      resources :achievements, only: %i[create destroy index]
-    end
+    resources :steps, only: %i[create update destroy edit index]
     resources :attendances
   end
+
+  resources :achievements, only: %i[create destroy index]
 
   resources :questions, except: [:show]
 

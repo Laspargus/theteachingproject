@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class VotesController < ApplicationController
+
+   before_action :set_question, only: %i[ index]
+
+
   def create
     @question = Question.find(params[:question_id])
     @vote = @question.votes.create(vote_params)
@@ -12,6 +16,16 @@ class VotesController < ApplicationController
     redirect_to course_path(@vote.question.course)
   end
 
+  def index
+    @votes = @question.votes
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: @votes
+      end
+    end
+
+  end
   def update; end
 
   def destroy
@@ -27,4 +41,10 @@ class VotesController < ApplicationController
   def vote_params
     params.require(:vote).permit(:student_id)
   end
+
+
+  def set_question
+    @question = Question.find(params[:question_id])
+  end
+
 end
