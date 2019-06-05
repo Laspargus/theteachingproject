@@ -25,17 +25,35 @@ class QuestionCreate extends React.Component {
      content: 'content',
     });
   }
+
+  magicNumber(currentStudent) {
+    if (currentStudent) {
+      return(
+        <div>
+          MAGIC NUMBER IS MAGIIIIC 4
+        </div>
+      )
+    }
+  }
   
   render () {
+
+    const { currentStudent } = this.props;
+
     return (
       <div>
        <span>New question :</span>
+       <div>
+          only students can see the magic number :
+          { this.magicNumber(currentStudent) }
+       </div>
         <form 
-        className="block" 
-        onSubmit={this.handleSubmitQuestionForm}  
+          className="block" 
+          onSubmit={this.handleSubmitQuestionForm}  
         >
           <label htmlFor="Content">
-            <input type="text" 
+            <input 
+              type="text" 
               name="content" 
               id="content" 
               className="m-2 form-control"
@@ -46,11 +64,12 @@ class QuestionCreate extends React.Component {
             />
           </label>
       
-            <input type="submit"
-              value="Create!"
-              className="m-2 btn btn-success"
-              required
-            />
+          <input 
+            type="submit"
+            value="Create!"
+            className="m-2 btn btn-success"
+            required
+          />
        
         </form>
       </div>

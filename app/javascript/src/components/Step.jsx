@@ -5,16 +5,16 @@ import StepEdit from './StepEdit';
 class Step extends React.Component {
 
 	state = {
-	      edit: false,
-	    };
+    edit: false,
+  };
 
 
 	toggleEdit = () => {
-	    const { edit } = this.state;
-	    this.setState({
-	      edit: !edit,
-	    });
-	  };
+    const { edit } = this.state;
+    this.setState({
+      edit: !edit,
+    });
+  };
 
 
 
@@ -22,22 +22,22 @@ class Step extends React.Component {
     const { course, step } = this.props;
     const steptoremove = await removeStep(course.id, step.id);
     this.props.removeStep(steptoremove);
-  
   };
 
-renderButtons = () => {
-    const { course, toggleEdit, updateStep, removeStep, step } = this.props;
+  renderButtons = () => {
+    const { course, toggleEdit, updateStep, removeStep, step, currentTeacher } = this.props;
 		const { edit } = this.state;
 	
 
     if (edit){
     	return (
-    	<StepEdit 
-    	course = {course}
-    	step = {step}
-    	onSubmit = {this.toggleEdit}
-    	updateStep = {updateStep}
-    	/>
+      	<StepEdit 
+      	course = {course}
+      	step = {step}
+      	onSubmit = {this.toggleEdit}
+      	updateStep = {updateStep}
+        currentTeacher={ currentTeacher }
+      	/>
     	);
     }
     
@@ -45,7 +45,6 @@ renderButtons = () => {
       return (
         <span>
          {step.title} -  {step.description}    
-
           <a
             className="m-2 btn btn-info"
             role="button"
@@ -68,7 +67,7 @@ renderButtons = () => {
   };
 
 render() {
-    const { step, removeStep } = this.props;
+    const { step, removeStep, currentTeacher } = this.props;
     return (
       <div className="post">      
           {this.renderButtons()}    
