@@ -13,7 +13,6 @@ class VoteCreate extends React.Component {
   	const question_id = this.props.question.id
     e.preventDefault();
     const newvote = await addVote(course_id, question_id);
-    console.log('voici le vote que je récupère', newvote)
     this.props.addToList(newvote);
   }
 

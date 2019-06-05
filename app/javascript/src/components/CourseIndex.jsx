@@ -55,7 +55,6 @@ export default class CourseIndex extends Component {
     const { currentStudent, currentTeacher } = this.props;
 
     if (currentStudent) {
-      console.log(currentStudent.email)
     }
 
     return(
