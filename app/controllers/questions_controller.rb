@@ -1,36 +1,50 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :set_course, only: %i[new create destroy]
+  before_action :set_course, only: %i[new create destroy index]
   before_action :set_question, only: %i[authenticate_question_author edit update destroy]
-  before_action :authenticate_question_author, only: %i[destroy]
+  before_action :authenticate_question_author, only: %i[edit destroy]
+
+  def index
+    @questions = @course.questions
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: @questions
+      end
+    end
+  end
 
   def new
     @new_question = Question.new
   end
 
   def create
-    @new_question = @course.questions.create(question_params)
-    @new_question.student_id = current_student.id
-    if @new_question.save
-      redirect_to course_path(@course)
-    else
-      render 'new'
+    @student  = Student.last
+    @question = @course.questions.create(question_params.merge(student: current_student))
+
+    puts @question.errors.messages
+    respond_to do |format|
+      format.html do
+        redirect_to root_path, success: "Course successfully created"
+      end
+      format.json do
+        render json: @question
+      end
     end
   end
 
   def edit; end
 
   def update
-    @question.update(question_params)
-    redirect_to course_path(@question.course)
-    flash[:success] = "Question successfully deleted"
+    @student = Student.last
+    @question.update(question_params.merge(student: current_student))
+    render json: @question
   end
 
   def destroy
     @question.destroy
-    redirect_to course_path(@course)
-    flash[:notice] = "Question successfully deleted"
+    render json: @question
   end
 
   private
