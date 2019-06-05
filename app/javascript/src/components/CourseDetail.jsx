@@ -1,8 +1,12 @@
 import React from 'react';
 import { fetchSteps } from '../APIs/steps';
-import StepList  from './StepList';
+import StepList from './StepList';
 import StepCreate from './StepCreate';
 import { showCourse } from '../APIs/courses';
+import AttendanceCreate from './AttendanceCreate';
+import AttendanceAttending from './AttendanceAttending';
+import AttendanceInvited from './AttendanceInvited';
+import { fetchAttendances } from '../APIs/attendances';
 import { fetchQuestions } from '../APIs/questions';
 import QuestionList from './QuestionList';
 import QuestionCreate from './QuestionCreate';
@@ -14,14 +18,17 @@ class CourseDetail extends React.Component {
 
     let match = props.match;
     this.state = { 
-    	steps: [],
+      steps: [],
+      attendances: [],
       course: [],
       questions: [],
       course_id: match.params.id
     };   
     this.addStepToList = this.addStepToList.bind(this);
     this.removeStepFromList = this.removeStepFromList.bind(this);
-    this.updateStep = this.updateStep.bind(this); 
+    this.updateStep = this.updateStep.bind(this);
+    this.addAttendanceToInvited = this.addAttendanceToInvited.bind(this);
+    this.removeAttendance = this.removeAttendance.bind(this);
     this.addQuestionToList = this.addQuestionToList.bind(this);
     this.removeQuestionFromList = this.removeQuestionFromList.bind(this);
     this.updateQuestion = this.updateQuestion.bind(this); 
@@ -37,14 +44,15 @@ class CourseDetail extends React.Component {
  componentDidMount = async () => {
     this.getCourse();
     this.refreshSteps();
+    this.refreshAttendances()
     this.refreshQuestions();
   }
 
- refreshSteps = async () => {
+  refreshSteps = async () => {
     const steps = await fetchSteps(this.state.course_id);
     this.setState({
       steps: steps.steps,
-    }); 
+    });
   }
 
   refreshQuestions = async () => {
@@ -94,15 +102,49 @@ class CourseDetail extends React.Component {
     });
   };
 
+  refreshAttendances = async () => {
+    const attendances = await fetchAttendances(this.state.course_id);
+    this.setState({
+      attendances: attendances.attendances
+    });
+    const invited = attendances.attendances.filter(attendance => attendance.status === false)
+    console.log(invited)
+  }
+
+  addAttendanceToInvited(newAttendance) {
+    this.setState({
+       attendances : [newAttendance, ...this.state.attendances],
+    }); 
+  }
+
+  removeAttendance(removedAttendance) {
+    this.setState({
+      attendances: this.state.attendances.filter(step => removedAttendance.id !== step.id)
+    });
+  }
+
 	render(){
     const { steps } = this.state.steps;
     const { course } = this.state.course;
     const currentStudent = this.props.currentStudent;
     const currentTeacher = this.props.currentTeacher;
-  
+
     return (
-      <div className="container"> 
-        <h2>{this.state.course.title}</h2> 
+     <div className="container"> 
+        <h2>{this.state.course.title} - {this.state.course.description}</h2>
+        <div className="card col-md-12">
+          <div className="card col-md-12">
+            <AttendanceCreate course={this.state.course} onSubmit={this.addAttendanceToInvited} />
+          </div>
+          <div className="row">
+            <div className="card col-md-6">
+              <AttendanceInvited attendances={this.state.attendances} removeAttendance={this.removeAttendance} course_id={this.state.course_id} />
+            </div>
+            <div className="card col-md-6">
+              <AttendanceAttending attendances={this.state.attendances} removeAttendance={this.removeAttendance} course_id={this.state.course_id} />
+            </div>
+          </div>
+        </div>
         <div className="row">
           <div className="card col-md-5 m-2 card-body">  
            <div className="form-group row">    
