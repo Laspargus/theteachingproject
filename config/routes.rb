@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :questions, except: [:show] do
-      resources :votes, except: %i[show edit new]
+      member do
+        get 'findvote'
+      end
+      resources :votes, except: %i[show edit new] do 
+      end
     end
     resources :steps, only: %i[create update destroy edit index]
     resources :attendances

@@ -28,7 +28,7 @@ class CoursesController < ApplicationController
         @attendances = Attendance.where(course: @course, status: true)
       end
       format.json do
-        render json: @course
+       render json: @course
       end
     end
   end
