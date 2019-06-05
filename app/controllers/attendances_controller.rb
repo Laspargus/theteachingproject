@@ -8,7 +8,7 @@ class AttendancesController < ApplicationController
     respond_to do |format|
       format.html {}
       format.json do
-        render json: @attendances
+        render json: @attendances.to_json
       end
     end
   end

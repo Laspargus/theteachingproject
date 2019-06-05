@@ -36,21 +36,25 @@ class Achievements extends React.Component {
   }
 
   countPercentage = (achievements_num, attendances_num) => {
-  	const result = (achievements_num * 100) / attendances_num;
-  	return Math.round(result)
+  	const result = Math.round((achievements_num * 100) / attendances_num);
+    return result
   }
 
   render() {
 
   	const now = this.countPercentage(this.state.achievements.length, this.state.attendances.length)
-    const course = this.props.course;
-    const step = this.props.step;
     const currentTeacher = this.props.currentTeacher;
 
 	  return (
 	  	<div>
 	  		<ProgressBar animated now={ now } label={ isNaN(now) ? `${0}%` : `${now}%`} />
-        <Achievement course={ course } step={ step } />
+        <div>
+          this.state.achievements.length = {this.state.achievements.length} 
+        </div>
+        <div>
+          this.state.attendances.length = { this.state.attendances.length }
+        </div>
+        <Achievement course={ this.props.course } step={ this.props.step } />
 	  	</div>
 	  );
 	}
