@@ -17,4 +17,5 @@ class Step < ApplicationRecord
 
   belongs_to :course
   has_many :achievements, dependent: :destroy
+  has_many :achievers, through: :achievements, source: :student
 end

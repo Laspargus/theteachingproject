@@ -2,6 +2,7 @@ import React from 'react';
 import { fetchAchievements } from '../APIs/achievements';
 import { fetchAttendances } from '../APIs/attendances';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import Achievement from './Achievement';
 
 class Achievements extends React.Component {
   constructor(props) {
@@ -42,14 +43,14 @@ class Achievements extends React.Component {
   render() {
 
   	const now = this.countPercentage(this.state.achievements.length, this.state.attendances.length)
+    const course = this.props.course;
+    const step = this.props.step;
+    const currentTeacher = this.props.currentTeacher;
 
 	  return (
 	  	<div>
 	  		<ProgressBar animated now={ now } label={ isNaN(now) ? `${0}%` : `${now}%`} />
-	  		achievement counter : {this.state.achievements.length}
-	  		<div>
-	  			attendances counter : {this.state.attendances.length}
-	  		</div>
+        <Achievement course={ course } step={ step } />
 	  	</div>
 	  );
 	}

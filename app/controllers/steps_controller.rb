@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StepsController < ApplicationController
-  before_action :set_step, only: %i[edit update destroy]
+  before_action :set_step, only: %i[show edit update destroy]
   before_action :set_course, only: %i[create edit index]
   before_action :authenticate_teacher!, only: %i[create edit update destroy]
 
@@ -11,6 +11,16 @@ class StepsController < ApplicationController
       format.html {}
       format.json do
         render json: @steps
+      end
+    end
+  end
+
+  def show
+    @achievers = @step.achievers.ids
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: @achievers
       end
     end
   end

@@ -51,6 +51,13 @@ export default class CourseIndex extends Component {
   };
 
   render() {
+
+    const { currentStudent, currentTeacher } = this.props;
+
+    if (currentStudent) {
+      console.log(currentStudent.email)
+    }
+
     return(
       <div className="container">
        <div>
@@ -58,14 +65,18 @@ export default class CourseIndex extends Component {
           <div>
             <div className="form-group row">    
               <div className="col-sm-12">
-                  <CourseCreate
-                    onSubmit={this.addCourseToList}
-                  />
-									<CourseList 	
-		                courses = {this.state.courses}
-		                actOnRemove={this.removeCourse}
-		          			updateCourse={this.updateCourse}
-              		/>
+                <CourseCreate
+                  onSubmit={this.addCourseToList}
+                  currentStudent={ currentStudent }
+                  currentTeacher={ currentTeacher }
+                />
+  							<CourseList 	
+  	              courses = {this.state.courses}
+  	              actOnRemove={this.removeCourse}
+  	          	  updateCourse={this.updateCourse}
+                  currentStudent={ currentStudent }
+                  currentTeacher={ currentTeacher }
+              	/>
               </div>
             </div>
           </div>
