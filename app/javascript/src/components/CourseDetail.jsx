@@ -6,6 +6,7 @@ import { showCourse } from '../APIs/courses';
 import AttendanceCreate from './AttendanceCreate';
 import AttendanceAttending from './AttendanceAttending';
 import AttendanceInvited from './AttendanceInvited';
+import { fetchAttendances } from '../APIs/attendances';
 
 class CourseDetail extends React.Component {
 
@@ -14,13 +15,15 @@ class CourseDetail extends React.Component {
 
     let match = props.match;
     this.state = { 
-    	steps: [],
+      steps: [],
+      attendances: [],
       course: [],
       course_id: match.params.id
     };   
      this.addStepToList = this.addStepToList.bind(this);
      this.removeStepFromList = this.removeStepFromList.bind(this);
-     this.updateStep = this.updateStep.bind(this);  
+     this.updateStep = this.updateStep.bind(this);
+     this.addAttendanceToInvited = this.addAttendanceToInvited.bind(this);
   };
 
 getCourse = async () => {
@@ -33,9 +36,10 @@ getCourse = async () => {
  componentDidMount = async () => {
     this.getCourse();
     this.refreshSteps();
+    this.refreshAttendances()
   }
 
- refreshSteps = async () => {
+  refreshSteps = async () => {
     const steps = await fetchSteps(this.state.course_id);
     this.setState({
       steps: steps.steps,
@@ -62,18 +66,37 @@ getCourse = async () => {
     });
   };
 
+  refreshAttendances = async () => {
+    const attendances = await fetchAttendances(this.state.course_id);
+    this.setState({
+      attendances: attendances,
+    });
+    
+  }
+
+  addAttendanceToInvited(newAttendance) {
+    this.setState({
+       attendances : [newAttendance, ...this.state.attendances],
+    }); 
+  }
+
 	render(){
     const { steps } = this.state.steps;
     const { course } = this.state.course;
-  
     return (
      <div className="container"> 
         <h2>{this.state.course.title} - {this.state.course.description}</h2>
         <div className="card col-md-12">
-          <div className="card col-md-12"><AttendanceCreate /></div>
+          <div className="card col-md-12">
+            <AttendanceCreate course={this.state.course} onSubmit={this.addAttendanceToInvited} />
+          </div>
           <div className="row">
-            <div className="card col-md-6"><AttendanceInvited /></div>
-            <div className="card col-md-6"><AttendanceAttending /></div>
+            <div className="card col-md-6">
+              <AttendanceInvited attendances={this.state.attendances} />
+            </div>
+            <div className="card col-md-6">
+              <AttendanceAttending />
+            </div>
           </div>
         </div>
         <div className="row">

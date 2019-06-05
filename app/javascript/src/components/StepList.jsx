@@ -18,7 +18,7 @@ function StepList({course, steps, removeStep, updateStep}) {
         />
       ))}
     </FlipMove>
-    </div>	
+    </div>
   );
 }
 

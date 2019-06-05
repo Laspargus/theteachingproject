@@ -5,14 +5,27 @@ const addCsrf = object => {
   return object;
 };
 
-export const fetchSteps = async (id) => {
-const response = await fetch(`/courses/${id}/steps`, {
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
+export const addAttendance = async (id, email) => {
+  const attendanceResponse = await fetch(`/courses/${id}/attendances`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+      },
+      body: JSON.stringify(addCsrf({attendance: { email } })),
   });
+  const attendance = await attendanceResponse.json();
+  return attendance.attendance;
+}
 
-  const steps = await response.json()
-  return steps;
-};
+export const fetchAttendances = async (id) => {
+  const response = await fetch(`/courses/${id}/attendances`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+  
+    const attendances = await response.json()
+    return attendances;
+  };

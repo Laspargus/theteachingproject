@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
 class AttendancesController < ApplicationController
-  before_action :set_course, only: %i[new create update destroy]
+  before_action :set_course, only: %i[index new create update destroy]
+
+  def index
+    @attendances = @course.attendances
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: @attendances
+      end
+    end
+  end
 
   def new
     @attendance = Attendance.new
@@ -19,14 +29,21 @@ class AttendancesController < ApplicationController
     if !@student.nil? && @attending.nil?
       @attendance = Attendance.create(course: @course, student: @student, status: false)
       @attendance.save
-      flash[:notice] = "#{student.first_name} has been invited to course"
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "#{student.first_name} has been invited to course"
+        end
+        format.json do
+          render json: @attendance
+        end
+      end
     elsif !@student.nil? && !@attending.nil?
       flash[:notice] = "#{student.first_name} has already been invited to course"
     else
       invitation_to_application(@email, @course.teacher)
       flash[:notice] = "#{email} is not a member. We invited him to join application. Please invite him to course later"
     end
-    redirect_to course_path(@course)
+    #redirect_to course_path(@course)
   end
 
   def update
