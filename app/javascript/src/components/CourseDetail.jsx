@@ -122,6 +122,10 @@ class CourseDetail extends React.Component {
     });
   }
 
+  acceptAttendance(acceptedAttendance) {
+    
+  }
+
 	render(){
     const { steps } = this.state.steps;
     const { course } = this.state.course;
@@ -137,7 +141,7 @@ class CourseDetail extends React.Component {
               <AttendanceCreate course={this.state.course} onSubmit={this.addAttendanceToInvited} />
             </div>
             <div className="card col-md-3">
-              <AttendanceAccept attendance={this.state.attendance} course_id={this.state.course_id}/>
+              <AttendanceAccept attendances={this.state.attendances} course_id={this.state.course_id}/>
             </div>
           </div>
           <div className="row">

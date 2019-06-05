@@ -1,4 +1,5 @@
 import React from 'react';
+import { updateAttendance } from '../APIs/attendances';
 
 class AttendanceAccept extends React.Component {
   constructor(props) {
@@ -8,15 +9,20 @@ class AttendanceAccept extends React.Component {
   handleAccept = async e => {
     e.preventDefault()
     const id = e.target.value;
-    const acceptedAttendance = await removeAttendance(this.props.course_id, id);
+    const acceptedAttendance = await updateAttendance(this.props.course_id, id);
     this.props.acceptAttendance(acceptedAttendance);
   };
 
   render() {
-    const { attendance } = this.props;
+    const { attendances } = this.props;
     return (
       <div>
-        <button value={attendance.id} onClick={this.handleAccept}>Accept</button>  
+        {attendances.map(attendance => (
+          // <Attendance key={attendance.id} attendance={attendance} />,
+          <div key={attendance.id}>
+            <button value={attendance.id} onClick={this.handleAccept}>Accept</button>
+          </div>
+        ))}
       </div>
     );
   }

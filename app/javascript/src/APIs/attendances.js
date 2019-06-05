@@ -52,6 +52,6 @@ export const updateAttendance = async ( course_id, id ) => {
     },
     body: JSON.stringify(addCsrf({})),
   });
-  const attendanceJSON = await attendanceResponse.json();
-  return attendanceJSON.attendance;
+  const attendance = await attendanceResponse.json();
+  return attendance.attendance;
 };
