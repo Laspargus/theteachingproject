@@ -3,10 +3,7 @@ import { fetchSteps } from '../APIs/steps';
 import StepList from './StepList';
 import StepCreate from './StepCreate';
 import { showCourse } from '../APIs/courses';
-import AttendanceCreate from './AttendanceCreate';
-import AttendanceAttending from './AttendanceAttending';
-import AttendanceInvited from './AttendanceInvited';
-import AttendanceAccept from './AttendanceAccept';
+import Attendance from './Attendance';
 import { fetchAttendances } from '../APIs/attendances';
 import { fetchQuestions } from '../APIs/questions';
 import QuestionList from './QuestionList';
@@ -156,24 +153,15 @@ class CourseDetail extends React.Component {
     return (
      <div className="container"> 
         <h2>{this.state.course.title} - {this.state.course.description}</h2>
-        <div className="card col-md-12">
-          <div className="row">
-            <div className="card col-md-9">
-              <AttendanceCreate course={this.state.course} onSubmit={this.addAttendanceToInvited} />
-            </div>
-            <div className="card col-md-3">
-              <AttendanceAccept attendances={this.state.attendances} updateAttendance={this.updateAttendance} course_id={this.state.course_id} currentStudent={currentStudent} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="card col-md-6">
-              <AttendanceInvited attendances={ this.state.attendances } removeAttendance={this.removeAttendance} course_id={this.state.course_id} />
-            </div>
-            <div className="card col-md-6">
-              <AttendanceAttending attendances={ this.state.attendances } removeAttendance={this.removeAttendance} course_id={this.state.course_id} />
-            </div>
-          </div>
-        </div>
+        <Attendance
+          course={this.state.course}
+          onSubmit={this.addAttendanceToInvited}
+          attendances={ this.state.attendances }
+          removeAttendance={this.removeAttendance}
+          course_id={this.state.course_id}
+          updateAttendance={this.updateAttendance}
+          currentStudent={currentStudent}
+        />
         <div className="row">
           <div className="card col-md-5 m-2 card-body">  
            <div className="form-group row">    
