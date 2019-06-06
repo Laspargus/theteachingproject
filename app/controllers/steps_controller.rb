@@ -20,7 +20,7 @@ class StepsController < ApplicationController
     respond_to do |format|
       format.html {}
       format.json do
-        render json: @achievers
+        render json: @achievers.to_json
       end
     end
   end
