@@ -6,6 +6,7 @@ import { showCourse } from '../APIs/courses';
 import AttendanceCreate from './AttendanceCreate';
 import AttendanceAttending from './AttendanceAttending';
 import AttendanceInvited from './AttendanceInvited';
+import AttendanceAccept from './AttendanceAccept';
 import { fetchAttendances } from '../APIs/attendances';
 import { fetchQuestions } from '../APIs/questions';
 import QuestionList from './QuestionList';
@@ -32,6 +33,7 @@ class CourseDetail extends React.Component {
     this.addQuestionToList = this.addQuestionToList.bind(this);
     this.removeQuestionFromList = this.removeQuestionFromList.bind(this);
     this.updateQuestion = this.updateQuestion.bind(this); 
+    this.updateAttendance = this.updateAttendance.bind(this);
   };
 
   getCourse = async () => {
@@ -107,8 +109,6 @@ class CourseDetail extends React.Component {
     this.setState({
       attendances: attendances
     });
-    const invited = attendances.filter(attendance => attendance.status === false)
-    console.log(invited)
   }
 
   addAttendanceToInvited(newAttendance) {
@@ -123,6 +123,14 @@ class CourseDetail extends React.Component {
     });
   }
 
+  updateAttendance(updatedAttendance) {
+    this.setState({
+      attendances: this.state.attendances.map(attendance =>
+        attendance.id === updatedAttendance.id ? updatedAttendance : attendance
+      ),
+    });
+  };
+
 	render(){
     const { steps } = this.state.steps;
     const { course } = this.state.course;
@@ -134,8 +142,13 @@ class CourseDetail extends React.Component {
      <div className="container"> 
         <h2>{this.state.course.title} - {this.state.course.description}</h2>
         <div className="card col-md-12">
-          <div className="card col-md-12">
-            <AttendanceCreate course={ course } onSubmit={this.addAttendanceToInvited} />
+          <div className="row">
+            <div className="card col-md-9">
+              <AttendanceCreate course={this.state.course} onSubmit={this.addAttendanceToInvited} />
+            </div>
+            <div className="card col-md-3">
+              <AttendanceAccept attendances={this.state.attendances} updateAttendance={this.updateAttendance} course_id={this.state.course_id} currentStudent={currentStudent} />
+            </div>
           </div>
           <div className="row">
             <div className="card col-md-6">

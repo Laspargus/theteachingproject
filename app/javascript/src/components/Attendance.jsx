@@ -1,26 +1,26 @@
-import React from 'react';
+// import React from 'react';
 
-class Attendance extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      student: [],
-    }
-  };
+// class Attendance extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { 
+//       student: [],
+//     }
+//   };
 
-  refreshStudent = async () => {
-    const student = await fetchStudent();
-    this.setState({
-      student: student,
-    }); 
-  }
+//   refreshStudent = async () => {
+//     const student = await fetchStudent();
+//     this.setState({
+//       student: student,
+//     }); 
+//   }
 
-  render() {
-    return (
-      <div>      
-      </div>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <div>      
+//       </div>
+//     );
+//   }
+// }
 
-export default Attendance;
+// export default Attendance;

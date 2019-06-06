@@ -23,8 +23,8 @@ export default class AttendanceAttending extends React.Component {
           // <Attendance key={attendance.id} attendance={attendance} />,
           <div key={attendance.id}>
             {console.log("attendance", attendance)}
-           <button value={attendance.id} onClick={this.handleRemoveClick}>x</button>
-            }
+            {attendance.student.email}<button value={attendance.id} onClick={this.handleRemoveClick}>x</button>
+            
           </div>
         ))}
       </div>	
