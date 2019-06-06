@@ -42,7 +42,7 @@ class CourseDetail extends React.Component {
     }
   
  componentDidMount = async () => {
-    this.getCourse();
+    await this.getCourse();
     this.refreshSteps();
     this.refreshAttendances()
     this.refreshQuestions();

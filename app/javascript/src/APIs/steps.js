@@ -65,7 +65,7 @@ export const updateStep = async ( id, num, title, description ) => {
 };
 
 export const fetchAchievers = async (course_id, step_id) => {
-const response = await fetch(`/courses/${course_id}/steps/${step_id}`, {
+  const response = await fetch(`/courses/${course_id}/steps/${step_id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -74,5 +74,5 @@ const response = await fetch(`/courses/${course_id}/steps/${step_id}`, {
   });
 
   const achievers = await response.json()
-  return achievers;
+  return achievers.achievers;
 };
