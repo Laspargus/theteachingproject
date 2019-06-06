@@ -27,7 +27,6 @@ export default class CourseIndex extends Component {
     }); 
   }
 
-
   addCourseToList(newCourse) {
     this.setState({
        courses : [newCourse, ...this.state.courses],

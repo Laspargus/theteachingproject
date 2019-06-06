@@ -5,13 +5,23 @@ import Achievement from './Achievement';
 import { fetchAchievers } from '../APIs/steps';
 
 class Step extends React.Component {
-	state = {
-    edit: false,
-    step_achievers: [],
-  };
+  constructor(props){
+    super(props);
+  	this.state = {
+      edit: false,
+      step_achievers: [],
+    };
+    this.addAchiever = this.addAchiever.bind(this);
+  }
 
   componentDidMount = async () => {
     this.refreshAchievers();
+  }
+
+  addAchiever(achiever) {
+    this.setState({
+       step_achievers : [achiever, ...this.state.step_achievers],
+    }); 
   }
 
 	toggleEdit = () => {
@@ -82,7 +92,13 @@ class Step extends React.Component {
 
     if (currentStudent) {
       return (
-        <Achievement course={ course } step={ step } currentStudent={ currentStudent } step_achievers={ this.state.step_achievers } />
+        <Achievement 
+          course={ course } 
+          step={ step } 
+          currentStudent={ currentStudent } 
+          step_achievers={ this.state.step_achievers } 
+          onClick={this.addAchiever}
+        />
       );
     }
   }

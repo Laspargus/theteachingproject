@@ -1,19 +1,18 @@
 import React from 'react';
+import { addAchievement } from '../APIs/achievements'
 
 class Achievement extends React.Component {
   constructor(props) {
     super(props);
-  }
+    this.handleAddAchievement = this.handleAddAchievement.bind(this);
+  };
 
-  // handleClick = async e =>{
-  //   e.preventDefault();
-  //   const newAchievement = await addCourse(this.state.title, this.state.description);
-  //   this.props.onSubmit(newCourse);
-  //   this.setState({  
-  //    title: 'title',
-  //    description: 'description'
-  //   });
-  // }
+  handleAddAchievement = async e =>{
+    e.preventDefault();
+    const newAchievement = await addAchievement(this.props.course.id, this.props.step.id, this.props.currentStudent.id);
+    const achiever = this.props.currentStudent
+    this.props.onClick(achiever);
+  };
 
   studentHasAchieved = () => {
     const step = this.props.step  
@@ -41,7 +40,7 @@ class Achievement extends React.Component {
           className="m-2 btn btn-info"
           role="button"
           tabIndex={0}
-          // onClick={this.handleAchievement}
+          onClick={this.handleAddAchievement}
         >
           <i className="fas fa-clipboard-check"></i>
         </a>    
@@ -52,6 +51,7 @@ class Achievement extends React.Component {
   checkIfAchieved = () => {
     const achievers = this.props.step_achievers
     const { currentStudent } = this.props; 
+    console.log("achievers", achievers)
     if (achievers.filter(achiever => (achiever.id === currentStudent.id)).length > 0) {
       return true
     } else {

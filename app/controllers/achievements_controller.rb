@@ -3,12 +3,19 @@
 class AchievementsController < ApplicationController
   def create
     @achievement = Achievement.create(step_id: params[:step_id], student_id: params[:student_id])
-    redirect_to course_path(@achievement.step.course)
-    flash[:alert] = if @achievement.save
-                      "achievement created"
-                    else
-                      "achievement creation failed"
-                    end
+    respond_to do |format|
+      format.html do
+        redirect_to course_path(@achievement.step.course)
+        flash[:alert] = if @achievement.save
+                          "achievement created"
+                        else
+                          "achievement creation failed"
+                        end
+      end
+      format.json do
+        render json: @achievement
+      end
+    end
   end
 
   def destroy

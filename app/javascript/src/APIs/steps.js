@@ -26,15 +26,11 @@ export const addStep = async (id, title, description) => {
       },
       body: JSON.stringify(addCsrf({step: { title, description } })),
   });
-  console.log(id);
   const step = await stepResponse.json();
   return step.step;
 };
 
-
-
 export const removeStep = async (id, num) => {
-console.log(id, num)
   const stepResponse = await fetch(`/courses/${id}/steps/${num}`, {
     method: 'DELETE',
     headers: {
@@ -44,7 +40,6 @@ console.log(id, num)
     body: JSON.stringify(addCsrf({})),
   });
   const step = await stepResponse.json();
-  console.log('mon step', step)
   return step.step;
 };
 
