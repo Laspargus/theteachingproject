@@ -14,9 +14,7 @@ class Achievement extends React.Component {
   }
 
   refreshAchievers = async () => {
-    const course_id = this.props.course.id
-    const step_id = this.props.step.id;
-    const step_achievers = await fetchAchievers(course_id, step_id);
+    const step_achievers = await fetchAchievers(this.props.course.id, this.props.step.id);
     this.setState({
       step_achievers: step_achievers,
     }); 

@@ -24,7 +24,9 @@ export default class AttendanceInvited extends React.Component {
         {invited.map(attendance => (
           // <Attendance key={attendance.id} attendance={attendance} />,
           <div key={attendance.id}>
-            {attendance.student}<button value={attendance.id} onClick={this.handleRemoveClick}>x</button>
+             { console.log("from attendance loop", attendance) }
+            {attendance.student_id}<button value={attendance.id} onClick={this.handleRemoveClick}>x</button>
+            
           </div>
         ))}
       </div>	
