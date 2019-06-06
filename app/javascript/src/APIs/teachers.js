@@ -1,5 +1,5 @@
 export const fetchCurrentTeacher = async () => {
-  const studentsResponse = await fetch('/teachers', {
+  const teachersResponse = await fetch('/teachers', {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

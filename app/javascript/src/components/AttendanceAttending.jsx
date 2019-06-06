@@ -4,6 +4,7 @@ import { removeAttendance } from '../APIs/attendances';
 export default class AttendanceAttending extends React.Component {
   constructor(props) {
     super(props);
+    this.handleRemoveClick = this.handleRemoveClick.bind(this)
   }
 
   handleRemoveClick = async e => {
@@ -21,7 +22,9 @@ export default class AttendanceAttending extends React.Component {
         {invited.map(attendance => (
           // <Attendance key={attendance.id} attendance={attendance} />,
           <div key={attendance.id}>
-            {attendance.student.email}<button value={attendance.id} onClick={this.handleRemoveClick}>x</button>
+            {console.log("attendance", attendance)}
+           <button value={attendance.id} onClick={this.handleRemoveClick}>x</button>
+            }
           </div>
         ))}
       </div>	

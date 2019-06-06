@@ -51,7 +51,6 @@ console.log(id, num)
 
 
 export const updateStep = async ( id, num, title, description ) => {
-	console.log('mon cours a fetcher', id, 'mon étape à fetcher', num)
   const stepResponse = await fetch(`/courses/${id}/steps/${num}`, {
     method: 'PATCH',
     headers: {
