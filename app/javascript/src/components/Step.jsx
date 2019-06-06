@@ -1,13 +1,18 @@
 import React from 'react';
 import { removeStep } from '../APIs/steps';
 import StepEdit from './StepEdit';
+import Achievement from './Achievement';
+import { fetchAchievers } from '../APIs/steps';
 
 class Step extends React.Component {
-
 	state = {
     edit: false,
+    step_achievers: [],
   };
 
+  componentDidMount = async () => {
+    this.refreshAchievers();
+  }
 
 	toggleEdit = () => {
     const { edit } = this.state;
@@ -16,21 +21,25 @@ class Step extends React.Component {
     });
   };
 
-
-
   handleRemove = async () => {
     const { course, step } = this.props;
     const steptoremove = await removeStep(course.id, step.id);
     this.props.removeStep(steptoremove);
   };
 
-  renderButtons = () => {
+  refreshAchievers = async () => {
+    const step_achievers = await fetchAchievers(this.props.course.id, this.props.step.id);
+    this.setState({
+      step_achievers: step_achievers,
+    }); 
+  }
+
+  renderButtonsTeacher = () => {
 
     const { course, toggleEdit, updateStep, removeStep, step, currentTeacher } = this.props;
 		const { edit } = this.state;
 	
-
-    if (edit){
+    if (currentTeacher && edit){
     	return (
       	<StepEdit 
       	course = {course}
@@ -40,9 +49,7 @@ class Step extends React.Component {
         currentTeacher={ currentTeacher }
       	/>
     	);
-    }
-    
-    else {
+    } else if (currentTeacher) {
       return (
         <span>
          {step.title} -  {step.description}    
@@ -51,8 +58,9 @@ class Step extends React.Component {
             role="button"
             tabIndex={0}
             onClick={this.toggleEdit}
-            onKeyPress={this.toggleEdit} >
-          <i className="fas fa-edit"></i>
+            onKeyPress={this.toggleEdit}
+          >
+              <i className="fas fa-edit"></i>
           </a>    
           <a
             className="m-2 btn btn-danger"
@@ -60,22 +68,36 @@ class Step extends React.Component {
             onKeyPress={this.handleRemove}
             role="button"
             tabIndex={0}
-          ><i className="far fa-trash-alt"></i>
+          >
+            <i className="far fa-trash-alt"></i>
           </a>
-      </span>
+        </span>
       ); 
     }
   };
 
-render() {
+  renderStudentAchievement = () => {
+
+    const { course, step, currentStudent } = this.props;  
+
+    if (currentStudent) {
+      return (
+        <Achievement course={ course } step={ step } currentStudent={ currentStudent } step_achievers={ this.state.step_achievers } />
+      );
+    }
+  }
+
+  render() {
     const { step, removeStep, currentTeacher } = this.props;
     return (
-      <div className="post">      
-          {this.renderButtons()}    
+      <div>
+        <div className="post">      
+          {this.renderButtonsTeacher()} {this.renderStudentAchievement()}
+        </div>
       </div>
-     
     );
   }
 }
+
 
 export default Step;
