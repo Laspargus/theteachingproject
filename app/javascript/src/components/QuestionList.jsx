@@ -4,12 +4,14 @@ import Question from './Question';
 import Votes from './Votes';
 
 
+
 function QuestionList({course, questions, removeQuestion, updateQuestion, currentStudent, currentTeacher}) {
   return (
   	<div>
       <FlipMove typeName="ul">
         {questions.map((question, i) => (
          <div key={i}>
+        
           <Question
             question={question}
             key={question.id}
@@ -17,7 +19,7 @@ function QuestionList({course, questions, removeQuestion, updateQuestion, curren
             course = {course}
             updateQuestion = {updateQuestion}
             currentStudent = { currentStudent }
-          />    
+          />   
           <Votes
           course = {course}
           question={question}

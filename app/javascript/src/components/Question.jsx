@@ -27,19 +27,22 @@ class Question extends React.Component {
     console.log("leleve qui a pose la question", question.student);
     console.log("lid de leleve qui a pose la question", question.student.id);
     console.log("lid de mon eleve", currentStudent.id);
+  
     const question_owner = question.student.id;
     const student_id = currentStudent.id;
-    if (question_owner == student_id){
+  
+    if (question_owner === student_id){
       return  true 
     }
       return false
-  };
+    };
+
 
   renderButtons = () => {
     const { course, toggleEdit, updateQuestion, removeQuestion, question, currentStudent, currentTeacher } = this.props;
 		const { edit } = this.state;
-    const check = this.check_ownership(question, currentStudent);
-    console.log(check);
+  
+   
     if (edit){
     	return (
     	<QuestionEdit 
@@ -51,38 +54,47 @@ class Question extends React.Component {
     	/>
     	);
     }
-    else if(currentStudent && check) {
-      return (
-        <span>
-         {question.content} 
-       
-          <a className="m-2 btn btn-info"
-            role="button"
-            tabIndex={0}
-            onClick={this.toggleEdit}
-            onKeyPress={this.toggleEdit} >
-          <i className="fas fa-edit"></i>
-          </a>
-
-       
-          <a
-            className="m-2 btn btn-danger"
-            onClick={this.handleRemove}
-            onKeyPress={this.handleRemove}
-            role="button"
-            tabIndex={0}>
-          <i className="far fa-trash-alt"></i>
-          </a>
-      </span>
-      ); 
+    else if(currentStudent) {
+      const check = this.check_ownership(question, currentStudent);
+      console.log("le chek est bon")
+      if(check){
+        return (
+          <span>  
+          {question.content}   
+            <a className="m-2 btn btn-info"
+              role="button"
+              tabIndex={0}
+              onClick={this.toggleEdit}
+              onKeyPress={this.toggleEdit} >
+            <i className="fas fa-edit"></i>
+            </a>         
+            <a
+              className="m-2 btn btn-danger"
+              onClick={this.handleRemove}
+              onKeyPress={this.handleRemove}
+              role="button"
+              tabIndex={0}>
+            <i className="far fa-trash-alt"></i>
+            </a>
+        </span>
+        ); 
+        }
+      else {
+        return(
+          <span>
+           {question.content}
+           </span>
+        );
+      }
     }
     else {
-      return (
+      return(
         <span>
-         {question.content} 
-        </span>
-      ); 
+         {question.content}
+         </span>
+      );
     }
+ 
   };
 
   render() {
