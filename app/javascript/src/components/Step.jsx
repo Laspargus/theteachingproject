@@ -16,6 +16,7 @@ class Step extends React.Component {
     };
     this.addAchiever = this.addAchiever.bind(this);
     this.refreshAchievements = this.refreshAchievements.bind(this);
+    this.deleteAchiever = this.deleteAchiever.bind(this);
   }
 
   componentDidMount = async () => {
@@ -23,7 +24,7 @@ class Step extends React.Component {
     this.refreshAchievements();
   }
 
- refreshAchievements = async () => {
+  refreshAchievements = async () => {
     const course_id = this.props.course.id;
     const step_id = this.props.step.id;
     const achievements = await fetchAchievements(course_id, step_id);
@@ -36,6 +37,12 @@ class Step extends React.Component {
     this.setState({
        step_achievers : [achiever, ...this.state.step_achievers],
     }); 
+  }
+
+  deleteAchiever(achieverToDelete) {
+    this.setState({
+      step_achievers: this.state.step_achievers.filter(achiever => achieverToDelete.id !== achiever.id)
+    });
   }
 
 	toggleEdit = () => {
@@ -103,6 +110,7 @@ class Step extends React.Component {
   renderStudentAchievement = () => {
 
     const { course, step, currentStudent } = this.props;  
+    // const achievement = this.state.achievements.filter(ach => ach.student_id == currentStudent.id && ach.step_id == step.id)
 
     if (currentStudent) {
       return (
@@ -111,7 +119,10 @@ class Step extends React.Component {
           step={ step } 
           currentStudent={ currentStudent } 
           step_achievers={ this.state.step_achievers } 
-          onClick={this.addAchiever}
+          // onClick={this.addAchiever}
+          // onKeyPress={this.deleteAchiever}
+          onClick={this.deleteAchiever}
+          achievement={this.state.achievements.filter(ach => ach.student_id == currentStudent.id && ach.step_id == step.id)[0]}
         />
       );
     }
@@ -125,13 +136,13 @@ class Step extends React.Component {
           {this.renderButtonsTeacher()} {this.renderStudentAchievement()}
         </div>
         <Achievements
-            course={course}
-            step={step}
-            key={step.id}
-            currentStudent={ currentStudent }
-            currentTeacher={ currentTeacher }
-            achievements={ this.state.achievements }
-          />
+          course={course}
+          step={step}
+          key={step.id}
+          currentStudent={ currentStudent }
+          currentTeacher={ currentTeacher }
+          achievements={ this.state.achievements }
+        />
       </div>
     );
   }

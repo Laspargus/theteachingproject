@@ -1,10 +1,12 @@
 import React from 'react';
 import { addAchievement } from '../APIs/achievements'
+import { removeAchievement } from '../APIs/achievements'
 
 class Achievement extends React.Component {
   constructor(props) {
     super(props);
     this.handleAddAchievement = this.handleAddAchievement.bind(this);
+;    this.handleDeleteAchievement = this.handleDeleteAchievement.bind(this)
   };
 
   handleAddAchievement = async e =>{
@@ -14,11 +16,11 @@ class Achievement extends React.Component {
     this.props.onClick(achiever);
   };
 
-  // handleDeleteAchievement = async () => {
-  //   const { course, step, achievement} = this.props;
-  //   const steptoremove = await removeStep(course.id, step.id);
-  //   this.props.removeStep(steptoremove);
-  // };
+  handleDeleteAchievement = async () => {
+    const { course, step, currentStudent, achievement} = this.props;
+    const achievementToRemove = await removeAchievement(course.id, step.id, currentStudent.id, achievement.id );
+    this.props.onClick(achievementToRemove);
+  };
 
   studentHasAchieved = () => {
     const step = this.props.step  
@@ -29,7 +31,7 @@ class Achievement extends React.Component {
           className="m-2 btn btn-info"
           role="button"
           tabIndex={0}
-          // onClick={this.handleAchievement}
+          onClick={this.handleDeleteAchievement}
         >
           <i className="far fa-times-circle"></i>
         </a>    
@@ -46,7 +48,7 @@ class Achievement extends React.Component {
           className="m-2 btn btn-info"
           role="button"
           tabIndex={0}
-          onClick={this.handleAddAchievement}
+          // onClick={this.handleAddAchievement}
         >
           <i className="fas fa-clipboard-check"></i>
         </a>    
