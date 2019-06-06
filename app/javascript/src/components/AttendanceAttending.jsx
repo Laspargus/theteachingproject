@@ -20,11 +20,8 @@ export default class AttendanceAttending extends React.Component {
     return (
       <div>
         {invited.map(attendance => (
-          // <Attendance key={attendance.id} attendance={attendance} />,
           <div key={attendance.id}>
-            {console.log("attendance", attendance)}
             {attendance.student.email}<button value={attendance.id} onClick={this.handleRemoveClick}>x</button>
-            
           </div>
         ))}
       </div>	
