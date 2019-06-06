@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = @course.questions
+    @questions = @course.questions.sort_by(&:num_votes).reverse
     respond_to do |format|
       format.html {}
       format.json do
@@ -35,8 +35,6 @@ class QuestionsController < ApplicationController
   def create
     @student  = Student.last
     @question = @course.questions.create(question_params.merge(student: current_student))
-
-    puts @question.errors.messages
     respond_to do |format|
       format.html do
         redirect_to root_path, success: "Course successfully created"
