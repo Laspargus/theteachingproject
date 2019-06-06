@@ -40,5 +40,5 @@ export const fetchAttendances = async (id) => {
   });
 
   const attendances = await response.json()
-  return attendances;
+  return attendances.attendances;
 };

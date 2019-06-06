@@ -17,15 +17,7 @@ class CoursesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @attendance = Attendance.find_by(course: @course, student: current_student)
-        @steps = @course.steps
-        @step = Step.new
-        @questions = @course.questions.sort_by(&:num_votes).reverse
-        @achievement = Achievement.new
-
-        # for attendances
-        @invitations = Attendance.where(course: @course, status: false)
-        @attendances = Attendance.where(course: @course, status: true)
+        render :index
       end
       format.json do
         render json: @course
