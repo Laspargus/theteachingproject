@@ -38,9 +38,9 @@ class Votes extends React.Component {
     if (has_voted !== null) {
     	this.setState({
       has_voted: true,
-    }); 
-
+      }); 
     }
+
     this.setState({
       votes: votes,
     }); 

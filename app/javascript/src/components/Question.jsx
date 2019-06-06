@@ -22,27 +22,18 @@ class Question extends React.Component {
   };
 
   check_ownership(question, currentStudent){
-    console.log("ma question", question);
-    console.log("mon eleve connecte", currentStudent);
-    console.log("leleve qui a pose la question", question.student);
-    console.log("lid de leleve qui a pose la question", question.student.id);
-    console.log("lid de mon eleve", currentStudent.id);
-  
     const question_owner = question.student.id;
     const student_id = currentStudent.id;
-  
-    if (question_owner === student_id){
-      return  true 
-    }
-      return false
-    };
+      if (question_owner === student_id){
+        return  true 
+      }
+        return false
+  };
 
 
   renderButtons = () => {
     const { course, toggleEdit, updateQuestion, removeQuestion, question, currentStudent, currentTeacher } = this.props;
-		const { edit } = this.state;
-  
-   
+		const { edit } = this.state;  
     if (edit){
     	return (
     	<QuestionEdit 
@@ -56,7 +47,6 @@ class Question extends React.Component {
     }
     else if(currentStudent) {
       const check = this.check_ownership(question, currentStudent);
-      console.log("le chek est bon")
       if(check){
         return (
           <span>  
