@@ -131,6 +131,20 @@ class CourseDetail extends React.Component {
     });
   };
 
+
+
+
+  question_create_for_student(currentStudent) {
+    if(currentStudent){ 
+      return(
+        <QuestionCreate
+            onSubmit={this.addQuestionToList}
+            course={ this.state.course }
+            currentStudent = { currentStudent }
+        />
+      );
+    }
+  }
 	render(){
     const { steps } = this.state.steps;
     const { course } = this.state.course;
@@ -138,6 +152,7 @@ class CourseDetail extends React.Component {
     const currentStudent = this.props.currentStudent;
     const currentTeacher = this.props.currentTeacher;
 
+ 
     return (
      <div className="container"> 
         <h2>{this.state.course.title} - {this.state.course.description}</h2>
@@ -181,11 +196,7 @@ class CourseDetail extends React.Component {
           </div>
            <div className="card col-md-5 m-2 card-body">
              <div className="form-group row">    
-               <QuestionCreate
-                  onSubmit={this.addQuestionToList}
-                  course={ this.state.course }
-                  currentStudent = { currentStudent }
-                />
+               {this.question_create_for_student(currentStudent)}
               </div>
               <div>
               <QuestionList

@@ -65,10 +65,9 @@ class Votes extends React.Component {
   render() {
   	const total_votes = this.state.votes.length
   	const has_voted = this.state.has_voted
-  	const course = this.props.course
-  	const question = this.props.question
-
-  	 if (has_voted) {
+    const {course, question, currentStudent, currentTeacher} = this.props;
+ 
+  	 if (has_voted && currentStudent) {
       return (
       	<React.Fragment>
         <VoteDelete      
@@ -82,22 +81,26 @@ class Votes extends React.Component {
         </React.Fragment>
       );
      }
-
-	    else  {
-		    return (
-		    	<React.Fragment>
-			    <VoteCreate      
-		        onCreate = {this.toggleEdit}
-		        className = "btn btn-info"
-		        course = {course}
-          	question = {question}
-          	addToList = {this.addToList}
-			    />
-			    <span className="badge badge-pill badge-warning ml-2">{total_votes} votes</span>
-			    </React.Fragment>
-		     );
-	    }
-		}
+	   else if (currentStudent)  {
+	    return (
+	    	<React.Fragment>
+		    <VoteCreate      
+	        onCreate = {this.toggleEdit}
+	        className = "btn btn-info"
+	        course = {course}
+        	question = {question}
+        	addToList = {this.addToList}
+		    />
+		    <span className="badge badge-pill badge-warning ml-2">{total_votes} votes</span>
+		    </React.Fragment>
+	     );
+	   }
+    else {
+     return(
+        <span className="badge badge-pill badge-warning ml-2">{total_votes} votes</span>
+      );
+    }
+	}
 }
 
 export default Votes;

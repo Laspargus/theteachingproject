@@ -18,6 +18,12 @@ export default class QuestionEdit extends Component {
     });
   }
 
+
+  handleCancel = () => {
+  this.props.cancelEdit();
+  }
+
+
   handleSubmit = async e =>{
   	const {course, question} =this.props
     e.preventDefault();
@@ -33,8 +39,8 @@ export default class QuestionEdit extends Component {
           <button
             className="m-2 btn btn-info"
             role="button"
-            onClick={toggleEdit}
-            onKeyPress={toggleEdit} 
+            onClick={this.handleCancel}
+            onKeyPress={this.handleCancel} 
            >
          		Cancel
           </button>

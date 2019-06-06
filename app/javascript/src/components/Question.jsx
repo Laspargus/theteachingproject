@@ -21,9 +21,25 @@ class Question extends React.Component {
     this.props.removeQuestion(questiontoremove); 
   };
 
+  check_ownership(question, currentStudent){
+    console.log("ma question", question);
+    console.log("mon eleve connecte", currentStudent);
+    console.log("leleve qui a pose la question", question.student);
+    console.log("lid de leleve qui a pose la question", question.student.id);
+    console.log("lid de mon eleve", currentStudent.id);
+    const question_owner = question.student.id;
+    const student_id = currentStudent.id;
+    if (question_owner == student_id){
+      return  true 
+    }
+      return false
+  };
+
   renderButtons = () => {
-    const { course, toggleEdit, updateQuestion, removeQuestion, question } = this.props;
+    const { course, toggleEdit, updateQuestion, removeQuestion, question, currentStudent, currentTeacher } = this.props;
 		const { edit } = this.state;
+    const check = this.check_ownership(question, currentStudent);
+    console.log(check);
     if (edit){
     	return (
     	<QuestionEdit 
@@ -31,14 +47,14 @@ class Question extends React.Component {
     	question = {question}
     	onSubmit = {this.toggleEdit}
     	updateQuestion = {updateQuestion}
+      cancelEdit = {this.toggleEdit}
     	/>
     	);
     }
-    else {
+    else if(currentStudent && check) {
       return (
         <span>
          {question.content} 
-
        
           <a className="m-2 btn btn-info"
             role="button"
@@ -60,14 +76,21 @@ class Question extends React.Component {
       </span>
       ); 
     }
+    else {
+      return (
+        <span>
+         {question.content} 
+        </span>
+      ); 
+    }
   };
 
   render() {
-    const { question, removeQuestion, currentStudent} = this.props;
+    const { question, removeQuestion, currentStudent, currentTeacher} = this.props;
     return (
-      <div className="post">      
+      <React.Fragment>     
           {this.renderButtons()}    
-      </div>
+      </React.Fragment>
      
     );
   }
