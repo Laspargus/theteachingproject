@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchAchievements } from '../APIs/achievements';
+// import { fetchAchievements } from '../APIs/achievements';
 import { fetchAttendances } from '../APIs/attendances';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
@@ -7,13 +7,13 @@ class Achievements extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-    	achievements: [],
+    	// achievements: [],
     	attendances: [],
     };
   }
 
  componentDidMount = async () => {
-    this.refreshAchievements();
+    // this.refreshAchievements();
     this.refreshAttendances();
   }
 
@@ -25,14 +25,14 @@ class Achievements extends React.Component {
     }); 
   }
 
- refreshAchievements = async () => {
- 		const course_id = this.props.course.id;
- 		const step_id = this.props.step.id;
-    const achievements = await fetchAchievements(course_id, step_id);
-    this.setState({
-      achievements: achievements,
-    }); 
-  }
+ // refreshAchievements = async () => {
+ // 		const course_id = this.props.course.id;
+ // 		const step_id = this.props.step.id;
+ //    const achievements = await fetchAchievements(course_id, step_id);
+ //    this.setState({
+ //      achievements: achievements,
+ //    }); 
+ //  }
 
   countPercentage = (achievements_num, attendances_num) => {
   	const result = Math.round((achievements_num * 100) / attendances_num);
@@ -40,7 +40,7 @@ class Achievements extends React.Component {
   }
 
   render() {
-    const achievements_length = this.state.achievements.length
+    const achievements_length = this.props.achievements.length
     const attendances_length = this.state.attendances.length
 
   	const now = this.countPercentage(achievements_length, attendances_length)

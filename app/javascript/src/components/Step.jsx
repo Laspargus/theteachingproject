@@ -3,6 +3,8 @@ import { removeStep } from '../APIs/steps';
 import StepEdit from './StepEdit';
 import Achievement from './Achievement';
 import { fetchAchievers } from '../APIs/steps';
+import Achievements from './Achievements'
+import { fetchAchievements } from '../APIs/achievements';
 
 class Step extends React.Component {
   constructor(props){
@@ -10,12 +12,24 @@ class Step extends React.Component {
   	this.state = {
       edit: false,
       step_achievers: [],
+      achievements: [],
     };
     this.addAchiever = this.addAchiever.bind(this);
+    this.refreshAchievements = this.refreshAchievements.bind(this);
   }
 
   componentDidMount = async () => {
     this.refreshAchievers();
+    this.refreshAchievements();
+  }
+
+ refreshAchievements = async () => {
+    const course_id = this.props.course.id;
+    const step_id = this.props.step.id;
+    const achievements = await fetchAchievements(course_id, step_id);
+    this.setState({
+      achievements: achievements,
+    }); 
   }
 
   addAchiever(achiever) {
@@ -104,12 +118,20 @@ class Step extends React.Component {
   }
 
   render() {
-    const { step, removeStep, currentTeacher } = this.props;
+    const { course, step, removeStep, currentTeacher, currentStudent } = this.props;
     return (
       <div>
         <div className="post">      
           {this.renderButtonsTeacher()} {this.renderStudentAchievement()}
         </div>
+        <Achievements
+            course={course}
+            step={step}
+            key={step.id}
+            currentStudent={ currentStudent }
+            currentTeacher={ currentTeacher }
+            achievements={ this.state.achievements }
+          />
       </div>
     );
   }

@@ -43,8 +43,6 @@ export const removeStep = async (id, num) => {
   return step.step;
 };
 
-
-
 export const updateStep = async ( id, num, title, description ) => {
   const stepResponse = await fetch(`/courses/${id}/steps/${num}`, {
     method: 'PATCH',

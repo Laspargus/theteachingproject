@@ -21,8 +21,7 @@ class AchievementsController < ApplicationController
   def destroy
     @achievement = Achievement.find(params[:id])
     @achievement.destroy
-    redirect_to course_path(@achievement.step.course)
-    flash[:alert] = "achievement deleted"
+    render json: @achievement
   end
 
   def index

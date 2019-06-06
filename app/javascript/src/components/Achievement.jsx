@@ -14,6 +14,12 @@ class Achievement extends React.Component {
     this.props.onClick(achiever);
   };
 
+  // handleDeleteAchievement = async () => {
+  //   const { course, step, achievement} = this.props;
+  //   const steptoremove = await removeStep(course.id, step.id);
+  //   this.props.removeStep(steptoremove);
+  // };
+
   studentHasAchieved = () => {
     const step = this.props.step  
     return(

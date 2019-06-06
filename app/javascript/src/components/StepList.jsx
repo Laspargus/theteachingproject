@@ -1,7 +1,6 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
 import Step from './Step';
-import Achievements from './Achievements'
 
 function StepList({course, steps, removeStep, updateStep, currentStudent, currentTeacher }) {
   return (
@@ -15,13 +14,6 @@ function StepList({course, steps, removeStep, updateStep, currentStudent, curren
             removeStep={removeStep}
             course = {course}
             updateStep = {updateStep}
-            currentStudent={ currentStudent }
-            currentTeacher={ currentTeacher }
-          />
-          <Achievements
-            course={course}
-            step={step}
-            key={i}
             currentStudent={ currentStudent }
             currentTeacher={ currentTeacher }
           />

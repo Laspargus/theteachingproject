@@ -29,3 +29,16 @@ export const addAchievement = async (course_id, step_id, student_id) => {
   const achievement = await achievementResponse.json();
   return achievement;
 };
+
+export const removeAchievement = async (course_id, step_id, student_id, achievement_id) => {
+  const achievementResponse = await fetch(`/courses/${course_id}/steps/${step_id}/achievements/${achievement_id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(addCsrf({})),
+  });
+  const achievement = await achievementResponse.json();
+  return achievement.achievement;
+};
