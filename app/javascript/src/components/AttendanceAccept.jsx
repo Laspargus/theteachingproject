@@ -20,7 +20,7 @@ class AttendanceAccept extends React.Component {
         <div>
           {studentInvited.map(attendance => (
           <div key={attendance.id}>
-            <button value={attendance.id} onClick={this.handleAccept}>Accept</button>
+            <button className="btn btn-success m-2" value={attendance.id} onClick={this.handleAccept}>Accept</button>
           </div>
         ))}
         </div>
