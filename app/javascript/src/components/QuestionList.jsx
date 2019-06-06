@@ -17,6 +17,7 @@ function QuestionList({course, questions, removeQuestion, updateQuestion, curren
             removeQuestion={removeQuestion}
             course = {course}
             updateQuestion = {updateQuestion}
+            currentStudent = { currentStudent }
           />    
           <Votes
           course = {course}
