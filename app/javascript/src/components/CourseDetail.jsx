@@ -23,7 +23,7 @@ class CourseDetail extends React.Component {
       attendances: [],
       course: [],
       questions: [],
-      course_id: match.params.id
+      course_id: match.params.id,
     };   
     this.addStepToList = this.addStepToList.bind(this);
     this.removeStepFromList = this.removeStepFromList.bind(this);
@@ -44,7 +44,7 @@ class CourseDetail extends React.Component {
     }
   
  componentDidMount = async () => {
-    this.getCourse();
+    await this.getCourse();
     this.refreshSteps();
     this.refreshAttendances()
     this.refreshQuestions();
@@ -107,7 +107,7 @@ class CourseDetail extends React.Component {
   refreshAttendances = async () => {
     const attendances = await fetchAttendances(this.state.course_id);
     this.setState({
-      attendances: attendances.attendances
+      attendances: attendances
     });
   }
 
@@ -134,6 +134,7 @@ class CourseDetail extends React.Component {
 	render(){
     const { steps } = this.state.steps;
     const { course } = this.state.course;
+    const { attendances } = this.state.attendances;
     const currentStudent = this.props.currentStudent;
     const currentTeacher = this.props.currentTeacher;
 
@@ -151,10 +152,10 @@ class CourseDetail extends React.Component {
           </div>
           <div className="row">
             <div className="card col-md-6">
-              <AttendanceInvited attendances={this.state.attendances} removeAttendance={this.removeAttendance} course_id={this.state.course_id} />
+              <AttendanceInvited attendances={ this.state.attendances } removeAttendance={this.removeAttendance} course_id={this.state.course_id} />
             </div>
             <div className="card col-md-6">
-              <AttendanceAttending attendances={this.state.attendances} removeAttendance={this.removeAttendance} course_id={this.state.course_id} />
+              <AttendanceAttending attendances={ this.state.attendances } removeAttendance={this.removeAttendance} course_id={this.state.course_id} />
             </div>
           </div>
         </div>
@@ -180,13 +181,13 @@ class CourseDetail extends React.Component {
           </div>
            <div className="card col-md-5 m-2 card-body">
              <div className="form-group row">    
-              <QuestionCreate
+               <QuestionCreate
                   onSubmit={this.addQuestionToList}
                   course={ this.state.course }
                   currentStudent = { currentStudent }
                 />
               </div>
-            <div>
+              <div>
               <QuestionList
                 questions = {this.state.questions}
                 removeQuestion = {this.removeQuestionFromList}

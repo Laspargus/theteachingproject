@@ -16,11 +16,11 @@ class StepsController < ApplicationController
   end
 
   def show
-    @achievers = @step.achievers.ids
+    @achievers = @step.achievers
     respond_to do |format|
       format.html {}
       format.json do
-        render json: @achievers
+        render json: @achievers, each_serializer: StudentSerializer, root: 'achievers'
       end
     end
   end

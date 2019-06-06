@@ -6,12 +6,10 @@ export default class StepEdit extends Component {
 
   constructor(props) {
 	  super(props);
-
 	  this.state = { 
 	    title: '',
 	    description:'',
-	  };
-    
+	  }; 
   	this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -29,14 +27,11 @@ export default class StepEdit extends Component {
 
   handleSubmit = async e =>{
   	const {course, step} =this.props
-  	console.log('mon cours', course, 'mon étape', step);
     e.preventDefault();
     const updatedStep = await updateStep(course.id, step.id, this.state.title, this.state.description);
-    console.log(updatedStep)
     this.props.updateStep(updatedStep);
     this.props.onSubmit();
   }
-
 
   renderButtons = () => {
     const { toggleEdit  } = this.props;
@@ -45,7 +40,6 @@ export default class StepEdit extends Component {
           <button
             className="m-2 btn btn-info"
             role="button"
-            tabIndex={0}
             onClick={toggleEdit}
             onKeyPress={toggleEdit} 
            >
@@ -56,10 +50,10 @@ export default class StepEdit extends Component {
       );
     }
   
-
   render() {
 
     const { step, course, updateCourse, toggleEdit, onSubmit, currentTeacher} = this.props;
+
 	    return(
 	       <div className="block">
 	        <form onSubmit={this.handleSubmit}>

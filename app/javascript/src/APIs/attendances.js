@@ -18,6 +18,19 @@ export const addAttendance = async (id, email) => {
   return attendance.attendance;
 }
 
+export const removeAttendance = async (course_id, id) => {
+  const removeAttendanceResponse = await fetch(`/courses/${course_id}/attendances/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(addCsrf({})),
+  });
+  const attendance = await removeAttendanceResponse.json();
+  return attendance.attendance;
+};
+
 export const fetchAttendances = async (id) => {
   const response = await fetch(`/courses/${id}/attendances`, {
     headers: {
@@ -27,20 +40,7 @@ export const fetchAttendances = async (id) => {
   });
 
   const attendances = await response.json()
-  return attendances;
-};
-
-export const removeAttendance = async (course_id, id) => {
-  const attendanceResponse = await fetch(`/courses/${course_id}/attendances/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify(addCsrf({})),
-  });
-  const attendance = await attendanceResponse.json();
-  return attendance.attendance;
+  return attendances.attendances;
 };
 
 export const updateAttendance = async (course_id, id) => {

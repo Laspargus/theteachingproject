@@ -50,7 +50,7 @@ export default class CourseEdit extends Component {
     </span>
     );
   }
-  
+
   render() {
     const { course, updateCourse, toggleEdit, currentTeacher } = this.props;
     return(
