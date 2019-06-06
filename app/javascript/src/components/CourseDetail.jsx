@@ -107,7 +107,6 @@ class CourseDetail extends React.Component {
     this.setState({
       attendances: attendances
     });
-    /////////////////////////////////////////////////////////////////////////////////////////
     const invited = attendances.filter(attendance => attendance.status === false)
     console.log(invited)
   }
@@ -130,7 +129,6 @@ class CourseDetail extends React.Component {
     const { attendances } = this.state.attendances;
     const currentStudent = this.props.currentStudent;
     const currentTeacher = this.props.currentTeacher;
-
 
     return (
      <div className="container"> 
@@ -170,13 +168,13 @@ class CourseDetail extends React.Component {
           </div>
            <div className="card col-md-5 m-2 card-body">
              <div className="form-group row">    
-              <QuestionCreate
+               <QuestionCreate
                   onSubmit={this.addQuestionToList}
                   course={ this.state.course }
                   currentStudent = { currentStudent }
                 />
               </div>
-            <div>
+              <div>
               <QuestionList
                 questions = {this.state.questions}
                 removeQuestion = {this.removeQuestionFromList}

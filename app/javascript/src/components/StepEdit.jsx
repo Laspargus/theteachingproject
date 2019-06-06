@@ -27,10 +27,8 @@ export default class StepEdit extends Component {
 
   handleSubmit = async e =>{
   	const {course, step} =this.props
-  	console.log('mon cours', course, 'mon étape', step);
     e.preventDefault();
     const updatedStep = await updateStep(course.id, step.id, this.state.title, this.state.description);
-    console.log(updatedStep)
     this.props.updateStep(updatedStep);
     this.props.onSubmit();
   }

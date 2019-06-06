@@ -25,7 +25,12 @@ export const findVote = async (course_id, question_id) => {
     },
   });
   const vote = await response.json()
+  if (vote !== null){
   return vote.vote;
+  }
+  else {
+    return vote;
+  }
 };
 
 
