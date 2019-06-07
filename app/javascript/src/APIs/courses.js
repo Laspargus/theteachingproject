@@ -31,8 +31,6 @@ const response = await fetch(`/courses/${id}`, {
   return course;
 };
 
-
-
 export const addCourse = async (title, description) => {
     const courseResponse = await fetch('/courses', {
         method: 'POST',
@@ -45,7 +43,6 @@ export const addCourse = async (title, description) => {
     const course = await courseResponse.json();
     return course.course;
 }
-
 
 export const removeCourse = async id => {
   const courseResponse = await fetch(`/courses/${id}`, {

@@ -3,8 +3,9 @@ import { removeStep } from '../APIs/steps';
 import StepEdit from './StepEdit';
 import Achievement from './Achievement';
 import { fetchAchievers } from '../APIs/steps';
-import Achievements from './Achievements'
+import Achievements from './Achievements';
 import { fetchAchievements } from '../APIs/achievements';
+// import { fetchAchievement } from '../APIs/achievements';
 
 class Step extends React.Component {
   constructor(props){
@@ -13,25 +14,45 @@ class Step extends React.Component {
       edit: false,
       step_achievers: [],
       achievements: [],
+      // achievement: [],
     };
     this.addAchiever = this.addAchiever.bind(this);
     this.refreshAchievements = this.refreshAchievements.bind(this);
+    // this.refreshAchievement = this.refreshAchievement.bind(this);
     this.deleteAchiever = this.deleteAchiever.bind(this);
+    this.handleAchievementClick = this.handleAchievementClick.bind(this);
   }
 
   componentDidMount = async () => {
     this.refreshAchievers();
     this.refreshAchievements();
+    console.log("achievements refreshed !", this.state.achievements)
+    // this.refreshAchievement();
   }
 
   refreshAchievements = async () => {
     const course_id = this.props.course.id;
     const step_id = this.props.step.id;
-    const achievements = await fetchAchievements(course_id, step_id);
+    const currentStudent = this.props.currentStudent
+    const achievements = await fetchAchievements(course_id, step_id, currentStudent.id);
     this.setState({
       achievements: achievements,
     }); 
   }
+
+  handleAchievementClick = async (boolean) => {
+    const step_id = this.props.step.id;
+    const currentStudent = this.props.currentStudent;
+    const achievement = this.state.achievements.filter(achievement => (achievement.user_id === currentStudent.id))
+    console.log("handleachivement achievement", achievement)
+    if (boolean === false) {
+      this.deleteAchiever(currentStudent)
+    } else {
+      this.addAchiever(currentStudent)
+    }
+  }
+
+  ////////////////////////////////////////
 
   addAchiever(achiever) {
     this.setState({
@@ -44,6 +65,8 @@ class Step extends React.Component {
       step_achievers: this.state.step_achievers.filter(achiever => achieverToDelete.id !== achiever.id)
     });
   }
+
+  //////////////////////////////////////
 
 	toggleEdit = () => {
     const { edit } = this.state;
@@ -108,9 +131,7 @@ class Step extends React.Component {
   };
 
   renderStudentAchievement = () => {
-
     const { course, step, currentStudent } = this.props;  
-    // const achievement = this.state.achievements.filter(ach => ach.student_id == currentStudent.id && ach.step_id == step.id)
 
     if (currentStudent) {
       return (
@@ -119,10 +140,9 @@ class Step extends React.Component {
           step={ step } 
           currentStudent={ currentStudent } 
           step_achievers={ this.state.step_achievers } 
-          // onClick={this.addAchiever}
+          onClick={this.handleAchievementClick}
           // onKeyPress={this.deleteAchiever}
-          onClick={this.deleteAchiever}
-          achievement={this.state.achievements.filter(ach => ach.student_id == currentStudent.id && ach.step_id == step.id)[0]}
+          achievements={this.state.achievements}
         />
       );
     }
@@ -142,7 +162,7 @@ class Step extends React.Component {
           currentStudent={ currentStudent }
           currentTeacher={ currentTeacher }
           achievements={ this.state.achievements }
-        />
+          />
       </div>
     );
   }
