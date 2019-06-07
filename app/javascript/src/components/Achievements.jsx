@@ -24,8 +24,11 @@ class Achievements extends React.Component {
   }
 
   countPercentage = (achievements_num, attendances_num) => {
-  	const result = Math.round((achievements_num * 100) / attendances_num);
-    return result
+    if (achievements_num) {
+      return Math.round((achievements_num * 100) / attendances_num);
+    } else {
+      return 0
+    }
   }
 
   render() {
@@ -39,7 +42,7 @@ class Achievements extends React.Component {
 
 	  return (
 	  	<div>
-	  		{progressInstance},  this.props.achievements.length {console.log("this.props.achievements", this.props.achievements)}, this.state.attendances.length {this.state.attendances.length}
+	  		{progressInstance}
 	  	</div>
 	  );
 	}
