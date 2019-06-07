@@ -8,9 +8,10 @@ class Achievements extends React.Component {
     this.state = { 
     	attendances: [],
     };
+    this.refreshAttendances = this.refreshAttendances.bind(this)
   }
 
- componentDidMount = async () => {
+  componentDidMount = async () => {
     this.refreshAttendances();
   }
 
@@ -28,15 +29,17 @@ class Achievements extends React.Component {
   }
 
   render() {
+    
     const achievements_length = this.props.achievements.length
     const attendances_length = this.state.attendances.length
 
   	const now = this.countPercentage(achievements_length, attendances_length)
     const currentTeacher = this.props.currentTeacher;
+    const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
 
 	  return (
 	  	<div>
-	  		<ProgressBar animated now={ now } label={ isNaN(now) ? `${0}%` : `${now}%`} />
+	  		{progressInstance},  this.props.achievements.length {console.log("this.props.achievements", this.props.achievements)}, this.state.attendances.length {this.state.attendances.length}
 	  	</div>
 	  );
 	}

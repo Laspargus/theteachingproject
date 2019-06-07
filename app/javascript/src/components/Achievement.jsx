@@ -6,7 +6,7 @@ class Achievement extends React.Component {
   constructor(props) {
     super(props);
     this.handleAddAchievement = this.handleAddAchievement.bind(this);
-;    this.handleDeleteAchievement = this.handleDeleteAchievement.bind(this)
+;   this.handleDeleteAchievement = this.handleDeleteAchievement.bind(this)
   };
 
   handleAddAchievement = async e =>{

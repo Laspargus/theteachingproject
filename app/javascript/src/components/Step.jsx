@@ -46,10 +46,18 @@ class Step extends React.Component {
   }
 
   addAchiever(achiever, achievementToAdd) {
-    this.setState({
-      step_achievers : [achiever, ...this.state.step_achievers],
-      achievements: [achievementToAdd, ...this.state.achievements]
-    }); 
+    console.log("this.state.achievements.lenghtyyyyyyy", this.state.achievements[0])
+    if (this.state.achievements[0]) {
+      this.setState({
+              step_achievers : [achiever, ...this.state.step_achievers],
+              achievements: [achievementToAdd, ...this.state.achievements]
+            }); 
+    } else {
+      this.setState({
+        step_achievers : [achiever, ...this.state.step_achievers],
+        achievements: [achievementToAdd]
+      }); 
+    }
   }
 
   deleteAchiever(achieverToDelete, achievementToDelete) {
