@@ -24,7 +24,7 @@ constructor(props) {
 		    return (
 			    <button     
 		        onClick = {this.handleClick}
-		        className = "btn btn-info"
+		        className = "btn btn-info m-2"
 			    >Unvote
 			    </button>
 		     );
