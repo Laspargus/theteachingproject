@@ -34,13 +34,4 @@ class AchievementsController < ApplicationController
       end
     end
   end
-
-  def show
-    @achievement = Achievement.find(params[:id])
-    respond_to do |format|
-      format.json do
-        render json: @achievement
-      end
-    end
-  end
 end

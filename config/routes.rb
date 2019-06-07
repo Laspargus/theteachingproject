@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :votes, except: %i[show edit new]
     end
     resources :steps, only: %i[create update destroy edit index show] do
-      resources :achievements, only: %i[create destroy index show]
+      resources :achievements, only: %i[create destroy index]
     end
     resources :attendances
   end

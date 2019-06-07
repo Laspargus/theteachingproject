@@ -12,21 +12,8 @@ const response = await fetch(`/courses/${course_id}/steps/${step_id}/achievement
       Accept: 'application/json',
     },
   });
-
   const achievements = await response.json()
   return achievements;
-};
-
-export const fetchAchievement = async (course_id, step_id, achievement_id) => {
-const response = await fetch(`/courses/${course_id}/steps/${step_id}/achievements/${achievement_id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  });
-  const achievement = await response.json()
-  return achievement;
 };
 
 export const addAchievement = async (course_id, step_id, student_id) => {

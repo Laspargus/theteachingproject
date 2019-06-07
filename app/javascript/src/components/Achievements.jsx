@@ -14,7 +14,7 @@ class Achievements extends React.Component {
     this.refreshAttendances();
   }
 
- refreshAttendances = async () => {
+  refreshAttendances = async () => {
  		const course_id = this.props.course.id;
     const attendances = await fetchAttendances(course_id);
     this.setState({

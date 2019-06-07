@@ -13,23 +13,15 @@ class Achievement extends React.Component {
     e.preventDefault();
     const newAchievement = await addAchievement(this.props.course.id, this.props.step.id, this.props.currentStudent.id);
     const achiever = this.props.currentStudent
-    this.props.onClick(true);
-    console.log("ADD ACH", achiever)
+    this.props.onClick(true, newAchievement);
   };
 
   handleDeleteAchievement = async () => {
     const { course, step, currentStudent, achievements} = this.props;
-    console.log("achievements", achievements)
     const achievement_array = achievements.filter(achievement => (achievement.student_id === currentStudent.id))
     const achievement = achievement_array[0]
-
-    console.log("achievement to remove",achievement)
-    console.log("achievement to remove.id",achievement.id)
-    console.log("achievements to filter to remove",achievements)
-
     const achievementToRemove = await removeAchievement(course.id, step.id, achievement.id );
-    console.log("achievementToRemovezzzz", achievementToRemove)
-    this.props.onClick(false);
+    this.props.onClick(false, achievementToRemove);
   };
 
   studentHasAchieved = () => {
