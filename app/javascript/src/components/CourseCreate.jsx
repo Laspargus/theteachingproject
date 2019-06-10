@@ -63,7 +63,7 @@ export default class CourseCreate extends React.Component {
             />
           </label>
             <input type="submit"
-              value="Create!"
+              value="Create"
               className="btn btn-success m-2"
             required
             />
