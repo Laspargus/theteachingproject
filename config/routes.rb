@@ -5,17 +5,19 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :questions, except: [:show] do
-      resources :votes, except: %i[show edit new index]
+      member do
+        get 'findvote'
+      end
+      resources :votes, except: %i[show edit new]
     end
-    resources :steps, only: %i[create update destroy edit]
+    resources :steps, only: %i[create update destroy edit index show] do
+      resources :achievements, only: %i[create destroy index]
+    end
     resources :attendances
   end
 
-  resources :achievements, only: %i[create destroy]
-
-  resources :questions, except: [:show]
-
   devise_for :teachers, path: 'teachers'
   devise_for :students, path: 'students'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :students, only: %i[index]
+  resources :teachers, only: %i[index]
 end

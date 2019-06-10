@@ -8,24 +8,35 @@ class CoursesController < ApplicationController
   def index
     if current_teacher
       @courses = Course.all.where(teacher: current_teacher)
+      respond_to do |format|
+        format.html {}
+        format.json do
+          render json: @courses
+        end
+      end
     else
       @courses = []
       current_student.attendances.each do |attendance|
         @courses << attendance.course
       end
+      respond_to do |format|
+        format.html {}
+        format.json do
+          render json: @courses
+        end
+      end
     end
   end
 
   def show
-    @attendance = Attendance.find_by(course: @course, student: current_student)
-    @steps = @course.steps
-    @step = Step.new
-    @questions = @course.questions.sort_by(&:num_votes).reverse
-    @achievement = Achievement.new
-
-    # for attendances
-    @invitations = Attendance.where(course: @course, status: false)
-    @attendances = Attendance.where(course: @course, status: true)
+    respond_to do |format|
+      format.html do
+        render :index
+      end
+      format.json do
+        render json: @course
+      end
+    end
   end
 
   def new
@@ -33,12 +44,14 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.create(course_params)
-    @course.teacher_id = current_teacher.id
-    if @course.save
-      redirect_to root_path, success: "Course successfully created"
-    else
-      render 'new'
+    course = Course.create(course_params.merge(teacher_id: current_teacher.id))
+    respond_to do |format|
+      format.html do
+        redirect_to root_path, success: "Course successfully created"
+      end
+      format.json do
+        render json: course
+      end
     end
   end
 
@@ -46,12 +59,12 @@ class CoursesController < ApplicationController
 
   def update
     @course.update(course_params)
-    redirect_to root_path, success: "Course successfully updated"
+    render json: @course
   end
 
   def destroy
     @course.destroy
-    redirect_to root_path, success: "Course successfully deleted"
+    render json: @course
   end
 
   private

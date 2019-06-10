@@ -5,14 +5,14 @@
       <%= step.title %>
         <div>
         <% if step.achievements.where("student_id = ?", current_student.id).count == 0 %>
-          <%= form_for @achievement, url: achievements_path(step_id: step.id, student_id: current_student.id), method: :post do |f| %>
+          <%= form_for @achievement, url: course_step_achievements_path(course_id: step.course.id, step_id: step.id, student_id: current_student.id), method: :post do |f| %>
               <%= button_tag( class: "btn btn-primary") do %>
                 <i class="fas fa-check"></i>
               <% end %>
           <% end %>
         <% else %>      
           <span>Achieved</span>
-            <%= link_to achievement_path(step.achievements.where("student_id = ?", current_student.id).first), method: :delete, class:"btn btn-danger" do %>
+            <%= link_to course_step_achievement_path(course_id: step.course.id, step_id: step.id, id: step.achievements.where("student_id = ?", current_student.id).first.id), method: :delete, class:"btn btn-danger" do %>
             <i class="fas fa-times"></i>
             <% end %> 
           <% end %><br />
