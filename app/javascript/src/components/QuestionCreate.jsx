@@ -18,7 +18,7 @@ class QuestionCreate extends React.Component {
 
   handleSubmitQuestionForm = async e =>{
     e.preventDefault();
-    const {course, question} = this.props
+    const {course} = this.props
     const newQuestion = await addQuestion(course.id, this.state.content);
     this.props.onSubmit(newQuestion);
     this.setState({  
@@ -27,8 +27,6 @@ class QuestionCreate extends React.Component {
   }
   
   render () {
-
-    const { currentStudent } = this.props;
 
     return (
       <div>

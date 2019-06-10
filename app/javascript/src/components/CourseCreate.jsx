@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { addCourse } from '../APIs/courses';
-import CourseList from './CourseList';
 
 export default class CourseCreate extends React.Component {
   constructor(props) {

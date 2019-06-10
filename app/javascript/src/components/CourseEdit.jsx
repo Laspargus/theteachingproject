@@ -34,7 +34,7 @@ export default class CourseEdit extends Component {
 
 
   renderButtons = () => {
-    const { course, toggleEdit, currentTeacher  } = this.props;
+    const { toggleEdit } = this.props;
     return (
       <span>
         <button

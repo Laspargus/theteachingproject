@@ -33,7 +33,7 @@ export default class Course extends Component {
 
  render() {
     const { edit, detail } = this.state;
-    const { course, actOnRemove, updateCourse, currentStudent, currentTeacher} = this.props;
+    const { course, updateCourse, currentStudent, currentTeacher} = this.props;
 
     if (edit) {
       return (
