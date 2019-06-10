@@ -8,22 +8,16 @@ class CoursesController < ApplicationController
   def index
     if current_teacher
       @courses = Course.all.where(teacher: current_teacher)
-      respond_to do |format|
-        format.html {}
-        format.json do
-          render json: @courses
-        end
-      end
     else
       @courses = []
       current_student.attendances.each do |attendance|
         @courses << attendance.course
       end
-      respond_to do |format|
-        format.html {}
-        format.json do
-          render json: @courses
-        end
+    end
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: @courses
       end
     end
   end
