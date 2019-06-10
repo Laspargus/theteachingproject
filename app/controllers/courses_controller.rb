@@ -2,7 +2,7 @@
 
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[edit update show destroy]
-  before_action :match_teacher, only: %i[new create edit update destroy]
+  before_action :match_teacher, only: %i[edit update destroy]
   before_action :match_student_teacher, only: %i[show]
 
   def index

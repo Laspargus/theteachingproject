@@ -53,38 +53,44 @@ export default class CourseEdit extends Component {
   render() {
     const { course } = this.props;
     return(
-       <div className="block">
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="Title">
-            <input type="text" 
-              name="title" 
-              id="title" 
-              className="form-control"
-              placeholder={course.title}
-              value={this.state.title}
-              onChange={this.handleChangeTitle}
-            />
-          </label>
-          <label htmlFor="Description">
-            <input type="text" 
-              name="description" 
-              id="description" 
-              className="form-control"
-              placeholder={course.description}
-              value={this.state.description}
-              onChange={this.handleChangeDescription}
-              required
-            />
-          </label>
-
-          <input type="submit"
-            value="Update!"
-            className="btn btn-success"
-            required
-          />
-        </form>
-        {this.renderButtons()}
-    	</div>
+      <React.Fragment>
+        <tbody>
+          <tr>
+            <td scope="row">
+              <form onSubmit={this.handleSubmit}>
+                <label htmlFor="Title">
+                <input type="text" 
+                  name="title" 
+                  id="title" 
+                  className="form-control"
+                  placeholder={course.title}
+                  value={this.state.title}
+                  onChange={this.handleChangeTitle}
+                />
+                </label><br />
+                <label htmlFor="Description">
+                <input type="text" 
+                  name="description" 
+                  id="description" 
+                  className="form-control"
+                  placeholder={course.description}
+                  value={this.state.description}
+                  onChange={this.handleChangeDescription}
+                  required
+                />
+                </label><br />
+                <input type="submit"
+                  value="Update"
+                  className="btn btn-success"
+                  required
+                />{this.renderButtons()}
+              </form>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </React.Fragment>
     );
   }
 }

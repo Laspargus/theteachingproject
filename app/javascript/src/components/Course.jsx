@@ -18,21 +18,14 @@ export default class Course extends Component {
     });
   };
 
-  toggleDetail = () => {
-    const { detail } = this.state;
-    this.setState({
-      detail: !detail,
-    });
-  };
-
   handleRemoveClick = async () => {
-    const { course, actOnRemove } = this.props;
+    const { course } = this.props;
     const result = await removeCourse(course.id);
     this.props.actOnRemove(result);
   };
 
  render() {
-    const { edit, detail } = this.state;
+    const { edit } = this.state;
     const { course, updateCourse, currentStudent, currentTeacher} = this.props;
 
     if (edit) {
@@ -46,29 +39,7 @@ export default class Course extends Component {
           currentTeacher={ currentTeacher }
         />
       );
-    }
-
-    else if(detail) {
-    return (
-      <div>
-        <CourseShow
-          course={course}
-          removeAct={this.handleRemoveClick}
-          toggleEdit={this.toggleEdit}
-          toggleDetail={this.toggleDetail}
-          currentStudent={ currentStudent }
-          currentTeacher={ currentTeacher }
-        />
-        <CourseDetail
-          course={course}
-          currentStudent={ currentStudent }
-          currentTeacher={ currentTeacher }
-        />
-      </div>
-      );
-    }
-
-    else {
+    } else {
       return (
         <CourseShow
           course={course}
