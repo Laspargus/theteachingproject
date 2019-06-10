@@ -43,7 +43,7 @@ render() {
       <React.Fragment>
         <div className="post">
           {course.title} -  {course.description}
-            <a className="m-2 btn btn-success" href={'/courses/' + course.id}>Old Show</a>
+            {/* <a className="m-2 btn btn-success" href={'/courses/' + course.id}>Old Show</a> */}
           {this.renderButtons()}
         </div> 
       </React.Fragment>

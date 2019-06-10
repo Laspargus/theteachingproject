@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Attendance from './Attendance';
 import { removeAttendance } from '../APIs/attendances';
 
 export default class AttendanceInvited extends React.Component {

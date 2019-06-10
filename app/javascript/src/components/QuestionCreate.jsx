@@ -25,16 +25,6 @@ class QuestionCreate extends React.Component {
      content: 'content',
     });
   }
-
-  magicNumber(currentStudent) {
-    if (currentStudent) {
-      return(
-        <div>
-          MAGIC NUMBER IS MAGIIIIC 4
-        </div>
-      )
-    }
-  }
   
   render () {
 
@@ -43,10 +33,6 @@ class QuestionCreate extends React.Component {
     return (
       <div>
        <span>New question :</span>
-       <div>
-          only students can see the magic number :
-          { this.magicNumber(currentStudent) }
-       </div>
         <form 
           className="block" 
           onSubmit={this.handleSubmitQuestionForm}  

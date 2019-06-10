@@ -52,7 +52,7 @@ export default class StepEdit extends Component {
   
   render() {
 
-    const { step, course, updateCourse, toggleEdit, onSubmit, currentTeacher} = this.props;
+    const { step } = this.props;
 
 	    return(
 	       <div className="block">
