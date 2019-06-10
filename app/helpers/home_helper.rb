@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 module HomeHelper
-
-    def resource_name
+  def resource_name
     :teacher
-  end
+end
 
   def resource
     @resource ||= Teacher.new

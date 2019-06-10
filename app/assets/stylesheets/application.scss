@@ -21,12 +21,13 @@
 
 
 
-.bg-home {
+.bg-half {
 	 
-	  background-image: image-url('bg-teacher.jpg');
+	  background-image: image-url('woman-computer.jpg');
 		min-height: 900px;
     background-position: bottom;
     font-family: 'Nunito', sans-serif;
+    background-size: 100%;
 }
 
 .bg-full {
@@ -37,8 +38,8 @@
 }
 
 #home-title {
-    font-size: 60px;
-    color:#FFF;
+    font-size: 70px;
+    color:#c34a2b;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
 }
