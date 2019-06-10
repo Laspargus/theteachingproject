@@ -30,8 +30,8 @@ export default class CourseCreate extends React.Component {
     const newCourse = await addCourse(this.state.title, this.state.description);
     this.props.onSubmit(newCourse);
     this.setState({  
-     title: 'title',
-     description: 'description'
+     title: '',
+     description: ''
     });
   }
   
