@@ -143,9 +143,6 @@ class CourseDetail extends React.Component {
     }
   }
 	render(){
-    const { steps } = this.state.steps;
-    const { course } = this.state.course;
-    const { attendances } = this.state.attendances;
     const currentStudent = this.props.currentStudent;
     const currentTeacher = this.props.currentTeacher;
 

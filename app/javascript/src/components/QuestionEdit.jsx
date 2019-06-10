@@ -33,7 +33,6 @@ export default class QuestionEdit extends Component {
   }
 
   renderButtons = () => {
-    const { toggleEdit  } = this.props;
       return (
         <span>
           <button
@@ -50,7 +49,7 @@ export default class QuestionEdit extends Component {
     }
   
   render() {
-    const { question, course, toggleEdit, onSubmit } = this.props;
+    const { question } = this.props;
 	    return(
 	       <div className="block">
 	        <form onSubmit={this.handleSubmit}>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { updateCourse } from '../APIs/courses';
-import CourseList from './CourseList';
 
 export default class CourseEdit extends Component {
 
@@ -35,7 +34,7 @@ export default class CourseEdit extends Component {
 
 
   renderButtons = () => {
-    const { course, toggleEdit, currentTeacher  } = this.props;
+    const { toggleEdit } = this.props;
     return (
       <span>
         <button
@@ -52,7 +51,7 @@ export default class CourseEdit extends Component {
   }
 
   render() {
-    const { course, updateCourse, toggleEdit, currentTeacher } = this.props;
+    const { course } = this.props;
     return(
        <div className="block">
         <form onSubmit={this.handleSubmit}>

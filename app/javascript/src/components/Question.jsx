@@ -32,7 +32,7 @@ class Question extends React.Component {
 
 
   renderButtons = () => {
-    const { course, toggleEdit, updateQuestion, removeQuestion, question, currentStudent, currentTeacher } = this.props;
+    const { course, updateQuestion, question, currentStudent } = this.props;
 		const { edit } = this.state;  
     if (edit){
     	return (

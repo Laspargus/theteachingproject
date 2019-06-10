@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 class CourseShow extends React.Component {
 
 renderButtons = () => {
-    const { course, toggleEdit, toggleDetail, removeAct, currentStudent, currentTeacher} = this.props;
+    const { course, toggleEdit, removeAct } = this.props;
     return (
       <span>
         <button
@@ -43,7 +43,7 @@ render() {
       <React.Fragment>
         <div className="post">
           {course.title} -  {course.description}
-            <a className="m-2 btn btn-success" href={'/courses/' + course.id}>Old Show</a>
+            {/* <a className="m-2 btn btn-success" href={'/courses/' + course.id}>Old Show</a> */}
           {this.renderButtons()}
         </div> 
       </React.Fragment>
