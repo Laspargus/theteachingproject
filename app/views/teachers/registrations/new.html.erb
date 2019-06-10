@@ -1,31 +1,59 @@
-<h2>Sign up</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :first_name,
-                required: true,
-                input_html: { autocomplete: "first-name" } %>
-    <%= f.input :last_name,
-                required: true,
-                input_html: { autocomplete: "last-name" } %>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+<div class="row bg-full">
+  <div class="col-md-6 bg-half" >
+    <div class="text-center mt-5 m-3">
+      <h1 id="home-title">
+        The easiest way to handle your school
+      </h1>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+  <div class="bg-text col-md-6">
+    <div class="dropdown m-3 text-right">
+      <a class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Already an account ?
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to 'Sign In as a Student', new_student_session_path, class:"dropdown-item" %>
+        <%= link_to 'Sign In as a Teacher', new_teacher_session_path, class:"dropdown-item" %>
+      </div>
+    </div>
+    <div class="m-3 p-3 ">
+    <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: "m-3 p-3 form-signin mt-3" } do |f| %>
+      <h1 class="h3 mb-3 font-weight-normal text-center">Sign up</h1>
+      <%= devise_error_messages! %>
+      <div class="form-group">
+        <%= f.label :email, "Email" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+       <div class="form-group">
+        <%= f.label :first_name, "Firstname" %><br />
+        <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+      </div>
+       <div class="form-group">
+        <%= f.label :last_name, "Lastname" %><br />
+        <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+      </div>
+      <div class="actions mt-5">
+        <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block" %>
+      </div>
+    <% end %>   
+    <%= render "teachers/shared/links" %> 
+    </div>
+    <div class="description text-left pl-5">
+    <p class="m-2 text-secondary"><i class="fas fa-edit"></i> Create your program and define your steps</p>
+    <p class="m-2 text-secondary"><i class="fas fa-envelope"></i> Invite your students to join the class<br></p>
+    <p class="m-2 text-secondary"><i class="fas fa-tasks"></i> Follow your students achievements and answer their questions</p>
+    </div>
   </div>
-<% end %>
+</div>
 
-<%= render "teachers/shared/links" %>
