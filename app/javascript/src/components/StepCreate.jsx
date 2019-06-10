@@ -37,8 +37,6 @@ class StepCreate extends React.Component {
   
   render () {
 
-    const currentTeacher = this.props.currentTeacher;
-
     return (
       <div>
        <span>Création d'un step :</span>
