@@ -2,10 +2,18 @@
 
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[edit update show destroy]
-  before_action :authenticate_teacher!, only: %i[new create edit update destroy]
+  before_action :match_teacher, only: %i[new create edit update destroy]
+  before_action :match_student_teacher, only: %i[show]
 
   def index
-    @courses = Course.all
+    if current_teacher
+      @courses = Course.all.where(teacher: current_teacher)
+    else
+      @courses = []
+      current_student.attendances.each do |attendance|
+        @courses << attendance.course
+      end
+    end
     respond_to do |format|
       format.html {}
       format.json do
@@ -61,5 +69,21 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:title, :description, :teacher_id)
+  end
+
+  def match_teacher
+    redirect_to courses_path unless @course.teacher == current_teacher
+  end
+
+  def match_student_teacher
+    @students_id = []
+    @course.attendances.each do |attendance|
+      @students_id << attendance.student_id
+    end
+    if current_student
+      redirect_to courses_path unless @students_id.include?(current_student.id)
+    else
+      redirect_to courses_path unless @course.teacher == current_teacher
+    end
   end
 end
