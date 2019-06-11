@@ -3,8 +3,6 @@ import FlipMove from 'react-flip-move';
 import Question from './Question';
 import Votes from './Votes';
 
-
-
 function QuestionList({course, questions, removeQuestion, updateQuestion, currentStudent, currentTeacher}) {
   return (
   	<div>
