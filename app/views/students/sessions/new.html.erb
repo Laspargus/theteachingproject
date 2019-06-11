@@ -10,7 +10,7 @@
 
   <div class="bg-text col-md-6">
     <div class="m-3 p-3 ">
-      <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: "m-3 p-3 form-signin mt-3" } do |f| %>
+      <%= form_for resource, as: resource_name, url: new_student_session_path, html: { class: "m-3 p-3 form-signin mt-3" } do |f| %>
         <h1 class="h3 mb-3 font-weight-normal text-center">Sign In</h1>
         <%= devise_error_messages! %>
         <div class="form-group">
