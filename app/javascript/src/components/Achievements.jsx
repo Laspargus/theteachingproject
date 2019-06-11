@@ -41,7 +41,10 @@ class Achievements extends React.Component {
 
 	  return (
 	  	<div>
-	  		{progressInstance}
+	  		{progressInstance},<br/>
+         achievements_length : {achievements_length}
+         <br/>
+         attendances_length : {attendances_length}
 	  	</div>
 	  );
 	}
