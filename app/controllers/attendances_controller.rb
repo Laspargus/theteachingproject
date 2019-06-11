@@ -38,13 +38,13 @@ class AttendancesController < ApplicationController
         end
       end
     elsif !@student.nil? && !@attending.nil?
-      render json: { errors: ["#{student.first_name} has already been invited to course"] } 
-     #flash[:notice] = "#{student.first_name} has already been invited to course"
+      render json: { errors: ["#{student.first_name} has already been invited to course"] }
+    # flash[:notice] = "#{student.first_name} has already been invited to course"
 
     else
-    invitation_to_application(@email, @course.teacher)
-    render json: { errors: ["#{email} is not a member. We invited him to join application. Please invite him to course later"] } 
-    #   flash[:notice] = "#{email} is not a member. We invited him to join application. Please invite him to course later"
+      invitation_to_application(@email, @course.teacher)
+      render json: { errors: ["#{email} is not a member. We invited him to join application. Please invite him to course later"] }
+      #   flash[:notice] = "#{email} is not a member. We invited him to join application. Please invite him to course later"
     end
   end
 
