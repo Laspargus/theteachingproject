@@ -29,7 +29,7 @@ class Step extends React.Component {
     const course_id = this.props.course.id;
     const step_id = this.props.step.id;
     const currentStudent = this.props.currentStudent
-    const achievements = await fetchAchievements(course_id, step_id, currentStudent.id);
+    const achievements = await fetchAchievements(course_id, step_id);
     this.setState({
       achievements: achievements,
     }); 
