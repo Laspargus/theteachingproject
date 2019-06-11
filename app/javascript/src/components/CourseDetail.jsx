@@ -8,6 +8,7 @@ import { fetchAttendances } from '../APIs/attendances';
 import { fetchQuestions } from '../APIs/questions';
 import QuestionList from './QuestionList';
 import QuestionCreate from './QuestionCreate';
+import ErrorList from './ErrorList';
 
 class CourseDetail extends React.Component {
 
@@ -21,6 +22,7 @@ class CourseDetail extends React.Component {
       course: [],
       questions: [],
       course_id: match.params.id,
+      errors:[]
     };   
     this.addStepToList = this.addStepToList.bind(this);
     this.removeStepFromList = this.removeStepFromList.bind(this);
@@ -31,6 +33,7 @@ class CourseDetail extends React.Component {
     this.removeQuestionFromList = this.removeQuestionFromList.bind(this);
     this.updateQuestion = this.updateQuestion.bind(this); 
     this.updateAttendance = this.updateAttendance.bind(this);
+    this.setErrors = this.setErrors.bind(this);
   };
 
   getCourse = async () => {
@@ -46,6 +49,12 @@ class CourseDetail extends React.Component {
     this.refreshAttendances()
     this.refreshQuestions();
   }
+
+  setErrors = errors => {
+    this.setState({
+      errors,
+    });
+  };
 
   refreshSteps = async () => {
     const steps = await fetchSteps(this.state.course_id);
@@ -149,6 +158,8 @@ class CourseDetail extends React.Component {
  
     return (
      <div className="container"> 
+        <ErrorList errors={this.state.errors}
+        />
         <h2>{this.state.course.title} - {this.state.course.description}</h2>
         <Attendance
           course={this.state.course}
@@ -158,6 +169,7 @@ class CourseDetail extends React.Component {
           course_id={this.state.course_id}
           updateAttendance={this.updateAttendance}
           currentStudent={currentStudent}
+          setErrors = {this.setErrors}
         />
         <div className="row">
           <div className="card col-md-5 m-2 card-body">  

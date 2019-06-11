@@ -10,7 +10,7 @@ class Attendance extends React.Component {
   };
 
   render() {
-    const { course, onSubmit, attendances, removeAttendance, course_id, currentStudent, updateAttendance } = this.props;
+    const { setErrors, course, onSubmit, attendances, removeAttendance, course_id, currentStudent, updateAttendance } = this.props;
     if(currentStudent) {
       return (
         <div>
@@ -29,6 +29,7 @@ class Attendance extends React.Component {
             <AttendanceCreate
               course={course} 
               onSubmit={onSubmit}
+              setErrors={setErrors}
             />
             <div className="row">
               <div className="card col-md-6">
