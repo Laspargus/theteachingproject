@@ -3,8 +3,6 @@ import FlipMove from 'react-flip-move';
 import Question from './Question';
 import Votes from './Votes';
 
-
-
 function QuestionList({course, questions, removeQuestion, updateQuestion, currentStudent, currentTeacher}) {
   return (
   	<div>
@@ -14,7 +12,7 @@ function QuestionList({course, questions, removeQuestion, updateQuestion, curren
         
           <Question
             question={question}
-            key={question.id}
+            key={"question_" + question.id}
             removeQuestion={removeQuestion}
             course = {course}
             updateQuestion = {updateQuestion}
@@ -23,7 +21,7 @@ function QuestionList({course, questions, removeQuestion, updateQuestion, curren
           <Votes
           course = {course}
           question={question}
-          key={i}
+          key={"vote_" + i}
           updateQuestion = {updateQuestion}
           currentStudent={ currentStudent }
           currentTeacher={ currentTeacher }
