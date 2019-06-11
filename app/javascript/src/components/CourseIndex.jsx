@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import CourseCreate from './CourseCreate';
 import CourseList from './CourseList';
 import { fetchCourses } from '../APIs/courses';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import CourseDetail from './CourseDetail';
 
 export default class CourseIndex extends Component {
   constructor(props) {
@@ -53,33 +51,56 @@ export default class CourseIndex extends Component {
 
     const { currentStudent, currentTeacher } = this.props;
 
-    if (currentStudent) {
-    }
-
-    return(
-      <div className="container">
-       <div>
-          <h1>Création d'un cours :</h1>
-          <div>
-            <div className="form-group row">    
-              <div className="col-sm-12">
-                <CourseCreate
-                  onSubmit={this.addCourseToList}
-                  currentStudent={ currentStudent }
-                  currentTeacher={ currentTeacher }
-                />
-  							<CourseList 	
-  	              courses = {this.state.courses}
-  	              actOnRemove={this.removeCourse}
-  	          	  updateCourse={this.updateCourse}
-                  currentStudent={ currentStudent }
-                  currentTeacher={ currentTeacher }
-              	/>
+    if (currentTeacher) {
+      return(
+        <div className="container">
+         <div>
+            <div>
+              <div className="form-group row">    
+                <div className="col-sm-12">
+                <h1>Create a course :</h1><br />
+                  <CourseCreate
+                    onSubmit={this.addCourseToList}
+                    currentStudent={ currentStudent }
+                    currentTeacher={ currentTeacher }
+                  /><br /><br />
+                  <h1>List of your courses :</h1><br />
+                  <CourseList 	
+                    courses = {this.state.courses}
+                    actOnRemove={this.removeCourse}
+                    updateCourse={this.updateCourse}
+                    currentStudent={ currentStudent }
+                    currentTeacher={ currentTeacher }
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return(
+        <div className="container">
+         <div>
+            <div>
+              <div className="form-group row">    
+                <div className="col-sm-12">
+                <h1>List of your courses :</h1><br />
+                  <CourseList 	
+                    courses = {this.state.courses}
+                    actOnRemove={this.removeCourse}
+                    updateCourse={this.updateCourse}
+                    currentStudent={ currentStudent }
+                    currentTeacher={ currentTeacher }
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    
   }
 }

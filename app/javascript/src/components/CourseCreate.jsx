@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { addCourse } from '../APIs/courses';
-import CourseList from './CourseList';
 
 export default class CourseCreate extends React.Component {
   constructor(props) {
@@ -31,8 +30,8 @@ export default class CourseCreate extends React.Component {
     const newCourse = await addCourse(this.state.title, this.state.description);
     this.props.onSubmit(newCourse);
     this.setState({  
-     title: 'title',
-     description: 'description'
+     title: '',
+     description: ''
     });
   }
   
@@ -64,7 +63,7 @@ export default class CourseCreate extends React.Component {
             />
           </label>
             <input type="submit"
-              value="Create!"
+              value="Create"
               className="btn btn-success m-2"
             required
             />

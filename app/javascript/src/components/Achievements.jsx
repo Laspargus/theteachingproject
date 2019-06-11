@@ -37,7 +37,6 @@ class Achievements extends React.Component {
     const attendances_length = this.state.attendances.length
 
   	const now = this.countPercentage(achievements_length, attendances_length)
-    const currentTeacher = this.props.currentTeacher;
     const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
 
 	  return (

@@ -13,3 +13,49 @@
  *= require_tree .
  *= require_self
  */
+
+
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.bg-half {
+	 
+	  background-image: image-url('woman-computer.jpg');
+		min-height: 900px;
+    background-position: bottom;
+    font-family: 'Nunito', sans-serif;
+    background-size: 100%;
+}
+
+.bg-full {
+  	background-image: image-url('people.jpg');
+		min-height: 1000px;	
+		background-position: top;
+		font-weight: bold;
+}
+
+#home-title {
+    font-size: 70px;
+    color:#6c757d;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+}
+
+.bg-text {
+	background-color:#FFF;
+	font-family: 'Nunito', sans-serif;
+}
+
+.steps {
+    font-size: 30px;
+    color:#FFF;
+    font-family: 'Nunito', sans-serif;
+}
+
+.description {
+	font-size:20px;
+	font-family: 'Nunito', sans-serif;
+}
