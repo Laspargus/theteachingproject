@@ -23,7 +23,13 @@ export default class AttendanceCreate extends React.Component {
       email: '',
      })
     const newAttendance = await addAttendance(this.props.course.id, this.state.email);
-    this.props.onSubmit(newAttendance);
+
+    if (newAttendance.attendance){
+        this.props.onSubmit(newAttendance.attendance);
+    }
+    else {
+      this.props.setErrors(newAttendance.errors);
+    }   
   }
   
   render () {

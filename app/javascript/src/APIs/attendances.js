@@ -15,7 +15,7 @@ export const addAttendance = async (id, email) => {
       body: JSON.stringify(addCsrf({attendance: { email } })),
   });
   const attendance = await attendanceResponse.json();
-  return attendance.attendance;
+  return attendance;
 }
 
 export const removeAttendance = async (course_id, id) => {
