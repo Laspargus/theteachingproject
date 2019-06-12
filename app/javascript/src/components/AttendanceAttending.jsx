@@ -17,15 +17,28 @@ export default class AttendanceAttending extends React.Component {
   render () {
     const { attendances } = this.props;
     const invited = attendances.filter(attendance => attendance.status === true);
+    const connectedIndicStyle = {
+      height: '1px',
+      alignSelf: 'center',
+      padding: '0.3rem',
+      borderRadius: '50%',
+      border: '1px solid #888',
+    };
+
     return (
       <div>
         <span>Students Attending</span><hr />
         {invited.map(attendance => (
           <div key={attendance.id}>
-            {attendance.student.email}<button className="m-2 btn btn-danger" value={attendance.id} onClick={this.handleRemoveClick}><i className="far fa-trash-alt"></i></button>
+            <span className="connectedIndic" style={connectedIndicStyle}></span>
+            {" " + attendance.student.email}
+            <button className="m-2 btn btn-danger" value={attendance.id} onClick={this.handleRemoveClick}>
+              <i className="far fa-trash-alt"></i>
+            </button>
           </div>
         ))}
       </div>	
     );
   }
 }
+  
