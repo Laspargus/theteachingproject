@@ -5,6 +5,6 @@ This app helps teachers to manage and organize their classes, edit / add courses
 * Ruby version : 2.6.2
 * Rails version : 5.2.3
 
-Use the app in production :
+*Use the app in production :*
 * Access the app as a teacher : 
   *email :`teacher@yopmail.com` 
