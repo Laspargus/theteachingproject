@@ -156,58 +156,92 @@ class CourseDetail extends React.Component {
     const currentTeacher = this.props.currentTeacher;
 
  
-    return (
+    return ( 
      <div className="container"> 
-        <ErrorList errors={this.state.errors}
-        />
+        <ErrorList errors={this.state.errors} />
         <h2>{this.state.course.title} - {this.state.course.description}</h2>
-        <Attendance
-          course={this.state.course}
-          onSubmit={this.addAttendanceToInvited}
-          attendances={ this.state.attendances }
-          removeAttendance={this.removeAttendance}
-          course_id={this.state.course_id}
-          updateAttendance={this.updateAttendance}
-          currentStudent={currentStudent}
-          setErrors = {this.setErrors}
-        />
-        <div className="row">
-          <div className="card col-md-5 m-2 card-body">  
-           <div className="form-group row">    
-            <StepCreate
-                onSubmit={this.addStepToList}
-                course={ this.state.course }
-                currentTeacher={ currentTeacher }
-              />
+        <div id="accordion">
+
+
+          <div className="card">
+            <div className="card-header" id="headingOne">
+              <h5 className="mb-0">
+                <button className="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Invite student
+                </button>
+              </h5>
             </div>
-            <div>
-             <StepList
-              steps = {this.state.steps}
-              removeStep = {this.removeStepFromList}
-              course = {this.state.course}
-              updateStep = {this.updateStep}
-              currentStudent = { currentStudent }
-              currentTeacher={ currentTeacher }
-               />
+
+            <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div className="card-body">
+                <Attendance
+                  course={this.state.course}
+                  onSubmit={this.addAttendanceToInvited}
+                  attendances={ this.state.attendances }
+                  removeAttendance={this.removeAttendance}
+                  course_id={this.state.course_id}
+                  updateAttendance={this.updateAttendance}
+                  currentStudent={currentStudent}
+                  setErrors = {this.setErrors}
+                />      
+              </div>
             </div>
           </div>
-           <div className="card col-md-5 m-2 card-body">
-             <div className="form-group row">    
-               {this.question_create_for_student(currentStudent)}
-              </div>
-              <div>
-              <QuestionList
-                questions = {this.state.questions}
-                removeQuestion = {this.removeQuestionFromList}
-                course = {this.state.course}
-                updateQuestion = {this.updateQuestion}
-                currentStudent = { currentStudent }
-                currentTeacher={ currentTeacher }
-              />
+
+
+
+
+          <div className="card">
+            <div className="card-header" id="headingTwo">
+              <h5 className="mb-0">
+                <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Steps & Questions
+                </button>
+              </h5>
             </div>
-           </div>
-        </div>
-      </div>  
+
+            <div id="collapseTwo" className="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div className="row">
+
+                <div className="col-sm-6 border-right">
+                    <div className="card-body">
+                     <StepCreate
+                        onSubmit={this.addStepToList}
+                        course={ this.state.course }
+                        currentTeacher={ currentTeacher }
+                       />
+                     <StepList
+                      steps = {this.state.steps}
+                      removeStep = {this.removeStepFromList}
+                      course = {this.state.course}
+                      updateStep = {this.updateStep}
+                      currentStudent = { currentStudent }
+                      currentTeacher={ currentTeacher }
+                       />      
+                    </div>
+                </div>
+
+                <div className="col-sm-6">
+                   <div className="card-body">
+                    {this.question_create_for_student(currentStudent)}
+                      <QuestionList
+                        questions = {this.state.questions}
+                        removeQuestion = {this.removeQuestionFromList}
+                        course = {this.state.course}
+                        updateQuestion = {this.updateQuestion}
+                        currentStudent = { currentStudent }
+                        currentTeacher={ currentTeacher }
+                      />
+                   </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div> 
+      </div> 
     );
   }
 }
