@@ -1,24 +1,15 @@
-# README
+# The Teaching Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app is our second project made during THP_Next, a bootcamp that aims to train future professional web developers.
+Our app helps teachers to manage and organize their classes by creating new courses and inviting students to join theses courses. The app has a back-end made with a Rails API 💎 and a front-end in React.js ⚛️.
 
-Things you may want to cover:
+**App in production**
+* https://theteachingproject.herokuapp.com/
 
-* Ruby version
+**Versions**
+* Ruby version : 2.6.2
+* Rails version : 5.2.3
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**How to use the app in production :**
+* Access the app as a teacher : *email :*`teacher@yopmail.com` - *password :* `123456`
+* Access the app as a student: *email :* `student@yopmail.com` - *password :* `123456`
