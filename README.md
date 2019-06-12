@@ -1,10 +1,12 @@
 # The Teaching Project
 
-This app helps teachers to manage and organize their classes, edit / add courses and invite students to join. The app has a back-end with a Rails API 💎 and a front in React.js ⚛️.
+This app is our second project made during THP_Next, a bootcamp that aims to train future professional web developers.
+Our app helps teachers to manage and organize their classes by creating new courses and inviting students to join theses courses. The app has a back-end made with a Rails API 💎 and a front-end in React.js ⚛️.
 
+**Versions**
 * Ruby version : 2.6.2
 * Rails version : 5.2.3
 
-**Use the app in production :**
+**How to use the app in production :**
 * Access the app as a teacher : *email :*`teacher@yopmail.com` - *password :* `123456`
 * Access the app as a student: *email :* `student@yopmail.com` - *password :* `123456`
