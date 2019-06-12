@@ -7,4 +7,4 @@ This app helps teachers to manage and organize their classes, edit / add courses
 
 Use the app in production :
 * Access the app as a teacher : 
-** uuu
+  *email :`teacher@yopmail.com` 
