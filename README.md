@@ -1,7 +1,10 @@
-# README
+# The Teaching Project - Rails API / React.js
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app helps teachers to manage and organize their classes, edit / add courses and invite students to join.
+
+* Ruby version : 2.6.2
+* Rails version : 5.2.3
+
 
 Things you may want to cover:
 
