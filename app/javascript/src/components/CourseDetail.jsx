@@ -156,41 +156,20 @@ class CourseDetail extends React.Component {
     const currentTeacher = this.props.currentTeacher;
 
  
-    return ( 
+    return (
      <div className="container"> 
         <ErrorList errors={this.state.errors} />
         <h2>{this.state.course.title} - {this.state.course.description}</h2>
-        <div id="accordion">
-
-
-          <div className="card">
-            <div className="card-header" id="headingOne">
-              <h5 className="mb-0">
-                <button className="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Invite student
-                </button>
-              </h5>
-            </div>
-
-            <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-              <div className="card-body">
-                <Attendance
-                  course={this.state.course}
-                  onSubmit={this.addAttendanceToInvited}
-                  attendances={ this.state.attendances }
-                  removeAttendance={this.removeAttendance}
-                  course_id={this.state.course_id}
-                  updateAttendance={this.updateAttendance}
-                  currentStudent={currentStudent}
-                  setErrors = {this.setErrors}
-                />      
-              </div>
-            </div>
-          </div>
-
-
-
-
+          <Attendance
+            course={this.state.course}
+            onSubmit={this.addAttendanceToInvited}
+            attendances={ this.state.attendances }
+            removeAttendance={this.removeAttendance}
+            course_id={this.state.course_id}
+            updateAttendance={this.updateAttendance}
+            currentStudent={currentStudent}
+            setErrors = {this.setErrors}
+          />      
           <div className="card">
             <div className="card-header" id="headingTwo">
               <h5 className="mb-0">
@@ -205,11 +184,15 @@ class CourseDetail extends React.Component {
 
                 <div className="col-sm-6 border-right">
                     <div className="card-body">
-                     <StepCreate
-                        onSubmit={this.addStepToList}
-                        course={ this.state.course }
-                        currentTeacher={ currentTeacher }
-                       />
+                      {currentTeacher?
+                        <StepCreate
+                          onSubmit={this.addStepToList}
+                          course={ this.state.course }
+                          currentTeacher={ currentTeacher }
+                         /> 
+                      : 
+                      ""
+                      }
                      <StepList
                       steps = {this.state.steps}
                       removeStep = {this.removeStepFromList}
@@ -220,7 +203,6 @@ class CourseDetail extends React.Component {
                        />      
                     </div>
                 </div>
-
                 <div className="col-sm-6">
                    <div className="card-body">
                     {this.question_create_for_student(currentStudent)}
@@ -234,14 +216,10 @@ class CourseDetail extends React.Component {
                       />
                    </div>
                 </div>
-
               </div>
             </div>
-
           </div>
-
-        </div> 
-      </div> 
+        </div>  
     );
   }
 }
