@@ -38,8 +38,7 @@ class StepCreate extends React.Component {
   render () {
 
     return (
-      <div>
-       <span>Création d'un step :</span>
+      <div className="border-bottom">
         <form 
           className="block" 
           onSubmit={this.handleSubmitStepForm}  
