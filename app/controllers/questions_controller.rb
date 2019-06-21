@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       format.html {}
       format.json do
-        render json: @questions
+        render json: @questions, root: 'questions'
       end
     end
   end
