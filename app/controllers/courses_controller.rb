@@ -17,7 +17,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html {}
       format.json do
-        render json: @courses, , root: 'courses'
+        render json: @courses, root: 'courses'
       end
     end
   end
