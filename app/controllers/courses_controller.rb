@@ -17,7 +17,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html {}
       format.json do
-        render json: @courses
+        render json: @courses, serializer: CourseSerializer
       end
     end
   end
