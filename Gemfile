@@ -8,7 +8,7 @@ File.read('./.ruby-version')
 gem 'active_model_serializers', '~> 0.10.9'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'
-gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.7'
 gem 'faker', '~> 1.9', '>= 1.9.3'
 gem 'jbuilder', '~> 2.5'
 gem 'pg', '>= 0.18', '< 2.0'
