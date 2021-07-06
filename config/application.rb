@@ -31,5 +31,9 @@ module Theteachingproject
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    
+    Raven.configure do |config|
+      config.dsn = 'https://41552ee5c81546bf9ca12ef3cf65d51e:baffc6cf42344f10b37bcc05b1f345f8@sentry.io/1462059'
+    end
   end
 end
